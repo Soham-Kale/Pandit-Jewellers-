@@ -1,0 +1,92 @@
+# Pundit Jewellers — brand website
+
+A static, single-page brand website for Pundit Jewellers, a traditional gold
+jewellery shop in Shrigonda, Maharashtra. Built with Next.js (App Router),
+TypeScript, Tailwind CSS v4, Framer Motion and Lucide icons. No backend,
+database, auth or payments: all content lives in `data/`.
+
+## Run it
+
+```bash
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # production build
+npm start        # serve the production build
+npm run lint
+```
+
+Requires Node.js 20.9 or newer.
+
+## Languages
+
+The site is bilingual: **Marathi (default)** and English. Visitors switch with
+the मराठी / EN toggle in the header (and mobile menu); their choice is
+remembered in the browser. All copy lives in `data/content.ts` as `mr` and `en`
+objects with the same shape, and names, captions and alt text elsewhere in
+`data/` are `{ mr, en }` pairs. The whole site uses the Anek Devanagari font.
+
+## Where to edit content
+
+| What | File |
+|---|---|
+| Brand name, address, phone, WhatsApp, hours, social links, Google Maps link, domain | `data/business.ts` |
+| Navigation and announcement bar text | `data/navigation.ts` |
+| Jewellery categories (name, text, image) | `data/collections.ts` |
+| Section headings and copy | `data/content.ts` |
+| All other photographs and their alt text | `data/images.ts` |
+
+To rename the brand (for example to "Pandit Jewellers"), change `name` and
+`shortName` (both languages) in `data/business.ts`, plus the brand mentions in
+`data/navigation.ts` and `data/content.ts`.
+
+## ⚠️ Placeholders to replace before launch
+
+Nothing below has been verified, so the site shows "To be confirmed" or falls
+back gracefully until you fill it in (`data/business.ts`):
+
+- **Street address and postal code** (`streetAddress`, `postalCode`)
+- **Opening hours** (`openingHours`)
+- **Phone number** (`phone`)
+- **WhatsApp number** (`whatsapp`, digits with country code, e.g. `9198XXXXXXXX`).
+  Until it is set, every WhatsApp button scrolls to the Contact section.
+- **Instagram / Facebook links** (`instagram`, `facebook`)
+- **Google Maps link** (`googleMapsUrl`). Until it is set, "Get Directions"
+  opens a Google Maps search for "Pundit Jewellers Shrigonda Maharashtra".
+- **Domain** (`siteUrl`, or set `NEXT_PUBLIC_SITE_URL`). Used for the canonical
+  URL, sitemap, robots.txt, Open Graph and structured data.
+- **Brand story copy** in `data/content.ts` (`about.paragraphs`) is general
+  placeholder text. Do not add years, awards, certifications, hallmarking or
+  exchange policies unless they are confirmed.
+
+Structured data (`components/StructuredData.tsx`) only outputs the name, town,
+state and country, and adds phone, address, map and social links automatically
+once they are filled in.
+
+## Photography
+
+All photos in `public/assets/` are stock images from Unsplash under the free
+Unsplash License (commercial use allowed, no attribution required). Sources and
+photographers are listed in `CREDITS.md`. Replace them with the shop's own
+photography whenever possible, especially:
+
+- `public/assets/store/store.jpg` (a jewellery display case, not the actual shop)
+- `public/assets/about/about.jpg`
+- `public/assets/collections/chains.jpg` (a modern chain style)
+
+Keep the same file names, or update the paths in `data/images.ts` and
+`data/collections.ts`.
+
+## Structure
+
+```
+app/            layout (fonts, SEO metadata), page, sitemap.ts, robots.ts, globals.css
+components/
+  layout/       AnnouncementBar, Header, MobileMenu, Footer
+  sections/     Hero, About, Collections, FeaturedJewellery, WhyChooseUs,
+                BridalCollection, StoreLocation, Contact
+  ui/           Button, SectionHeading, Reveal, Logo, Ornament, icons, MotionProvider
+data/           business, navigation, collections, content, images
+public/assets/  hero, about, collections, featured, bridal, store
+```
+
+Animations respect the visitor's "reduce motion" setting.

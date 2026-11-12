@@ -1,0 +1,247 @@
+/**
+ * Homepage copy in Marathi (default) and English.
+ * ⚠️  PLACEHOLDER COPY: the brand story is deliberately general. Replace it with
+ *     the shop's verified history once provided. Do not add years, awards,
+ *     certifications, hallmarking or exchange policies unless confirmed.
+ */
+import type { Lang } from "@/lib/i18n";
+
+const mr = {
+  skip: "मुख्य मजकुराकडे जा",
+  langSwitch: { label: "English", aria: "Switch to English" },
+  header: { whatsapp: "व्हॉट्सॲप", visit: "दुकानाला भेट द्या", openMenu: "मेनू उघडा", closeMenu: "मेनू बंद करा", home: "पंडित ज्वेलर्स, मुख्यपृष्ठ" },
+  mobile: { whatsapp: "व्हॉट्सॲप चौकशी", visit: "दुकानाला भेट", call: "कॉल करा" },
+  hero: {
+    eyebrow: "शाश्वत सौंदर्याची कला",
+    titleLead: "सोन्यात घडलेली",
+    titleAccent: "परंपरा.",
+    description: "अप्रतिम सोन्याच्या दागिन्यांचे सौंदर्य अनुभवा, जिथे शाश्वत परंपरा आणि उत्कृष्ट कारागिरी एकत्र येतात.",
+    primary: "संग्रह पाहा",
+    secondary: "दुकानाला भेट द्या",
+    altLine: "Tradition Crafted in Gold",
+    scroll: "खाली पाहा",
+  },
+  about: {
+    eyebrow: "पंडित ज्वेलर्सविषयी",
+    title: "परंपरेची अभिव्यक्ती. विश्वासाचे वचन.",
+    paragraphs: [
+      "पंडित ज्वेलर्स हे श्रीगोंदा, महाराष्ट्र येथील सोन्याच्या दागिन्यांचे एक आपुलकीचे ठिकाण आहे, अशा कुटुंबांसाठी जे सौंदर्याइतकीच परंपरेलाही किंमत देतात. आमच्या दालनातील प्रत्येक दागिना त्याची रचना, सुबक घडणावळ आणि त्यातील भावना पाहून निवडलेला आहे.",
+      "रोजच्या वापराच्या दागिन्यांपासून ते आयुष्यातील मोठ्या समारंभांपर्यंत, तुम्हाला नेमके काय हवे आहे हे आम्ही वेळ देऊन समजून घेतो आणि वर्षानुवर्षे जपून ठेवावा असा दागिना शोधण्यात मदत करतो.",
+    ],
+    pillars: [
+      { title: "शाश्वत रचना", text: "कधीही जुन्या न होणाऱ्या पारंपरिक आणि प्रादेशिक शैली." },
+      { title: "सुबक कारागिरी", text: "प्रत्येक दागिन्याच्या बारकाव्यांकडे आणि फिनिशकडे लक्ष." },
+      { title: "दीर्घकालीन नाती", text: "प्रत्येक कुटुंबासाठी आपुलकीची, निवांत सेवा." },
+    ],
+    cta: "आमची कहाणी जाणून घ्या",
+    badgeEyebrow: "श्रीगोंदा",
+    badge: "काळजीपूर्वक निवडलेले सोने.",
+  },
+  collections: {
+    eyebrow: "आमचे संग्रह",
+    title: "प्रत्येक क्षणासाठी सोने",
+    intro:
+      "रोजच्या सौंदर्यापासून ते पिढ्यानपिढ्या जपल्या जाणाऱ्या वधू-दागिन्यांपर्यंत, भारतीय परंपरेतून साकारलेले दागिने पाहा. कोणत्याही संग्रहाबद्दल अधिक पाहण्यासाठी दालनाला भेट द्या किंवा आम्हाला संदेश पाठवा.",
+    explore: "पाहा",
+    exploreAria: (name: string) => `${name} पाहा`,
+  },
+  featured: {
+    eyebrow: "निवडक",
+    titleLead: "तुमची कहाणी सांगणारे",
+    titleAccent: "दागिने.",
+    intro:
+      "प्रत्येक दागिन्यात एक आठवण दडलेली असते: एखादा सण, एखादा आशीर्वाद, एखादी नवी सुरुवात. तुमच्या कहाणीचा भाग बनण्यासाठी निवडलेले दागिने पाहा.",
+    number: "क्र.",
+    captions: [
+      { title: "वारसा संग्रह", text: "पुढच्या पिढीकडे सोपवण्यासाठी घडवलेले दागिने." },
+      { title: "सोन्याचे थर", text: "प्रत्येक समारंभाला शोभा आणणारे हार." },
+      { title: "बारकाव्यांतील कलाकुसर", text: "जिथे संयम आणि कला एकत्र येतात." },
+      { title: "वधूची नथ", text: "परंपरेचा शाश्वत स्पर्श." },
+    ],
+    quote: "सोने फक्त परिधान केले जात नाही, ते आठवणीत जपले जाते.",
+  },
+  craft: {
+    eyebrow: "आमची कला",
+    title: "कुटुंबे आम्हाला का निवडतात",
+    intro:
+      "आमच्या दालनातील भेट आपुलकीची, प्रामाणिक आणि निवांत वाटावी. प्रत्येक दागिन्यात आणि प्रत्येक संवादात आम्ही हीच मूल्ये जपतो.",
+    items: [
+      { icon: "gem", title: "दर्जा आणि कारागिरी", text: "फिनिश, बारकावे आणि घडणावळीतील काळजी पाहून निवडलेले दागिने." },
+      { icon: "flower", title: "पारंपरिक रचना", text: "भारतीय आणि महाराष्ट्रीय दागिन्यांच्या परंपरेत रुजलेला संग्रह." },
+      { icon: "heart", title: "ग्राहककेंद्रित सेवा", text: "आधी आम्ही ऐकतो, म्हणजे तुम्ही दबावाशिवाय आत्मविश्वासाने निवड करू शकता." },
+      { icon: "scale", title: "पारदर्शक किंमत", text: "किमतीबद्दल स्पष्ट संवाद, जेणेकरून तुम्ही कशासाठी पैसे देता हे नेहमी कळेल." },
+    ],
+  },
+  bridal: {
+    eyebrow: "वधू संग्रह",
+    titleLead: "कायम स्मरणात राहणाऱ्या",
+    titleAccent: "क्षणांसाठी.",
+    description: "भारतीय परंपरेतून प्रेरित दागिन्यांसह आयुष्यातील सर्वात मौल्यवान प्रसंग साजरे करा.",
+    cta: "वधू संग्रह पाहा",
+  },
+  store: {
+    eyebrow: "भेट द्या",
+    title: "सौंदर्य प्रत्यक्ष अनुभवा.",
+    intro:
+      "काही गोष्टी जवळून पाहिल्यावरच खऱ्या कळतात. श्रीगोंदा येथील आमच्या दालनाला भेट द्या, संग्रह पाहा आणि तुमच्या मनासारखा दागिना शोधा.",
+    address: "पत्ता",
+    hoursTitle: "उघडण्याची वेळ",
+    hours: "वेळ",
+    directions: "दिशा मिळवा",
+    whatsapp: "व्हॉट्सॲप",
+  },
+  contact: {
+    eyebrow: "संपर्क",
+    title: "चला, तुमच्यासाठी काहीतरी सुंदर शोधूया.",
+    intro: "मनात एखादी रचना आहे किंवा एखादा प्रसंग जवळ आला आहे? आमच्याशी संपर्क साधा, आम्ही आनंदाने मदत करू.",
+    visit: "भेट द्या",
+    call: "कॉल करा",
+    whatsapp: "व्हॉट्सॲप",
+    instagram: "इन्स्टाग्राम",
+    messageUs: "आम्हाला संदेश पाठवा",
+    followUs: "आम्हाला फॉलो करा",
+    street: "पूर्ण पत्ता",
+    enquire: "व्हॉट्सॲपवर चौकशी करा",
+    maps: "गूगल मॅप्समध्ये उघडा",
+  },
+  footer: {
+    about: "श्रीगोंदा, महाराष्ट्र येथील पारंपरिक सोन्याचे दागिने. प्रत्येक कुटुंबासाठी शाश्वत रचना, सुबक कारागिरी आणि आपुलकीची सेवा.",
+    explore: "दुवे",
+    collections: "संग्रह",
+    contact: "भेट आणि संपर्क",
+    phone: "फोन",
+    hours: "वेळ",
+    street: "पूर्ण पत्ता",
+    social: "सोशल मीडिया",
+    rights: "सर्व हक्क राखीव.",
+    tagline: "श्रीगोंदा, महाराष्ट्र येथील सोन्याचे दागिने",
+    altTagline: "Tradition Crafted in Gold",
+  },
+  wa: {
+    general: "नमस्कार पंडित ज्वेलर्स, मला तुमच्या दागिन्यांबद्दल चौकशी करायची आहे.",
+    collection: (name: string) => `नमस्कार पंडित ज्वेलर्स, मला तुमच्या "${name}" संग्रहाबद्दल अधिक माहिती हवी आहे.`,
+    bridal: "नमस्कार पंडित ज्वेलर्स, मला तुमच्या वधू-दागिन्यांच्या संग्रहाबद्दल अधिक माहिती हवी आहे.",
+  },
+};
+
+export type Content = typeof mr;
+
+const en: Content = {
+  skip: "Skip to content",
+  langSwitch: { label: "मराठी", aria: "मराठीमध्ये पाहा" },
+  header: { whatsapp: "WhatsApp", visit: "Visit Store", openMenu: "Open menu", closeMenu: "Close menu", home: "Pundit Jewellers, home" },
+  mobile: { whatsapp: "WhatsApp Enquiry", visit: "Visit Store", call: "Call" },
+  hero: {
+    eyebrow: "The Art of Timeless Beauty",
+    titleLead: "Tradition Crafted in",
+    titleAccent: "Gold.",
+    description: "Discover the beauty of exquisite gold jewellery, where timeless traditions meet exceptional craftsmanship.",
+    primary: "Explore Collections",
+    secondary: "Visit Our Store",
+    altLine: "सोन्यात घडलेली परंपरा",
+    scroll: "Scroll",
+  },
+  about: {
+    eyebrow: "About Pundit Jewellers",
+    title: "An Expression of Tradition. A Promise of Trust.",
+    paragraphs: [
+      "Pundit Jewellers is a gold jewellery destination in Shrigonda, Maharashtra, for families who value tradition as much as beauty. Every piece in our showroom is chosen for its design, its finish and the feeling it carries.",
+      "From everyday gold to jewellery for life’s biggest celebrations, we take time to understand what you are looking for and help you find something you will treasure for years to come.",
+    ],
+    pillars: [
+      { title: "Timeless designs", text: "Classic and regional styles that never fade." },
+      { title: "Careful craftsmanship", text: "Fine detailing, finish and attention to every piece." },
+      { title: "Lasting relationships", text: "Personal, unhurried service for every family." },
+    ],
+    cta: "Discover Our Story",
+    badgeEyebrow: "Shrigonda",
+    badge: "Gold, chosen with care.",
+  },
+  collections: {
+    eyebrow: "Our Collections",
+    title: "Gold for Every Moment",
+    intro:
+      "From everyday elegance to heirloom bridal sets, explore jewellery shaped by Indian tradition. Visit the showroom or message us to see more of any collection.",
+    explore: "Explore",
+    exploreAria: (name: string) => `Explore ${name}`,
+  },
+  featured: {
+    eyebrow: "Featured",
+    titleLead: "Jewellery That Tells",
+    titleAccent: "Your Story.",
+    intro: "Every ornament holds a memory: a festival, a blessing, a beginning. Explore pieces chosen to become part of yours.",
+    number: "No.",
+    captions: [
+      { title: "The Heirloom Edit", text: "Pieces made to be passed down." },
+      { title: "Layered in Gold", text: "Necklaces that frame every celebration." },
+      { title: "Crafted in Detail", text: "Where patience meets artistry." },
+      { title: "The Bridal Nath", text: "A timeless touch of tradition." },
+    ],
+    quote: "Gold is not only worn. It is remembered.",
+  },
+  craft: {
+    eyebrow: "Our Craft",
+    title: "Why Families Choose Us",
+    intro:
+      "A visit to our showroom should feel personal, honest and unhurried. These are the values we bring to every piece and every conversation.",
+    items: [
+      { icon: "gem", title: "Quality & Craftsmanship", text: "Jewellery selected for its finish, detailing and the care that goes into making it." },
+      { icon: "flower", title: "Traditional Designs", text: "A collection rooted in Indian and Maharashtrian jewellery traditions." },
+      { icon: "heart", title: "Customer-Focused Service", text: "We listen first, so you can choose with confidence and without pressure." },
+      { icon: "scale", title: "Transparent Pricing", text: "Clear conversations about pricing so you always know what you are paying for." },
+    ],
+  },
+  bridal: {
+    eyebrow: "Bridal Collection",
+    titleLead: "For Moments That Last",
+    titleAccent: "Forever.",
+    description: "Celebrate life's most precious occasions with jewellery inspired by timeless Indian traditions.",
+    cta: "Explore Bridal Collection",
+  },
+  store: {
+    eyebrow: "Visit Us",
+    title: "Experience the Beauty in Person.",
+    intro:
+      "Some things are best seen up close. Visit our showroom in Shrigonda to explore the collection and find a piece that feels like yours.",
+    address: "Address",
+    hoursTitle: "Opening hours",
+    hours: "Hours",
+    directions: "Get Directions",
+    whatsapp: "WhatsApp",
+  },
+  contact: {
+    eyebrow: "Contact",
+    title: "Let's Find Something Beautiful for You.",
+    intro: "Have a design in mind or an occasion coming up? Reach out and we will be happy to help.",
+    visit: "Visit",
+    call: "Call",
+    whatsapp: "WhatsApp",
+    instagram: "Instagram",
+    messageUs: "Message us",
+    followUs: "Follow us",
+    street: "Street address",
+    enquire: "Enquire on WhatsApp",
+    maps: "Open in Google Maps",
+  },
+  footer: {
+    about:
+      "Traditional gold jewellery in Shrigonda, Maharashtra. Timeless designs, careful craftsmanship and personal service for every family.",
+    explore: "Explore",
+    collections: "Collections",
+    contact: "Visit & Contact",
+    phone: "Phone",
+    hours: "Hours",
+    street: "Street address",
+    social: "Social media",
+    rights: "All rights reserved.",
+    tagline: "Gold jewellery in Shrigonda, Maharashtra",
+    altTagline: "सोन्यात घडलेली परंपरा",
+  },
+  wa: {
+    general: "Hello Pundit Jewellers, I would like to enquire about your jewellery.",
+    collection: (name: string) => `Hello Pundit Jewellers, I would like to know more about your ${name} collection.`,
+    bridal: "Hello Pundit Jewellers, I would like to know more about your bridal jewellery collection.",
+  },
+};
+
+export const content: Record<Lang, Content> = { mr, en };

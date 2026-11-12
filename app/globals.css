@@ -1,0 +1,183 @@
+@import "tailwindcss";
+
+@theme {
+  /* Rich wine + bright metallic gold palette */
+  --color-burgundy: #7a1c2c;
+  --color-burgundy-deep: #5a1220;
+  --color-burgundy-ink: #2c0a11;
+  --color-gold: #d2a54a;
+  --color-gold-soft: #f3d98f;
+  --color-gold-deep: #a5772a;
+  --color-ivory: #fff8ee;
+  --color-ivory-deep: #fbeee3;
+  --color-blush: #f8e4dc;
+  --color-surface: #ffffff;
+  --color-charcoal: #2b1a17;
+  --color-muted: #75625a;
+  --color-line: #ecd9c2;
+
+  --font-sans: var(--font-anek), "Anek Devanagari", system-ui, sans-serif;
+  --font-serif: var(--font-anek), "Anek Devanagari", system-ui, sans-serif;
+  --font-deva: var(--font-anek), "Anek Devanagari", sans-serif;
+
+  --ease-luxe: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root {
+  --header-h: 4.25rem;
+  --gold-shine: linear-gradient(105deg, #a8772a 0%, #e2b450 22%, #fff2c4 45%, #f0cd72 58%, #c18f34 78%, #8f6420 100%);
+}
+@media (min-width: 1024px) {
+  :root {
+    --header-h: 5.25rem;
+  }
+}
+
+html {
+  scroll-padding-top: var(--header-h);
+  -webkit-text-size-adjust: 100%;
+}
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  background: var(--color-ivory);
+  color: var(--color-charcoal);
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  overflow-x: clip;
+  font-feature-settings: "kern";
+}
+
+/* Headings: Anek Devanagari, slightly condensed for elegance, with room for matras. */
+h1,
+h2,
+h3 {
+  font-variation-settings: "wdth" 92;
+  line-height: 1.15 !important;
+}
+html[lang="mr"] h1,
+html[lang="mr"] h2,
+html[lang="mr"] h3 {
+  line-height: 1.32 !important;
+}
+
+/* Anek has no italics: accent words get the gold shine instead. */
+em {
+  font-style: normal;
+}
+
+/* Devanagari must never be letter-spaced (it breaks the shirorekha). */
+html[lang="mr"] [class*="tracking-"],
+html[lang="mr"] .eyebrow {
+  letter-spacing: 0.01em !important;
+}
+
+::selection {
+  background: var(--color-burgundy);
+  color: var(--color-ivory);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+}
+
+@layer components {
+  .container-lux {
+    width: 100%;
+    max-width: 82rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 640px) {
+    .container-lux {
+      padding-inline: 2rem;
+    }
+  }
+  @media (min-width: 1280px) {
+    .container-lux {
+      padding-inline: 3rem;
+    }
+  }
+  .eyebrow {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+  }
+  html[lang="mr"] .eyebrow {
+    font-size: 0.95rem;
+  }
+  .section-y {
+    padding-block: 5rem;
+  }
+  @media (min-width: 1024px) {
+    .section-y {
+      padding-block: 7.5rem;
+    }
+  }
+
+  /* Metallic gold text */
+  .text-shine {
+    background: var(--gold-shine);
+    background-size: 200% 100%;
+    background-position: 0% 50%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  /* Deeper metallic gold for text on light backgrounds (keeps contrast) */
+  .text-shine-deep {
+    background: linear-gradient(105deg, #7d5418 0%, #b5832c 30%, #d9a944 50%, #a8772a 70%, #6f4a14 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  /* Metallic gold fill for buttons and badges, with a sheen that sweeps on hover */
+  .bg-shine {
+    background: var(--gold-shine);
+    background-size: 180% 100%;
+    background-position: 20% 50%;
+    transition: background-position 0.9s var(--ease-luxe), box-shadow 0.5s var(--ease-luxe);
+    box-shadow: 0 10px 30px -12px rgba(165, 119, 42, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+  .bg-shine:hover {
+    background-position: 80% 50%;
+    box-shadow: 0 14px 34px -12px rgba(165, 119, 42, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  }
+  /* Thin gold gradient frame */
+  .frame-shine {
+    position: relative;
+  }
+  .frame-shine::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: var(--gold-shine);
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    z-index: 2;
+  }
+  /* Rich wine background with a warm gold glow */
+  .bg-wine-glow {
+    background:
+      radial-gradient(ellipse 60% 70% at 15% 0%, rgba(243, 217, 143, 0.22), transparent 60%),
+      radial-gradient(ellipse 50% 60% at 100% 100%, rgba(210, 165, 74, 0.18), transparent 60%),
+      linear-gradient(160deg, #8a2233 0%, #6a1525 55%, #4c0f1b 100%);
+  }
+  .bg-ivory-glow {
+    background:
+      radial-gradient(ellipse 70% 60% at 50% 0%, rgba(243, 217, 143, 0.28), transparent 65%),
+      var(--color-ivory);
+  }
+}
