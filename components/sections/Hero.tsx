@@ -22,7 +22,7 @@ export default function Hero() {
     <section
       id="home"
       aria-labelledby="hero-title"
-      className="relative isolate flex h-[calc(100svh-2.25rem)] max-h-[980px] min-h-[640px] items-end overflow-hidden bg-burgundy-ink text-ivory lg:items-center"
+      className="relative isolate flex h-[calc(100svh-12rem)] max-h-[860px] min-h-[560px] items-end overflow-hidden bg-burgundy-ink text-ivory md:h-[calc(100svh-10rem)] lg:h-[calc(100svh-10.5rem)] lg:items-center"
     >
       <motion.div className="absolute inset-0 -z-10" initial={{ opacity: 0, scale: 1.08 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 2.2, ease: EASE }}>
         <Image
@@ -41,7 +41,7 @@ export default function Hero() {
         className="absolute inset-0 -z-10 bg-gradient-to-t from-burgundy-ink/90 via-burgundy-ink/40 to-transparent lg:bg-gradient-to-r lg:from-burgundy-ink/80 lg:via-burgundy-ink/25 lg:to-transparent"
       />
 
-      <div className="container-lux pt-[calc(var(--header-h)+2rem)] pb-20 lg:pb-0">
+      <div className="container-lux pt-16 pb-16 lg:py-0">
         <div className="max-w-[42rem]">
           <motion.p {...line(0.3)} className="eyebrow flex items-center gap-4 text-gold-soft">
             <span aria-hidden className="h-px w-10" style={{ background: "var(--gold-shine)" }} />

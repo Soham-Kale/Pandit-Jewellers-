@@ -24,13 +24,21 @@
 }
 
 :root {
-  --header-h: 4.25rem;
+  /* Height of the sticky header once scrolled (mobile collapses to one row). */
+  --header-h: 4rem;
   --gold-shine: linear-gradient(105deg, #a8772a 0%, #e2b450 22%, #fff2c4 45%, #f0cd72 58%, #c18f34 78%, #8f6420 100%);
 }
 @media (min-width: 1024px) {
   :root {
-    --header-h: 5.25rem;
+    --header-h: 8.25rem;
   }
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
 html {

@@ -6,11 +6,14 @@ export type Collection = {
   description: L;
   image: string;
   alt: L;
+  /** Groups used by the header filters (e.g. daily wear, wedding, traditional). */
+  tags: string[];
 };
 
 export const collections: Collection[] = [
   {
     slug: "necklaces",
+    tags: ["wedding", "traditional"],
     name: { mr: "सोन्याचे हार", en: "Gold Necklaces" },
     description: { mr: "रोजच्या वापरापासून खास प्रसंगांपर्यंतचे हार.", en: "Statement pieces and delicate everyday designs." },
     image: "/assets/collections/necklaces.jpg",
@@ -18,6 +21,7 @@ export const collections: Collection[] = [
   },
   {
     slug: "earrings",
+    tags: ["daily", "traditional"],
     name: { mr: "सोन्याचे कानातले", en: "Gold Earrings" },
     description: { mr: "झुमके, टॉप्स आणि नाजूक डूल.", en: "Jhumkas, studs and drops with graceful detail." },
     image: "/assets/collections/earrings.jpg",
@@ -25,6 +29,7 @@ export const collections: Collection[] = [
   },
   {
     slug: "bangles",
+    tags: ["wedding", "traditional"],
     name: { mr: "सोन्याच्या बांगड्या", en: "Gold Bangles" },
     description: { mr: "प्रत्येक प्रसंगासाठी बांगड्या आणि कडे.", en: "Classic bangles and kadas for every occasion." },
     image: "/assets/collections/bangles.jpg",
@@ -32,6 +37,7 @@ export const collections: Collection[] = [
   },
   {
     slug: "rings",
+    tags: ["daily", "wedding"],
     name: { mr: "सोन्याच्या अंगठ्या", en: "Gold Rings" },
     description: { mr: "लहान-मोठ्या वचनांच्या आठवणीसाठी.", en: "Rings to celebrate promises, big and small." },
     image: "/assets/collections/rings.jpg",
@@ -39,6 +45,7 @@ export const collections: Collection[] = [
   },
   {
     slug: "mangalsutra",
+    tags: ["daily", "wedding"],
     name: { mr: "मंगळसूत्र", en: "Mangalsutra" },
     description: { mr: "पारंपरिक आणि आधुनिक पवित्र रचना.", en: "Sacred designs, traditional and contemporary." },
     image: "/assets/collections/mangalsutra.jpg",
@@ -46,6 +53,7 @@ export const collections: Collection[] = [
   },
   {
     slug: "bridal",
+    tags: ["wedding"],
     name: { mr: "वधूचे दागिने", en: "Bridal Jewellery" },
     description: { mr: "सर्वात खास दिवसासाठी वारसा जपणारे सेट.", en: "Heirloom sets for the most special day." },
     image: "/assets/collections/bridal.jpg",
@@ -53,6 +61,7 @@ export const collections: Collection[] = [
   },
   {
     slug: "maharashtrian",
+    tags: ["traditional", "wedding"],
     name: { mr: "पारंपरिक महाराष्ट्रीय", en: "Traditional Maharashtrian" },
     description: { mr: "ठुशी, नथ आणि अस्सल प्रादेशिक वारसा.", en: "Thushi, nath and timeless regional heritage." },
     image: "/assets/collections/maharashtrian.jpg",
@@ -63,6 +72,7 @@ export const collections: Collection[] = [
   },
   {
     slug: "chains",
+    tags: ["daily"],
     name: { mr: "सोन्याच्या चेन", en: "Gold Chains" },
     description: { mr: "रोजच्या वापरासाठी नाजूक, टिकाऊ चेन.", en: "Fine chains with lasting, everyday elegance." },
     image: "/assets/collections/chains.jpg",

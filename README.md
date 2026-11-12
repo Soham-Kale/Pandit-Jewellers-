@@ -90,3 +90,10 @@ public/assets/  hero, about, collections, featured, bridal, store
 ```
 
 Animations respect the visitor's "reduce motion" setting.
+
+## Header mega-menu and category pages
+
+- On desktop, hovering (or focusing) a category in the header opens a mega-menu: an intro with a "view all" link, the styles in that category, occasions, and two photo cards. "More" lists the page sections.
+- On mobile, the menu lists every category; tap the arrow to expand its styles.
+- Every category has its own page at `/collections/<id>` (and `/collections` for all jewellery), with a banner, style cards (each with a WhatsApp enquiry link), the filtered collection grid and related categories.
+- Edit categories, their styles and their menu photos in `data/categories.ts`. The styles listed there are common examples, not a stock list; change them to match what the shop actually carries.

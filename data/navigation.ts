@@ -3,11 +3,11 @@ import type { L } from "@/lib/i18n";
 export type NavItem = { label: L; href: string };
 
 export const mainNav: NavItem[] = [
-  { label: { mr: "मुख्यपृष्ठ", en: "Home" }, href: "#home" },
-  { label: { mr: "आमच्याविषयी", en: "About Us" }, href: "#about" },
-  { label: { mr: "संग्रह", en: "Collections" }, href: "#collections" },
-  { label: { mr: "आमची कला", en: "Our Craft" }, href: "#craft" },
-  { label: { mr: "संपर्क", en: "Contact" }, href: "#contact" },
+  { label: { mr: "मुख्यपृष्ठ", en: "Home" }, href: "/#home" },
+  { label: { mr: "आमच्याविषयी", en: "About Us" }, href: "/#about" },
+  { label: { mr: "संग्रह", en: "Collections" }, href: "/#collections" },
+  { label: { mr: "आमची कला", en: "Our Craft" }, href: "/#craft" },
+  { label: { mr: "संपर्क", en: "Contact" }, href: "/#contact" },
 ];
 
 export const announcement: L = {

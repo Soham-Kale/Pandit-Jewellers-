@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+import { categoryHref } from "@/data/categories";
 import { MapPin, Phone, Clock } from "lucide-react";
 import Logo from "@/components/ui/Logo";
 import WhatsAppIcon from "@/components/ui/WhatsAppIcon";
@@ -9,6 +11,8 @@ import { collections } from "@/data/collections";
 import { content } from "@/data/content";
 import { business, addressText, whatsappLink, phoneLink, TBC, extProps } from "@/data/business";
 import { useLang } from "@/lib/i18n";
+
+const footerCat: Record<string, string> = { bridal: "wedding", maharashtrian: "traditional" };
 
 export default function Footer() {
   const { lang } = useLang();
@@ -60,9 +64,9 @@ export default function Footer() {
           <ul className="mt-6 space-y-3.5">
             {mainNav.map((item) => (
               <li key={item.href}>
-                <a href={item.href} className="transition-colors hover:text-gold-soft">
+                <Link href={item.href} className="transition-colors hover:text-gold-soft">
                   {item.label[lang]}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -73,9 +77,9 @@ export default function Footer() {
           <ul className="mt-6 grid gap-3.5">
             {collections.map((c) => (
               <li key={c.slug}>
-                <a href="#collections" className="transition-colors hover:text-gold-soft">
+                <Link href={categoryHref(footerCat[c.slug] ?? c.slug)} className="transition-colors hover:text-gold-soft">
                   {c.name[lang]}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
