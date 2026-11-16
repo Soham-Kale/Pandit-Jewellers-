@@ -67,6 +67,45 @@ const mr = {
       cta: "दुकानाचा पत्ता पाहा",
     },
   },
+  /** Banner copy: homepage slider and the four promotional banners. */
+  banners: {
+    slides: [
+      {
+        eyebrow: "पंडित ज्वेलर्स, श्रीगोंदा",
+        title: "प्रत्येक खास क्षणासाठी",
+        accent: "खास दागिना",
+        text: "लग्नसोहळा, सण-उत्सव आणि आयुष्याच्या सर्व आनंदी प्रसंगांसाठी",
+        cta: "आमचा संग्रह पाहा",
+        href: "/collections",
+      },
+      {
+        eyebrow: "सोन्याचे दागिने",
+        title: "सुवर्ण दागिन्यांचा",
+        accent: "अद्वितीय संग्रह",
+        text: "परंपरेचा साज आणि सुबक कारागिरीचा मेळ असलेले सोन्याचे दागिने.",
+        cta: "सोन्याचे दागिने पाहा",
+        href: "/collections",
+      },
+      {
+        eyebrow: "महाराष्ट्रीय पारंपरिक दागिने",
+        title: "मराठमोळ्या साजाचा",
+        accent: "अस्सल वारसा",
+        text: "ठुशी, नथ, बुगडी आणि कोल्हापुरी साज: आजीच्या आठवणींतले दागिने, आजच्या पिढीसाठी.",
+        cta: "पारंपरिक दागिने पाहा",
+        href: "/collections/traditional",
+      },
+    ],
+    promoEyebrow: "खास संग्रह",
+    promoTitle: "प्रत्येक प्रसंगासाठी साजेसा दागिना",
+    promoIntro: "लग्नसराईपासून रोजच्या वापरापर्यंत, तुमच्या आवडीचा संग्रह निवडा.",
+    promos: [
+      { id: "bridal", title: "वधूसाठी", accent: "विशेष संग्रह", text: "लग्नाच्या प्रत्येक विधीसाठी पारंपरिक साज", href: "/collections/wedding" },
+      { id: "traditional", title: "पारंपरिक", accent: "दागिन्यांची शान", text: "झुमके, ठुशी, नथ आणि मराठमोळा साज", href: "/collections/traditional" },
+      { id: "festival", title: "सण-उत्सवासाठी", accent: "सुंदर दागिने", text: "दिवाळी, पाडवा आणि प्रत्येक शुभ प्रसंगासाठी", href: "/collections" },
+      { id: "daily", title: "रोजच्या वापरासाठी", accent: "नाजूक दागिने", text: "हलके, सुबक आणि रोज घालता येतील असे", href: "/collections/daily" },
+    ],
+    view: "पाहा",
+  },
   highlights: {
     label: "दुकानाविषयी थोडक्यात",
     store: "आमचे दुकान",

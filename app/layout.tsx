@@ -41,9 +41,9 @@ export const metadata: Metadata = {
     siteName: business.name.mr,
     title,
     description,
-    images: [{ url: "/assets/hero/hero.jpg", alt: `${business.name.mr}, ${business.city.mr}` }],
+    images: [{ url: "/assets/social/share.jpg", width: 1200, height: 630, alt: `${business.name.mr}, ${business.city.mr}` }],
   },
-  twitter: { card: "summary_large_image", title, description, images: ["/assets/hero/hero.jpg"] },
+  twitter: { card: "summary_large_image", title, description, images: ["/assets/social/share.jpg"] },
   robots: { index: true, follow: true },
   formatDetection: { telephone: false },
 };

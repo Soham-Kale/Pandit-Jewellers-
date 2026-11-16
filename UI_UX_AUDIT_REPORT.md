@@ -79,9 +79,49 @@ Tested home, `/collections` and a category page at **360, 390, 768, 1024 and 144
 - Hero animations are CSS keyframes (GPU-friendly transform/opacity only).
 - No new packages; one component removed. `tsc`, `eslint` and `next build` all pass.
 
-## 7. Remaining limitations / needs from the shop
+## 7. Banner redesign (from the "Premium Marathi Jewellery Design Brief")
 
-1. **Photos**: most images are still the placeholder/stock photos listed in `CREDITS.md`. Real photos of the shop's own jewellery and storefront will make the biggest difference to how premium the site feels. Keep them roughly 4:5 for products.
+The banners now follow the brief's example style, translated to the site's purple and gold: the photo sits on one side and melts into the backdrop, with a centred two-line Marathi headline (ivory + gold), a gold ornament, a sub-line and a gold pill button with "»".
+
+**New building blocks**
+- `.bg-velvet`: deep purple velvet with a soft diagonal sheen and fine grain (replaces the brief's maroon velvet).
+- `.bg-silk`: warm ivory-lavender silk for light banners and the About section.
+- `.text-ivory-gold`: ivory-to-gold headline fill used on velvet.
+- `.fade-r / .fade-l / .fade-b`: feathered photo edges so photos blend into the backdrop.
+- `.t-banner`, `.t-promo`: headline sizes made to fit the copy half of a banner.
+- `components/ui/BannerArt.tsx`: hand-drawn SVG gold vine (corner motif from the brief) and a lit diya for the festival banner. Pure SVG, no image files.
+
+**Where it is used**
+| Banner | Photo used | Notes |
+|---|---|---|
+| Hero slide 1 "प्रत्येक खास क्षणासाठी खास दागिना" | Bride (bridal-banner.jpg, mirrored so she faces the text) | Matches the brief's main hero |
+| Hero slide 2 "सुवर्ण दागिन्यांचा अद्वितीय संग्रह" | Gold pendant necklace on lavender silk (hero.jpg) | Jewellery close-up banner |
+| Hero slide 3 "मराठमोळ्या साजाचा अस्सल वारसा" | Maharashtrian look with nath and thushi | Traditional banner |
+| Promo: वधूसाठी विशेष संग्रह | Bride (collections/bridal.jpg) | Ivory silk tile |
+| Promo: पारंपरिक दागिन्यांची शान | Temple jhumkas | Ivory silk tile |
+| Promo: सण-उत्सवासाठी सुंदर दागिने | Layered gold necklaces on silk saree | Purple velvet tile with diya |
+| Promo: रोजच्या वापरासाठी नाजूक दागिने | Mangalsutra | Ivory silk tile (replaces the brief's silver banner, see below) |
+| Bridal section | Bride in full bridal set (about.jpg) | Velvet, copy left, photo right |
+| Category pages | Each category's own photo | Velvet banner with breadcrumb and icon |
+| About section | Gold bangles on the shop counter (store.jpg) | On ivory silk, a craftsmanship visual |
+| Social share image | Hero slide 1 at 1200×630 | `public/assets/social/share.jpg`, used for WhatsApp/Facebook link previews |
+
+The "shop by occasion" photo grid was replaced by the four promo banners (they link to the same pages).
+
+**Layouts and ratios**
+- Desktop hero: about 1920×720 (8:3) at full width; height scales with screen width (min 480px, max 736px).
+- Phones and tablets up to 1023px: photo on top (about 56% of the banner), fading down into the velvet, with the headline and button below. Faces and jewellery are kept in frame with per-photo focal points.
+- Promo banners: 16:10 on phones, 16:8 on larger screens, two per row from tablet size.
+- Exported copies of every banner (PNG and WebP) are in the project's `pundit-jewellers-banners` folder for social media or print use. On the site the banners stay live HTML, so the Marathi text stays sharp, searchable and editable.
+
+**Brief items deliberately not done**
+- **No AI-generated jewellery or models**, as the brief requires. All banners use the site's existing photographs (see `CREDITS.md`).
+- **Silver banner skipped**: silver is not listed on the site, so a silver banner would advertise a product that is not confirmed.
+- **No prices, offers, purity or certification claims** in any banner.
+
+## 8. Remaining limitations / needs from the shop
+
+1. **Photos**: most images are still the placeholder/stock photos listed in `CREDITS.md`. The banner layouts are built so a photo can be swapped in `data/images.ts` / `data/collections.ts` without touching the design; portrait or landscape both work. Real photos of the shop's own jewellery and storefront will make the biggest difference to how premium the site feels. Keep them roughly 4:5 for products.
 2. **Map pin**: the embedded map searches by address text, so the pin may be approximate. Pasting the shop's exact Google Maps "Embed a map" link into `data/business.ts` will fix it.
 3. **Instagram / Facebook links** are still pending, so those footer icons show as inactive.
 4. **WhatsApp number** uses +91 98815 38938; please confirm this is the WhatsApp number.

@@ -12,12 +12,12 @@ export default function About() {
   const { lang } = useLang();
   const t = content[lang].about;
   return (
-    <section id="about" aria-labelledby="about-title" className="section-y overflow-hidden bg-mist">
+    <section id="about" aria-labelledby="about-title" className="section-y bg-silk overflow-hidden">
       <div className="container-lux grid items-center gap-14 lg:grid-cols-12 lg:gap-20">
         <div className="relative mx-auto w-full max-w-sm sm:max-w-md lg:col-span-5 lg:max-w-none">
           <div aria-hidden className="absolute -top-4 -left-4 h-full w-full rounded-lg border border-gold/60 sm:-top-5 sm:-left-5" />
           <ImageReveal className="relative aspect-[4/5] overflow-hidden rounded-lg bg-white">
-            <Image src={images.about.src} alt={images.about.alt[lang]} fill quality={85} sizes="(min-width: 1024px) 40vw, 90vw" className="object-cover" />
+            <Image src={images.store.src} alt={images.store.alt[lang]} fill quality={85} sizes="(min-width: 1024px) 40vw, 90vw" className="object-cover" />
           </ImageReveal>
         </div>
 

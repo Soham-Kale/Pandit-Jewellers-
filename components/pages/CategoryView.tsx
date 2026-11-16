@@ -3,11 +3,12 @@
 import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronRight, MapPin, ArrowUpRight } from "lucide-react";
+import { MapPin, ArrowUpRight } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import Button from "@/components/ui/Button";
 import Ornament from "@/components/ui/Ornament";
 import WhatsAppIcon from "@/components/ui/WhatsAppIcon";
+import { Vine } from "@/components/ui/BannerArt";
 import CategoryIconGlyph from "@/components/ui/CategoryIcons";
 import Collections from "@/components/sections/Collections";
 import { categories, categoryHref, getCategory } from "@/data/categories";
@@ -33,50 +34,26 @@ export default function CategoryView({ id }: { id: string }) {
       {/* Banner */}
       <section
         aria-labelledby="cat-title"
-        className="relative isolate overflow-hidden bg-burgundy-ink text-ivory"
+        className="bg-velvet relative isolate overflow-hidden text-ivory"
       >
-        <Image
-          src={cat.images[0]}
-          alt=""
-          fill
-          preload
-          quality={85}
-          sizes="100vw"
-          className="-z-10 object-cover"
-        />
-        <div
-          aria-hidden
-          className="absolute inset-0 -z-10 bg-gradient-to-t from-burgundy-ink/95 via-burgundy-ink/70 to-burgundy-ink/30 sm:bg-gradient-to-r sm:from-burgundy-ink/95 sm:via-burgundy-ink/65 sm:to-transparent"
-        />
-        <div className="container-lux py-14 sm:py-16 lg:py-24">
-          <nav aria-label="मार्गदर्शक दुवे">
-            <ol className="flex flex-wrap items-center gap-1.5 text-sm text-ivory/75">
-              <li>
-                <Link href="/" className="hover:text-gold-soft">
-                  {p.home}
-                </Link>
-              </li>
-              <ChevronRight className="size-3.5" aria-hidden />
-              {id !== "all" && (
-                <>
-                  <li>
-                    <Link href="/collections" className="hover:text-gold-soft">
-                      {p.all}
-                    </Link>
-                  </li>
-                  <ChevronRight className="size-3.5" aria-hidden />
-                </>
-              )}
-              <li aria-current="page" className="text-gold-soft">
-                {name}
-              </li>
-            </ol>
-          </nav>
-          <div className="mt-8 max-w-2xl">
+        <div className="fade-b md:fade-l relative h-56 overflow-hidden sm:h-72 md:absolute md:inset-y-0 md:right-0 md:h-auto md:w-[56%]">
+          <Image
+            src={cat.images[0]}
+            alt=""
+            fill
+            preload
+            quality={85}
+            sizes="(min-width: 768px) 56vw, 100vw"
+            className="object-cover object-[50%_32%]"
+          />
+        </div>
+        <Vine className="absolute bottom-3 left-3 hidden w-36 -scale-y-100 opacity-40 lg:block" />
+        <div className="container-lux relative -mt-8 pb-14 md:mt-0 md:py-20 lg:py-24">
+          <div className="max-w-xl md:w-[46%]">
             <span className="bg-shine grid size-14 place-items-center rounded-full text-burgundy-ink">
               <CategoryIconGlyph icon={cat.icon} className="size-7" />
             </span>
-            <h1 id="cat-title" className="t-display mt-5">
+            <h1 id="cat-title" className="t-display text-ivory-gold mt-5">
               {name}
             </h1>
             <Ornament tone="light" className="mt-5" />

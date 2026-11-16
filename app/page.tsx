@@ -8,7 +8,7 @@ import WhyChooseUs from "@/components/sections/WhyChooseUs";
 import BridalCollection from "@/components/sections/BridalCollection";
 import StoreLocation from "@/components/sections/StoreLocation";
 import Contact from "@/components/sections/Contact";
-import { CollectionsMosaic, WorldMosaic } from "@/components/sections/HomeMosaics";
+import { CollectionsMosaic, PromoBanners } from "@/components/sections/HomeMosaics";
 import StructuredData from "@/components/StructuredData";
 
 /**
@@ -24,7 +24,7 @@ export default function Home() {
       <CollectionsMosaic />
       <Collections initialCategory="all" />
       <BridalCollection />
-      <WorldMosaic />
+      <PromoBanners />
       <WhyChooseUs />
       <FeaturedJewellery />
       <About />

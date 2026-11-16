@@ -155,7 +155,7 @@ export default function Header() {
         <div
           className={`container-lux flex h-16 items-center gap-3 transition-[height] duration-500 ease-luxe lg:gap-8 ${scrolled ? "lg:h-[4.25rem]" : "lg:h-20"}`}
         >
-          <Link href="/" aria-label={t.header.home} className="shrink-0">
+          <Link href="/" aria-label={t.header.home} className="flex shrink-0 items-center">
             <Logo />
           </Link>
 
@@ -173,14 +173,6 @@ export default function Header() {
                 <WhatsAppIcon className="size-[1.3rem]" />
               </IconLink>
             </div>
-            <a
-              href={wa}
-              {...extProps(wa)}
-              aria-label={t.header.whatsapp}
-              className="grid size-11 place-items-center rounded-full text-burgundy lg:hidden"
-            >
-              <WhatsAppIcon className="size-[1.3rem]" />
-            </a>
             <button
               type="button"
               onClick={() => setOpen(true)}
@@ -194,7 +186,7 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Mobile/tablet: search + categories collapse once the visitor scrolls */}
+        {/* Mobile/tablet: the category bar collapses once the visitor scrolls (no search bar on phones) */}
         <div
           id="header-collapsible"
           className={`grid transition-[grid-template-rows,opacity] duration-500 ease-luxe lg:!grid-rows-[1fr] lg:!opacity-100 ${
@@ -204,9 +196,6 @@ export default function Header() {
           }`}
         >
           <div className="overflow-hidden lg:overflow-visible">
-            <div className="container-lux pb-2 md:hidden">
-              <SearchBar />
-            </div>
 
             {/* Row 2: category bar with icons. Desktop: hover opens a mega-menu; click opens the category page. */}
             <nav

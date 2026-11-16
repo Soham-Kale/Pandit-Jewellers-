@@ -150,6 +150,17 @@ em {
     font-weight: 500;
     text-wrap: balance;
   }
+  /* Banner headline: sized to sit inside the copy half of a banner */
+  .t-banner {
+    font-size: clamp(2rem, 1.1rem + 2.6vw, 3.5rem);
+    line-height: 1.28 !important;
+    font-weight: 600;
+  }
+  .t-promo {
+    font-size: clamp(1.3rem, 0.9rem + 1.5vw, 2rem);
+    line-height: 1.3 !important;
+    font-weight: 600;
+  }
   .t-h2 {
     font-size: clamp(1.9rem, 1.5rem + 1.6vw, 2.85rem);
     line-height: 1.25 !important;
@@ -220,6 +231,16 @@ em {
   }
 
   /* Metallic gold text */
+  /* Gradient-filled text only paints inside its own box, so Devanagari matras and the
+     shirorekha that rise above a tight line box get cut off. Extra vertical padding on
+     the (inline) span widens the painted area without changing the line layout. */
+  .text-shine,
+  .text-shine-deep,
+  .text-ivory-gold {
+    padding-block: 0.2em 0.08em;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
   .text-shine {
     background: var(--gold-shine);
     background-size: 200% 100%;
@@ -267,6 +288,45 @@ em {
     z-index: 2;
   }
   /* Royal purple background (logo's magenta-to-indigo sweep) with a warm gold glow */
+  /* Banner backdrops ----------------------------------------------------
+     velvet → deep purple velvet with a soft sheen and fine grain (dark banners)
+     silk   → warm ivory-lavender silk (light banners and promo tiles) */
+  .bg-velvet {
+    background-color: #2a1347;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+      linear-gradient(118deg, transparent 32%, rgba(255, 255, 255, 0.045) 46%, transparent 60%),
+      radial-gradient(90% 120% at 100% 0%, rgba(106, 42, 134, 0.9), transparent 62%),
+      radial-gradient(70% 90% at 0% 100%, rgba(74, 36, 117, 0.85), transparent 65%),
+      linear-gradient(135deg, #3a1b5e 0%, #22103a 75%);
+  }
+  .bg-silk {
+    background-color: #f7f1ea;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+      linear-gradient(118deg, transparent 30%, rgba(255, 255, 255, 0.55) 46%, transparent 62%),
+      radial-gradient(90% 120% at 100% 0%, rgba(221, 183, 81, 0.16), transparent 60%),
+      linear-gradient(135deg, #fbf6ee 0%, #f1e8f4 100%);
+  }
+  /* Ivory-to-gold headline used on velvet banners */
+  .text-ivory-gold {
+    background: linear-gradient(180deg, #fffaf0 0%, #fbeec4 55%, #e9c86d 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  /* Feathered photo edge: the photo melts into the banner backdrop */
+  .fade-r { mask-image: linear-gradient(to right, #000 52%, transparent 98%); }
+  .fade-l { mask-image: linear-gradient(to left, #000 52%, transparent 98%); }
+  .fade-b { mask-image: linear-gradient(to bottom, #000 55%, transparent 98%); }
+  @media (min-width: 768px) {
+    .md\:fade-r { mask-image: linear-gradient(to right, #000 52%, transparent 98%); }
+    .md\:fade-l { mask-image: linear-gradient(to left, #000 52%, transparent 98%); }
+  }
+  @media (min-width: 1024px) {
+    .lg\:fade-r { mask-image: linear-gradient(to right, #000 52%, transparent 98%); }
+    .lg\:fade-l { mask-image: linear-gradient(to left, #000 52%, transparent 98%); }
+  }
   .bg-wine-glow {
     background:
       radial-gradient(ellipse 60% 80% at 0% 0%, rgba(221, 183, 81, 0.1), transparent 60%),
