@@ -15,7 +15,7 @@ const anek = Anek_Devanagari({
 
 
 const title = `${business.name.mr} | ${business.city.mr} येथील सोन्याचे दागिने`;
-const description = `${business.city.mr} येथील ${business.name.mr} हे पारंपरिक सोन्याच्या दागिन्यांचे दालन आहे. सोन्याचे हार, मंगळसूत्र, बांगड्या, कानातले, अंगठ्या आणि वधूचे दागिने प्रत्यक्ष पाहण्यासाठी श्री संत रोहिदास चौक येथील दालनाला भेट द्या.`;
+const description = `${business.city.mr} येथील ${business.name.mr} हे पारंपरिक सोन्याच्या दागिन्यांचे दुकान आहे. सोन्याचे हार, मंगळसूत्र, बांगड्या, कानातले, अंगठ्या आणि वधूचे दागिने प्रत्यक्ष पाहण्यासाठी श्री संत रोहिदास चौक येथील दुकानाला भेट द्या.`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(business.siteUrl),

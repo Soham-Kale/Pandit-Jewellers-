@@ -104,7 +104,7 @@ function CategoryPanel({ cat, onNavigate }: { cat: Category; onNavigate: () => v
             <Image src={src} alt="" fill sizes="20vw" quality={70} className="object-cover transition-transform duration-[1.2s] ease-luxe group-hover:scale-105" />
             <span className="absolute inset-0 bg-gradient-to-t from-burgundy-ink/75 via-transparent to-transparent" />
             <span className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-ivory">
-              <span className="font-semibold">{i === 0 ? name : t.menu.explore}</span>
+              <span className="font-semibold">{i === 0 ? name : `${name} ${t.menu.explore}`}</span>
               <ArrowRight className="size-4" strokeWidth={1.8} aria-hidden />
             </span>
           </Link>

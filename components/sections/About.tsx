@@ -7,49 +7,43 @@ import { content } from "@/data/content";
 import { images } from "@/data/images";
 import { useLang, mrDigits } from "@/lib/i18n";
 
+/** Brand introduction: portrait photo with a fine offset gold frame, story, and three numbered pillars. */
 export default function About() {
   const { lang } = useLang();
   const t = content[lang].about;
   return (
-    <section id="about" aria-labelledby="about-title" className="section-y bg-ivory-glow overflow-hidden">
+    <section id="about" aria-labelledby="about-title" className="section-y overflow-hidden bg-mist">
       <div className="container-lux grid items-center gap-14 lg:grid-cols-12 lg:gap-20">
-        <div className="relative mx-auto w-full max-w-md sm:max-w-lg lg:col-span-6 lg:max-w-none">
-          <div aria-hidden className="frame-shine absolute -top-5 -left-5 hidden h-[88%] w-[78%] rounded-xl sm:block" />
-          <ImageReveal className="relative aspect-[4/5] overflow-hidden rounded-xl bg-ivory-deep shadow-[0_40px_80px_-40px_rgba(74,36,117,0.55)]">
-            <Image src={images.about.src} alt={images.about.alt[lang]} fill quality={85} sizes="(min-width: 1024px) 45vw, 100vw" className="object-cover" />
+        <div className="relative mx-auto w-full max-w-sm sm:max-w-md lg:col-span-5 lg:max-w-none">
+          <div aria-hidden className="absolute -top-4 -left-4 h-full w-full rounded-lg border border-gold/60 sm:-top-5 sm:-left-5" />
+          <ImageReveal className="relative aspect-[4/5] overflow-hidden rounded-lg bg-white">
+            <Image src={images.about.src} alt={images.about.alt[lang]} fill quality={85} sizes="(min-width: 1024px) 40vw, 90vw" className="object-cover" />
           </ImageReveal>
-          <Reveal delay={0.3} className="bg-wine-glow absolute -right-3 -bottom-8 w-56 rounded-xl p-6 text-ivory shadow-xl sm:-right-6 sm:w-64 lg:-right-10">
-            <p className="eyebrow text-gold-soft">{t.badgeEyebrow}</p>
-            <p className="text-shine mt-2 text-2xl leading-snug font-semibold">{t.badge}</p>
-          </Reveal>
         </div>
 
-        <div className="pt-6 lg:col-span-6 lg:pt-0">
+        <div className="lg:col-span-7">
           <Reveal>
-            <p className="eyebrow flex items-center gap-4 text-gold-deep">
-              <span aria-hidden className="h-px w-10 bg-gold" />
-              {t.eyebrow}
-            </p>
-            <h2 id="about-title" className="mt-4 text-[2.3rem] font-semibold text-balance text-burgundy sm:text-5xl lg:text-[3.3rem]">
+            <p className="kicker">{t.eyebrow}</p>
+            <h2 id="about-title" className="t-h2 mt-3 text-burgundy-ink">
               {t.title}
             </h2>
           </Reveal>
           {t.paragraphs.map((p, i) => (
-            <Reveal key={i} delay={0.1 + i * 0.08}>
-              <p className="mt-6 text-[1.05rem] leading-[1.85] text-charcoal/85 sm:text-lg">{p}</p>
+            <Reveal key={i} delay={0.08 + i * 0.06}>
+              <p className="t-body mt-5 max-w-2xl text-charcoal/85">{p}</p>
             </Reveal>
           ))}
-          <Reveal delay={0.25}>
-            <ul className="mt-10 grid gap-4 sm:grid-cols-3">
+          <Reveal delay={0.2}>
+            <ol className="mt-10 grid gap-x-8 sm:grid-cols-3">
               {t.pillars.map((pl, i) => (
-                <li key={pl.title} className="rounded-xl border border-line bg-surface/80 p-5 shadow-[0_12px_30px_-22px_rgba(74,36,117,0.4)]">
-                  <span className="text-shine-deep text-lg font-bold">{mrDigits(`0${i + 1}`)}</span>
-                  <h3 className="mt-1 text-xl font-semibold text-burgundy">{pl.title}</h3>
-                  <p className="mt-1.5 text-[0.95rem] leading-relaxed text-muted">{pl.text}</p>
+                <li key={pl.title} className="border-t border-gold/50 py-5">
+                  <span className="text-shine-deep text-lg font-semibold">{mrDigits(`0${i + 1}`)}</span>
+                  <h3 className="t-h4 mt-1 text-burgundy-ink">{pl.title}</h3>
+                  <p className="t-caption mt-1.5 text-muted">{pl.text}</p>
                 </li>
               ))}
-            </ul>
-            <div className="mt-10">
+            </ol>
+            <div className="mt-8">
               <Button href="#craft" variant="outline-dark" arrow>
                 {t.cta}
               </Button>

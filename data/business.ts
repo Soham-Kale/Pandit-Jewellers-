@@ -20,7 +20,7 @@ export const business = {
 
   /** One-line description of the business. */
   description: {
-    mr: "पंडित ज्वेलर्स हे श्रीगोंदा, महाराष्ट्र येथील दागिन्यांचे दालन आहे.",
+    mr: "पंडित ज्वेलर्स हे श्रीगोंदा, महाराष्ट्र येथील दागिन्यांचे दुकान आहे.",
     en: "Pandit Jewellers is a jewellery showroom located in Shrigonda, Maharashtra.",
   } as L,
 
@@ -63,6 +63,14 @@ export const locationLine = (lang: Lang) => `${business.city[lang]}, ${business.
 export function addressText(lang: Lang): string {
   const street = business.streetAddress[lang];
   return street ? `${street}, ${locationLine(lang)}${business.postalCode ? ` ${mrDigits(business.postalCode)}` : ""}` : locationLine(lang);
+}
+
+/** Map shown on the page (no API key needed). Replace with the shop's own Google Maps "Embed a map" link for an exact pin. */
+export function mapsEmbedUrl(): string {
+  const q = encodeURIComponent(
+    `${business.name.en}, ${business.streetAddress.en ? `${business.streetAddress.en}, ` : ""}${business.city.en}, ${business.state.en} ${business.postalCode}`.trim(),
+  );
+  return `https://www.google.com/maps?q=${q}&output=embed`;
 }
 
 export function mapsLink(): string {

@@ -22,7 +22,7 @@ export const images = {
   },
   store: {
     src: "/assets/store/store.jpg",
-    alt: { mr: "दालनात मांडलेली सोन्याची कडी आणि कानातले", en: "Gold bracelets and earrings on a display counter" },
+    alt: { mr: "दुकानात मांडलेली सोन्याची कडी आणि कानातले", en: "Gold bracelets and earrings on a display counter" },
   },
   featured: [
     { src: "/assets/featured/featured-2.jpg", alt: { mr: "कुंदन दागिने आणि नथ परिधान केलेली स्त्री", en: "Woman wearing traditional kundan jewellery with a nath and layered necklace" } },

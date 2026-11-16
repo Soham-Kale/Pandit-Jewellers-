@@ -1,14 +1,19 @@
 import { ArrowRight } from "lucide-react";
 import { extProps } from "@/data/business";
 
-type Variant = "gold" | "burgundy" | "outline-light" | "outline-dark";
+/**
+ * burgundy → primary purple · gold → metallic gold (for dark bands)
+ * light → white (on photos) · outline-dark / outline-light → secondary actions
+ */
+type Variant = "gold" | "burgundy" | "light" | "outline-light" | "outline-dark";
 
 const styles: Record<Variant, string> = {
-  gold: "border border-white bg-white text-burgundy-ink hover:bg-ivory-deep",
+  gold: "bg-shine text-burgundy-ink",
   burgundy:
-    "bg-burgundy text-ivory shadow-[0_12px_30px_-14px_rgba(74,36,117,0.8)] hover:bg-burgundy-deep hover:shadow-[0_16px_34px_-14px_rgba(74,36,117,0.9)]",
-  "outline-light": "border border-gold-soft/70 text-ivory backdrop-blur-sm hover:bg-ivory hover:text-burgundy",
-  "outline-dark": "border border-burgundy/40 text-burgundy hover:bg-burgundy hover:border-burgundy hover:text-ivory",
+    "bg-burgundy text-white shadow-[0_10px_24px_-14px_rgba(74,36,117,0.8)] hover:bg-burgundy-deep hover:shadow-[0_14px_28px_-14px_rgba(74,36,117,0.9)]",
+  light: "bg-white text-burgundy-ink hover:bg-mist",
+  "outline-light": "border border-white/60 text-white hover:border-white hover:bg-white hover:text-burgundy-ink",
+  "outline-dark": "border border-burgundy/35 text-burgundy hover:border-burgundy hover:bg-burgundy hover:text-white",
 };
 
 type ButtonProps = {
@@ -27,7 +32,7 @@ export default function Button({ href, children, variant = "burgundy", icon, arr
       href={href}
       aria-label={ariaLabel}
       {...extProps(href)}
-      className={`group relative inline-flex min-h-12 items-center justify-center gap-2.5 rounded-full px-7 py-3 text-[0.95rem] font-medium transition-all duration-500 ease-luxe hover:-translate-y-0.5 ${styles[variant]} ${className}`}
+      className={`group relative inline-flex min-h-12 items-center justify-center gap-2.5 rounded-full px-7 py-3 text-base font-semibold transition-all duration-500 ease-luxe hover:-translate-y-0.5 active:translate-y-0 ${styles[variant]} ${className}`}
     >
       {icon}
       <span>{children}</span>

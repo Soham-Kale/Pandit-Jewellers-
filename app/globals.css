@@ -15,6 +15,8 @@
   --color-charcoal: #221a2e;
   --color-muted: #57516a;
   --color-line: #e6def0;
+  /* Pale lavender used for alternate sections (cooler partner to the purple). */
+  --color-mist: #f6f2fa;
 
   /* One typeface everywhere: Anek Devanagari (serif and mono utilities point to it too). */
   --font-sans: var(--font-anek), "Anek Devanagari", sans-serif;
@@ -135,21 +137,86 @@ em {
     }
   }
   .eyebrow {
-    font-size: 0.78rem;
-    font-weight: 600;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-  }
-  .eyebrow {
     font-size: 0.95rem;
+    font-weight: 600;
   }
+
+  /* ---------- Type scale (Anek Devanagari only) ----------
+     display → h1 / big banners · h2 → section titles · h3 → card titles
+     h4 → small titles · lead → intro lines · body → paragraphs · caption → meta */
+  .t-display {
+    font-size: clamp(2.25rem, 1.45rem + 3.2vw, 4.25rem);
+    line-height: 1.2 !important;
+    font-weight: 500;
+    text-wrap: balance;
+  }
+  .t-h2 {
+    font-size: clamp(1.9rem, 1.5rem + 1.6vw, 2.85rem);
+    line-height: 1.25 !important;
+    font-weight: 500;
+    text-wrap: balance;
+  }
+  .t-h3 {
+    font-size: clamp(1.25rem, 1.12rem + 0.5vw, 1.5rem);
+    line-height: 1.35 !important;
+    font-weight: 600;
+  }
+  .t-h4 {
+    font-size: 1.125rem;
+    line-height: 1.4;
+    font-weight: 600;
+  }
+  .t-lead {
+    font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+    line-height: 1.7;
+    font-weight: 400;
+  }
+  .t-body {
+    font-size: 1.0625rem;
+    line-height: 1.8;
+  }
+  .t-caption {
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+  /* Small gold label above a heading, led by a short hairline. */
+  .kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--color-gold-deep);
+  }
+  .kicker::before {
+    content: "";
+    width: 1.75rem;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.7;
+  }
+
+  /* ---------- Spacing scale ----------
+     section → standard vertical rhythm · section-tight → bands and strips
+     head-gap → space between a section heading and its content */
   .section-y {
-    padding-block: 2.5rem;
+    padding-block: clamp(3.75rem, 2.6rem + 4.4vw, 7rem);
   }
-  @media (min-width: 1024px) {
-    .section-y {
-      padding-block: 3.5rem;
-    }
+  .section-tight {
+    padding-block: clamp(2.5rem, 2rem + 2vw, 4rem);
+  }
+  .head-gap {
+    margin-top: clamp(2rem, 1.6rem + 1.6vw, 3.25rem);
+  }
+
+  /* Image that zooms gently when its card (.group) is hovered. */
+  .zoom-img {
+    transition: transform 1.2s var(--ease-luxe);
+  }
+  .group:hover .zoom-img,
+  .group:focus-visible .zoom-img {
+    transform: scale(1.045);
   }
 
   /* Metallic gold text */
@@ -202,12 +269,49 @@ em {
   /* Royal purple background (logo's magenta-to-indigo sweep) with a warm gold glow */
   .bg-wine-glow {
     background:
-      radial-gradient(ellipse 60% 70% at 15% 0%, rgba(243, 217, 143, 0.12), transparent 60%),
-      linear-gradient(120deg, #8a2a82 0%, #6a2a86 45%, #4a2d84 100%);
+      radial-gradient(ellipse 60% 80% at 0% 0%, rgba(221, 183, 81, 0.1), transparent 60%),
+      linear-gradient(135deg, #3a1b5e 0%, #22103a 70%);
   }
   .bg-ivory-glow {
     background:
       linear-gradient(transparent, transparent),
       var(--color-ivory);
   }
+}
+
+/* Respect visitors who ask for less motion: CSS transitions and keyframes too. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Hero: very slow push-in on the visible slide. */
+@keyframes hero-push {
+  from {
+    transform: scale(1.06);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+.hero-push {
+  animation: hero-push 7s var(--ease-luxe) both;
+}
+/* Hero: progress line under the active slide indicator. */
+@keyframes hero-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+.hero-progress {
+  transform-origin: left;
+  animation: hero-progress 6.5s linear both;
 }

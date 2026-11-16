@@ -1,6 +1,6 @@
 # Content Audit Report: Pandit Jewellers website (Marathi)
 
-**Date:** 16 November 2026
+**Date:** 16 November 2026 (updated: "दुकान" used throughout, at the owner's request)
 **Scope:** every page and every visible string, plus image alt text, screen-reader labels and SEO metadata.
 **Result:** 17 files updated. The site builds without errors, has no type or lint errors, and has no horizontal overflow on desktop (1440px) or mobile (390px).
 
@@ -61,13 +61,13 @@ Design, layout, colours, font, URLs and functionality are unchanged. Only text, 
 
 | Concept | Use this | Replaced / avoided |
 |---|---|---|
-| Showroom | **दालन** (दालनाला भेट द्या) | दुकान / दुकानाला भेट (was mixed) |
+| Shop / showroom | **दुकान** (दुकानाला भेट द्या), chosen by the owner | दुकान (the two words were mixed before; दुकान is now used everywhere) |
 | Phone call | **फोन करा** | कॉल करा (English) |
 | Collection | **संग्रह** / दागिन्यांचा संग्रह | कलेक्शन्स ("पंडित कलेक्शन्स") |
 | Bridal | **वधूचे दागिने** | वधू संग्रह / वधू-दागिने (was mixed) |
 | Contact | **संपर्क साधा** (nav and CTA) | संपर्क (bare) |
 | Directions | **नकाशावर मार्ग पाहा** / गूगल नकाशावर पत्ता पाहा | दिशा मिळवा (literal "get directions"), गूगल मॅप्समध्ये उघडा |
-| Opening hours | **दालनाची वेळ** | उघडण्याची वेळ (literal "opening time") |
+| Opening hours | **दुकानाची वेळ** | उघडण्याची वेळ (literal "opening time") |
 | Finish / polish | **झळाळी, सफाई** | फिनिश (English) |
 | Look | **पेहराव** | लुक (English) |
 | Maharashtrian (warm) | **मराठमोळा / महाराष्ट्रीय** | (used in context) |
@@ -88,7 +88,7 @@ Design, layout, colours, font, URLs and functionality are unchanged. Only text, 
   - "तुमच्या पसंतीचे सोने शोधा" → **"तुमच्या आवडीचा दागिना निवडा"**. Its sub-line used to repeat the filter label ("प्रकारानुसार पाहा" appeared twice in a row) and is now "हार, कानातले, बांगड्यांपासून मंगळसूत्रापर्यंत".
   - "खास निवड" → **"खास तुमच्यासाठी"**
   - "पंडितचे विश्व / प्रत्येक प्रसंगासाठी सोबती" → **"प्रसंगानुसार दागिने / सण, समारंभ आणि रोजच्या दिवसासाठी"** (the section shows occasions)
-  - "पंडितचा अनुभव" → **"आमच्याशी जोडले जा"**, with sub-line "दालनात या, व्हॉट्सॲपवर विचारा किंवा थेट फोन करा"
+  - "पंडितचा अनुभव" → **"आमच्याशी जोडले जा"**, with sub-line "दुकानात या, व्हॉट्सॲपवर विचारा किंवा थेट फोन करा"
 - **Pandit's promise:**
   - "ग्राहककेंद्रित सेवा" (bookish) → **"मनापासून सेवा"**
   - "पारदर्शक किंमत" → **"किमतीविषयी स्पष्टता"**. The meaning is unchanged; see section 8.
@@ -114,16 +114,16 @@ Design, layout, colours, font, URLs and functionality are unchanged. Only text, 
 
 | Element | Before | After |
 |---|---|---|
-| Header / mobile quick link | दुकानाला भेट द्या / दुकानाला भेट | दालनाला भेट द्या |
+| Header / mobile quick link | दुकानाला भेट द्या / दुकानाला भेट | दुकानाला भेट द्या (same wording everywhere) |
 | Phone CTA (header, mobile, contact card, tile) | कॉल करा / आम्हाला कॉल करा | फोन करा / आम्हाला फोन करा |
 | Mobile WhatsApp | व्हॉट्सॲप चौकशी | व्हॉट्सॲपवर विचारा |
 | Category grid "view all" | सर्व पाहा | सर्व दागिने पाहा |
 | Filter label | प्रकारानुसार पाहा | प्रकारानुसार निवडा |
-| Search empty state | या शोधासाठी संग्रह सापडला नाही. आम्हाला संदेश पाठवा, आम्ही दालनातील दागिने दाखवू. | तुम्ही शोधलेला दागिना इथे सापडला नाही. व्हॉट्सॲपवर आम्हाला विचारा, दालनात असलेले पर्याय आम्ही नक्की दाखवू. |
+| Search empty state | या शोधासाठी संग्रह सापडला नाही. आम्हाला संदेश पाठवा, आम्ही दुकानातील दागिने दाखवू. | तुम्ही शोधलेला दागिना इथे सापडला नाही. व्हॉट्सॲपवर आम्हाला विचारा, दुकानात असलेले पर्याय आम्ही नक्की दाखवू. |
 | Category page "related" | इतर प्रकार पाहा | इतर प्रकारही पाहा |
 | Store directions button | दिशा मिळवा | नकाशावर मार्ग पाहा |
 | Contact maps button | गूगल मॅप्समध्ये उघडा | गूगल नकाशावर पत्ता पाहा |
-| Contact first card label | भेट द्या | दालनाला भेट द्या |
+| Contact first card label | भेट द्या | दुकानाला भेट द्या |
 | Nav / footer contact | संपर्क | संपर्क साधा |
 | Bridal WhatsApp message | …तुमच्या वधू-दागिन्यांच्या संग्रहाबद्दल… | …वधूच्या दागिन्यांबद्दल… |
 | Slider buttons (screen reader) | मागील / पुढील / स्लाइड 1 | मागील चित्र / पुढील चित्र / चित्र क्रमांक १ |
@@ -132,11 +132,11 @@ Design, layout, colours, font, URLs and functionality are unchanged. Only text, 
 ## 7. SEO improvements
 
 - **Homepage title:** पंडित ज्वेलर्स | श्रीगोंदा येथील सोन्याचे दागिने (unchanged; already good).
-- **Homepage description:** rewritten to name the products and the real address: "श्रीगोंदा येथील पंडित ज्वेलर्स हे पारंपरिक सोन्याच्या दागिन्यांचे दालन आहे. सोन्याचे हार, मंगळसूत्र, बांगड्या, कानातले, अंगठ्या आणि वधूचे दागिने प्रत्यक्ष पाहण्यासाठी श्री संत रोहिदास चौक येथील दालनाला भेट द्या."
+- **Homepage description:** rewritten to name the products and the real address: "श्रीगोंदा येथील पंडित ज्वेलर्स हे पारंपरिक सोन्याच्या दागिन्यांचे दुकान आहे. सोन्याचे हार, मंगळसूत्र, बांगड्या, कानातले, अंगठ्या आणि वधूचे दागिने प्रत्यक्ष पाहण्यासाठी श्री संत रोहिदास चौक येथील दुकानाला भेट द्या."
 - **Keywords:** Marathi search phrases now lead: श्रीगोंदा सोन्याचे दागिने, श्रीगोंदा ज्वेलर्स, **श्रीगोंदा सराफ**, पंडित ज्वेलर्स श्रीगोंदा, सोन्याचे मंगळसूत्र, वधूचे दागिने, पारंपरिक महाराष्ट्रीय दागिने, ठुशी नथ बुगडी, सोन्याच्या बांगड्या. One English phrase was kept for English-language searches.
 - **`/collections` page:** the title was mixed Marathi and English ("सर्व दागिने · All Jewellery | …") and is now Marathi only: **"सर्व दागिने | पंडित ज्वेलर्स, श्रीगोंदा"**. The description was English and is now Marathi.
 - **9 category pages:** the titles were mixed Marathi and English ("हार · Necklaces | पंडित ज्वेलर्स · Pandit Jewellers, Shrigonda") and are now e.g. **"हार | पंडित ज्वेलर्स, श्रीगोंदा"**. Each description is the Marathi intro plus "श्रीगोंदा येथील पंडित ज्वेलर्समध्ये प्रत्यक्ष पाहा." The social-share description is now Marathi.
-- **Image alt text:** 9 alt texts were made more descriptive, for example "लाल पेहरावात पारंपरिक सोन्याचे दागिने परिधान केलेली वधू" and "दालनात मांडलेली सोन्याची कडी आणि कानातले".
+- **Image alt text:** 9 alt texts were made more descriptive, for example "लाल पेहरावात पारंपरिक सोन्याचे दागिने परिधान केलेली वधू" and "दुकानात मांडलेली सोन्याची कडी आणि कानातले".
 - **Heading structure:** each page has a single `h1`, and sections use `h2` and `h3`. This was checked and is unchanged. URLs are unchanged.
 
 ## 8. Business information to verify (flagged, not changed or invented)

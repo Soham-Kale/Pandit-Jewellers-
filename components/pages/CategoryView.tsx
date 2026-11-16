@@ -31,10 +31,24 @@ export default function CategoryView({ id }: { id: string }) {
   return (
     <>
       {/* Banner */}
-      <section aria-labelledby="cat-title" className="relative isolate overflow-hidden bg-burgundy-ink text-ivory">
-        <Image src={cat.images[0]} alt="" fill preload quality={85} sizes="100vw" className="-z-10 object-cover" />
-        <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-r from-burgundy-ink/90 via-burgundy/60 to-burgundy/10" />
-        <div className="container-lux py-14 lg:py-20">
+      <section
+        aria-labelledby="cat-title"
+        className="relative isolate overflow-hidden bg-burgundy-ink text-ivory"
+      >
+        <Image
+          src={cat.images[0]}
+          alt=""
+          fill
+          preload
+          quality={85}
+          sizes="100vw"
+          className="-z-10 object-cover"
+        />
+        <div
+          aria-hidden
+          className="absolute inset-0 -z-10 bg-gradient-to-t from-burgundy-ink/95 via-burgundy-ink/70 to-burgundy-ink/30 sm:bg-gradient-to-r sm:from-burgundy-ink/95 sm:via-burgundy-ink/65 sm:to-transparent"
+        />
+        <div className="container-lux py-14 sm:py-16 lg:py-24">
           <nav aria-label="मार्गदर्शक दुवे">
             <ol className="flex flex-wrap items-center gap-1.5 text-sm text-ivory/75">
               <li>
@@ -62,35 +76,58 @@ export default function CategoryView({ id }: { id: string }) {
             <span className="bg-shine grid size-14 place-items-center rounded-full text-burgundy-ink">
               <CategoryIconGlyph icon={cat.icon} className="size-7" />
             </span>
-            <h1 id="cat-title" className="mt-5 text-5xl font-semibold sm:text-6xl">
+            <h1 id="cat-title" className="t-display mt-5">
               {name}
             </h1>
             <Ornament tone="light" className="mt-5" />
-            <p className="mt-5 text-lg leading-relaxed text-ivory/90 sm:text-xl">{cat.blurb[lang]}</p>
+            <p className="t-lead mt-5 text-ivory/85">{cat.blurb[lang]}</p>
           </div>
         </div>
       </section>
 
       {/* Style chips + sections (anchors from the mega-menu) */}
       {cat.styles.length > 0 && (
-        <section aria-labelledby="styles-title" className="section-y bg-ivory-glow !pb-10">
+        <section
+          aria-labelledby="styles-title"
+          className="section-y bg-mist !pb-12"
+        >
           <div className="container-lux">
             <Reveal>
-              <h2 id="styles-title" className="text-3xl font-semibold text-burgundy sm:text-4xl">
+              <h2 id="styles-title" className="t-h2 text-burgundy-ink">
                 {p.stylesTitle(name)}
               </h2>
-              <p className="mt-3 max-w-2xl text-lg text-muted">{p.stylesIntro}</p>
+              <p className="t-lead mt-3 max-w-2xl text-muted">
+                {p.stylesIntro}
+              </p>
             </Reveal>
-            <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <ul className="head-gap grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
               {cat.styles.map((s, i) => {
                 const wa = whatsappLink(p.enquireMsg(s.label[lang], name));
                 return (
-                  <Reveal as="li" key={s.id} delay={i * 0.05} className="scroll-mt-40">
-                    <div id={`style-${s.id}`} className="scroll-mt-10 frame-shine flex h-full flex-col rounded-xl bg-surface p-6 shadow-[0_20px_45px_-30px_rgba(74,36,117,0.45)]">
-                      <p className="text-shine-deep text-sm font-bold">{mrDigits(`0${i + 1}`)}</p>
-                      <h3 className="mt-1 text-2xl font-semibold text-burgundy">{s.label[lang]}</h3>
-                      <p className="mt-2 flex-1 text-muted">{s.text[lang]}</p>
-                      <a href={wa} {...extProps(wa)} className="mt-5 inline-flex items-center gap-2 font-semibold text-gold-deep hover:text-burgundy">
+                  <Reveal
+                    as="li"
+                    key={s.id}
+                    delay={i * 0.05}
+                    className="scroll-mt-40"
+                  >
+                    <div
+                      id={`style-${s.id}`}
+                      className="flex h-full scroll-mt-10 flex-col rounded-lg bg-white p-6 ring-1 ring-line transition-shadow duration-500 hover:shadow-[0_22px_40px_-28px_rgba(74,36,117,0.5)] sm:p-7"
+                    >
+                      <p className="text-shine-deep text-base font-semibold">
+                        {mrDigits(`0${i + 1}`)}
+                      </p>
+                      <h3 className="t-h3 mt-1 text-burgundy-ink">
+                        {s.label[lang]}
+                      </h3>
+                      <p className="t-body mt-2 flex-1 text-muted">
+                        {s.text[lang]}
+                      </p>
+                      <a
+                        href={wa}
+                        {...extProps(wa)}
+                        className="mt-5 inline-flex items-center gap-2 font-semibold text-gold-deep hover:text-burgundy"
+                      >
                         <WhatsAppIcon className="size-4" />
                         {p.enquire}
                       </a>
@@ -109,26 +146,34 @@ export default function CategoryView({ id }: { id: string }) {
       </div>
 
       {/* Other categories */}
-      <section aria-labelledby="related-title" className="section-y bg-blush/60">
+      <section
+        aria-labelledby="related-title"
+        className="section-y border-t border-line"
+      >
         <div className="container-lux">
-          <h2 id="related-title" className="text-center text-3xl font-semibold text-burgundy sm:text-4xl">
+          <h2 id="related-title" className="t-h2 text-center text-burgundy-ink">
             {p.related}
           </h2>
           <Ornament className="mx-auto mt-5" />
-          <ul className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+          <ul className="head-gap grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
             {categories
               .filter((c) => c.id !== id)
               .map((c) => (
                 <li key={c.id}>
                   <Link
                     href={categoryHref(c.id)}
-                    className="group flex h-full items-center gap-3 rounded-xl border border-line bg-surface p-4 transition-all hover:-translate-y-0.5 hover:border-gold hover:shadow-[0_16px_30px_-22px_rgba(74,36,117,0.6)]"
+                    className="group flex h-full min-h-16 items-center gap-3 rounded-lg border border-line bg-white p-4 transition-[border-color,box-shadow,transform] duration-500 hover:-translate-y-0.5 hover:border-gold hover:shadow-[0_16px_30px_-22px_rgba(74,36,117,0.6)]"
                   >
-                    <span className="grid size-10 shrink-0 place-items-center rounded-full bg-ivory-deep text-burgundy group-hover:text-gold-deep">
+                    <span className="grid size-10 shrink-0 place-items-center rounded-full bg-mist text-burgundy group-hover:text-gold-deep">
                       <CategoryIconGlyph icon={c.icon} className="size-5" />
                     </span>
-                    <span className="font-semibold text-burgundy">{c.label[lang]}</span>
-                    <ArrowUpRight className="ml-auto size-4 text-gold-deep opacity-0 transition-opacity group-hover:opacity-100" aria-hidden />
+                    <span className="font-semibold text-burgundy-ink">
+                      {c.label[lang]}
+                    </span>
+                    <ArrowUpRight
+                      className="ml-auto size-4 text-gold-deep opacity-0 transition-opacity group-hover:opacity-100"
+                      aria-hidden
+                    />
                   </Link>
                 </li>
               ))}
@@ -137,17 +182,27 @@ export default function CategoryView({ id }: { id: string }) {
       </section>
 
       {/* Visit / enquire */}
-      <section className="bg-wine-glow text-ivory">
-        <div className="container-lux flex flex-col items-start gap-6 py-14 lg:flex-row lg:items-center lg:justify-between">
+      <section className="bg-mist">
+        <div className="container-lux section-tight flex flex-col items-start gap-6 lg:flex-row lg:items-center lg:justify-between">
           <div>
-            <p className="text-shine text-3xl font-semibold sm:text-4xl">{p.cta}</p>
-            <p className="mt-2 text-lg text-ivory/85">{p.ctaText}</p>
+            <p className="t-h2 text-burgundy-ink">{p.cta}</p>
+            <p className="t-lead mt-2 text-muted">{p.ctaText}</p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row">
-            <Button href={whatsappLink(t.wa.collection(name))} variant="gold" icon={<WhatsAppIcon />}>
+            <Button
+              href={whatsappLink(t.wa.collection(name))}
+              variant="burgundy"
+              icon={<WhatsAppIcon className="size-4" />}
+            >
               {t.contact.enquire}
             </Button>
-            <Button href="/#store" variant="outline-light" icon={<MapPin className="size-4" strokeWidth={1.75} aria-hidden />}>
+            <Button
+              href="/#store"
+              variant="outline-dark"
+              icon={
+                <MapPin className="size-4" strokeWidth={1.75} aria-hidden />
+              }
+            >
               {t.header.visit}
             </Button>
           </div>

@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { SearchX } from "lucide-react";
+import { SearchX, ArrowRight } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Button from "@/components/ui/Button";
 import WhatsAppIcon from "@/components/ui/WhatsAppIcon";
@@ -39,20 +39,20 @@ export default function Collections({ initialCategory = "all", headingless = fal
   const showViewAll = !headingless && active.id === "all" && !query.trim();
 
   return (
-    <section id="collections" aria-labelledby="collections-title" className="section-y bg-surface">
+    <section id="collections" aria-labelledby="collections-title" className={`section-y ${headingless ? "bg-white" : "bg-mist"}`}>
       <div className="container-lux">
         {headingless ? (
           <h2 id="collections-title" className="sr-only">
             {t.collections.title}
           </h2>
         ) : (
-          <SectionHeading id="collections-title" title={home.categories.title[lang]} intro={home.categories.sub[lang]} />
+          <SectionHeading id="collections-title" eyebrow={t.header.categories} title={home.categories.title[lang]} intro={home.categories.sub[lang]} />
         )}
 
         {/* Filter chips (mirrors the header category bar) */}
-        <div className={headingless ? "" : "mt-12 lg:mt-14"}>
+        <div className={headingless ? "" : "head-gap"}>
           <p className="sr-only">{t.collections.filterLabel}</p>
-          <ul className="no-scrollbar -mx-5 flex gap-2 overflow-x-auto px-5 pb-1 sm:mx-0 sm:flex-wrap sm:justify-center sm:px-0">
+          <ul className="no-scrollbar -mx-5 flex gap-2 overflow-x-auto px-5 pb-1 sm:mx-0 sm:flex-wrap sm:px-0">
             {categories.map((c) => {
               const on = c.id === active.id;
               return (
@@ -62,7 +62,7 @@ export default function Collections({ initialCategory = "all", headingless = fal
                     aria-pressed={on}
                     onClick={() => setFilter({ category: c.id, query: "" })}
                     className={`inline-flex min-h-10 items-center gap-2 rounded-full border px-4 text-[0.92rem] font-medium whitespace-nowrap transition-all duration-300 ${
-                      on ? "border-burgundy bg-burgundy text-white" : "border-line bg-white text-charcoal/85 hover:border-gold hover:text-burgundy"
+                      on ? "border-burgundy bg-burgundy text-white shadow-[0_8px_18px_-12px_rgba(74,36,117,0.9)]" : "border-line bg-white text-charcoal/85 hover:border-gold hover:text-burgundy"
                     }`}
                   >
                     <CategoryIconGlyph icon={c.icon} className="size-[1.1rem]" />
@@ -72,10 +72,10 @@ export default function Collections({ initialCategory = "all", headingless = fal
               );
             })}
           </ul>
-          {query.trim() && <p className="mt-5 text-center text-muted">{t.collections.resultsFor(query.trim())}</p>}
+          {query.trim() && <p className="t-lead mt-5 text-muted">{t.collections.resultsFor(query.trim())}</p>}
         </div>
 
-        <motion.ul layout className="mt-10 grid grid-cols-2 gap-x-3 gap-y-8 sm:gap-x-5 lg:grid-cols-4 lg:gap-x-4 lg:gap-y-10">
+        <motion.ul layout className="mt-8 grid grid-cols-2 gap-x-3 gap-y-8 sm:gap-x-5 lg:mt-10 lg:grid-cols-4 lg:gap-x-6 lg:gap-y-12">
           <AnimatePresence mode="popLayout" initial={false}>
             {(showViewAll ? visible.slice(0, 7) : visible).map((c, i) => {
               const name = c.name[lang];
@@ -92,17 +92,18 @@ export default function Collections({ initialCategory = "all", headingless = fal
                   transition={{ duration: 0.7, ease: EASE, delay: (i % 4) * 0.06 }}
                 >
                   <Link href={href} {...extProps(href)} aria-label={t.collections.exploreAria(name)} className="group block">
-                    <div className="relative aspect-square overflow-hidden rounded-xl bg-ivory-deep">
-                      <Image
-                        src={c.image}
-                        alt={c.alt[lang]}
-                        fill
-                        quality={80}
-                        sizes="(min-width: 1024px) 24vw, 48vw"
-                        className="object-cover transition-transform duration-[1.4s] ease-luxe group-hover:scale-[1.06]"
+                    <div className="relative aspect-[4/5] overflow-hidden rounded-lg bg-mist">
+                      <Image src={c.image} alt={c.alt[lang]} fill quality={80} sizes="(min-width: 1024px) 24vw, 48vw" className="zoom-img object-cover" />
+                    </div>
+                    <div className="mt-3 flex items-start justify-between gap-2">
+                      <h3 className="t-h4 text-burgundy-ink transition-colors group-hover:text-burgundy sm:text-xl">{name}</h3>
+                      <ArrowRight
+                        aria-hidden
+                        className="mt-1.5 size-4 shrink-0 text-gold-deep transition-transform duration-500 ease-luxe group-hover:translate-x-1"
+                        strokeWidth={1.75}
                       />
                     </div>
-                    <h3 className="mt-3 text-center text-base tracking-wide text-burgundy-ink uppercase group-hover:text-burgundy sm:text-lg">{name}</h3>
+                    <p className="t-caption mt-0.5 line-clamp-2 text-muted">{c.description[lang]}</p>
                   </Link>
                 </motion.li>
               );
@@ -110,13 +111,16 @@ export default function Collections({ initialCategory = "all", headingless = fal
             {showViewAll && (
               <motion.li key="view-all" layout initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
                 <Link href="/collections" className="group block">
-                  <div className="grid aspect-square place-items-center rounded-xl border border-line bg-white p-4 text-center">
+                  <div className="grid aspect-[4/5] place-items-center rounded-lg bg-burgundy-ink p-4 text-center text-white transition-colors duration-500 group-hover:bg-burgundy">
                     <span>
-                      <span className="block text-4xl text-burgundy sm:text-5xl">{mrDigits(categories.length - 1)}+</span>
-                      <span className="mt-2 block text-[0.95rem] text-charcoal">{home.categories.count[lang]}</span>
+                      <span className="text-shine block text-5xl font-medium sm:text-6xl">{mrDigits(categories.length - 1)}+</span>
+                      <span className="t-caption mt-2 block text-white/80">{home.categories.count[lang]}</span>
+                      <span className="mx-auto mt-5 grid size-11 place-items-center rounded-full border border-white/40 transition-colors duration-500 group-hover:bg-white group-hover:text-burgundy-ink">
+                        <ArrowRight className="size-4" strokeWidth={1.75} aria-hidden />
+                      </span>
                     </span>
                   </div>
-                  <span className="mt-3 block text-center text-base tracking-wide text-burgundy-ink uppercase group-hover:text-burgundy sm:text-lg">{home.categories.viewAll[lang]}</span>
+                  <span className="t-h4 mt-3 block text-burgundy-ink group-hover:text-burgundy sm:text-xl">{home.categories.viewAll[lang]}</span>
                 </Link>
               </motion.li>
             )}
@@ -124,7 +128,7 @@ export default function Collections({ initialCategory = "all", headingless = fal
         </motion.ul>
 
         {visible.length === 0 && (
-          <div className="mx-auto max-w-lg rounded-xl border border-line bg-ivory p-8 text-center">
+          <div className="mx-auto max-w-lg rounded-lg bg-mist p-8 text-center">
             <SearchX className="mx-auto size-8 text-gold-deep" strokeWidth={1.5} aria-hidden />
             <p className="mt-4 text-lg text-charcoal/85">{t.collections.noResults}</p>
             <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
@@ -134,7 +138,7 @@ export default function Collections({ initialCategory = "all", headingless = fal
               <button
                 type="button"
                 onClick={() => setFilter({ category: "all", query: "" })}
-                className="min-h-12 rounded-full border border-gold px-6 text-[0.8rem] font-semibold tracking-[0.14em] text-burgundy uppercase hover:bg-burgundy hover:text-ivory"
+                className="min-h-12 rounded-full border border-burgundy/35 px-7 text-base font-semibold text-burgundy transition-colors hover:bg-burgundy hover:text-white"
               >
                 {t.collections.showAll}
               </button>

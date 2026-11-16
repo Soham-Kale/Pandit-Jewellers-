@@ -9,10 +9,21 @@ import InstagramIcon, { FacebookIcon } from "@/components/ui/Instagram";
 import { mainNav } from "@/data/navigation";
 import { collections } from "@/data/collections";
 import { content } from "@/data/content";
-import { business, addressText, whatsappLink, phoneLink, emailLink, TBC, extProps } from "@/data/business";
+import {
+  business,
+  addressText,
+  whatsappLink,
+  phoneLink,
+  emailLink,
+  TBC,
+  extProps,
+} from "@/data/business";
 import { useLang } from "@/lib/i18n";
 
-const footerCat: Record<string, string> = { bridal: "wedding", maharashtrian: "traditional" };
+const footerCat: Record<string, string> = {
+  bridal: "wedding",
+  maharashtrian: "traditional",
+};
 
 export default function Footer() {
   const { lang } = useLang();
@@ -21,17 +32,27 @@ export default function Footer() {
   const socials = [
     { label: "इन्स्टाग्राम", href: business.instagram, Icon: InstagramIcon },
     { label: "फेसबुक", href: business.facebook, Icon: FacebookIcon },
-    { label: "व्हॉट्सॲप", href: business.whatsapp ? whatsappLink(content[lang].wa.general) : "", Icon: WhatsAppIcon },
+    {
+      label: "व्हॉट्सॲप",
+      href: business.whatsapp ? whatsappLink(content[lang].wa.general) : "",
+      Icon: WhatsAppIcon,
+    },
   ];
 
   return (
-    <footer className="relative mx-2 mb-2 overflow-hidden rounded-2xl bg-burgundy-ink text-ivory/85 sm:mx-3 sm:mb-3">
-
-      <div className="container-lux grid grid-cols-2 gap-x-6 gap-y-12 py-14 lg:grid-cols-12 lg:gap-10 lg:py-20">
+    <footer className="bg-wine-glow relative overflow-hidden text-ivory/85">
+      <span
+        aria-hidden
+        className="absolute inset-x-0 top-0 h-px opacity-70"
+        style={{ background: "var(--gold-shine)" }}
+      />
+      <div className="container-lux grid grid-cols-2 gap-x-6 gap-y-12 py-14 lg:grid-cols-12 lg:gap-10 lg:py-24">
         <div className="col-span-2 lg:col-span-4">
           <Logo tone="light" />
-          <p className="mt-6 max-w-sm leading-relaxed text-ivory/80">{t.about}</p>
-          <p className="text-shine mt-4 text-lg font-semibold">{t.altTagline}</p>
+          <p className="t-body mt-6 max-w-sm text-ivory/80">{t.about}</p>
+          <p className="text-shine mt-4 text-lg font-semibold">
+            {t.altTagline}
+          </p>
           <ul className="mt-8 flex gap-3" aria-label={t.social}>
             {socials.map(({ label, href, Icon }) => (
               <li key={label}>
@@ -63,7 +84,10 @@ export default function Footer() {
           <ul className="mt-6 space-y-3.5">
             {mainNav.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="transition-colors hover:text-gold-soft">
+                <Link
+                  href={item.href}
+                  className="transition-colors hover:text-gold-soft"
+                >
                   {item.label[lang]}
                 </Link>
               </li>
@@ -76,7 +100,10 @@ export default function Footer() {
           <ul className="mt-6 grid gap-3.5">
             {collections.map((c) => (
               <li key={c.slug}>
-                <Link href={categoryHref(footerCat[c.slug] ?? c.slug)} className="transition-colors hover:text-gold-soft">
+                <Link
+                  href={categoryHref(footerCat[c.slug] ?? c.slug)}
+                  className="transition-colors hover:text-gold-soft"
+                >
                   {c.name[lang]}
                 </Link>
               </li>
@@ -88,7 +115,11 @@ export default function Footer() {
           <h3 className="eyebrow text-gold-soft">{t.contact}</h3>
           <ul className="mt-6 space-y-5">
             <li className="flex gap-3">
-              <MapPin className="mt-1 size-4 shrink-0 text-gold-soft" strokeWidth={1.6} aria-hidden />
+              <MapPin
+                className="mt-1 size-4 shrink-0 text-gold-soft"
+                strokeWidth={1.6}
+                aria-hidden
+              />
               <span>
                 {business.name[lang]}
                 <br />
@@ -101,7 +132,11 @@ export default function Footer() {
               </span>
             </li>
             <li className="flex gap-3">
-              <Phone className="mt-1 size-4 shrink-0 text-gold-soft" strokeWidth={1.6} aria-hidden />
+              <Phone
+                className="mt-1 size-4 shrink-0 text-gold-soft"
+                strokeWidth={1.6}
+                aria-hidden
+              />
               {business.phone ? (
                 <span>
                   <a href={phoneLink()} className="hover:text-gold-soft">
@@ -110,7 +145,10 @@ export default function Footer() {
                   {business.phoneAlt && (
                     <>
                       <br />
-                      <a href={phoneLink(business.phoneAlt)} className="hover:text-gold-soft">
+                      <a
+                        href={phoneLink(business.phoneAlt)}
+                        className="hover:text-gold-soft"
+                      >
                         {business.phoneAlt}
                       </a>
                     </>
@@ -124,14 +162,25 @@ export default function Footer() {
             </li>
             {business.email && (
               <li className="flex gap-3">
-                <Mail className="mt-1 size-4 shrink-0 text-gold-soft" strokeWidth={1.6} aria-hidden />
-                <a href={emailLink()} className="break-all hover:text-gold-soft">
+                <Mail
+                  className="mt-1 size-4 shrink-0 text-gold-soft"
+                  strokeWidth={1.6}
+                  aria-hidden
+                />
+                <a
+                  href={emailLink()}
+                  className="break-all hover:text-gold-soft"
+                >
                   {business.email}
                 </a>
               </li>
             )}
             <li className="flex gap-3">
-              <Clock className="mt-1 size-4 shrink-0 text-gold-soft" strokeWidth={1.6} aria-hidden />
+              <Clock
+                className="mt-1 size-4 shrink-0 text-gold-soft"
+                strokeWidth={1.6}
+                aria-hidden
+              />
               <span>{business.openingHours[lang] || `${t.hours}: ${tbc}`}</span>
             </li>
           </ul>

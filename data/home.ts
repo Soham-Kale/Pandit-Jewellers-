@@ -27,8 +27,8 @@ export const home = {
   },
   experience: {
     title: { mr: "आमच्याशी जोडले जा", en: "The Pandit Experience" },
-    sub: { mr: "दालनात या, व्हॉट्सॲपवर विचारा किंवा थेट फोन करा", en: "Visit the showroom or talk to us" },
-    visit: { mr: "दालनाला भेट द्या", en: "Visit our store" },
+    sub: { mr: "दुकानात या, व्हॉट्सॲपवर विचारा किंवा थेट फोन करा", en: "Visit the showroom or talk to us" },
+    visit: { mr: "दुकानाला भेट द्या", en: "Visit our store" },
     whatsapp: { mr: "व्हॉट्सॲपवर विचारा", en: "Ask on WhatsApp" },
     call: { mr: "आम्हाला फोन करा", en: "Talk to us" },
   },

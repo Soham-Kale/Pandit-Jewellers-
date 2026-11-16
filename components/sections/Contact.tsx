@@ -1,13 +1,22 @@
 "use client";
 
-import { MapPin, Phone, Mail, Navigation, type LucideIcon } from "lucide-react";
+import { MapPin, Phone, Mail, type LucideIcon } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
 import Button from "@/components/ui/Button";
 import WhatsAppIcon from "@/components/ui/WhatsAppIcon";
 import InstagramIcon from "@/components/ui/Instagram";
 import { content } from "@/data/content";
-import { business, addressText, mapsLink, whatsappLink, phoneLink, emailLink, TBC, extProps } from "@/data/business";
+import {
+  business,
+  addressText,
+  mapsLink,
+  whatsappLink,
+  phoneLink,
+  emailLink,
+  TBC,
+  extProps,
+} from "@/data/business";
 import { useLang } from "@/lib/i18n";
 
 type Card = {
@@ -63,58 +72,99 @@ export default function Contact() {
     },
     // Instagram appears once its profile link is filled in data/business.ts.
     ...(business.instagram
-      ? [{ key: "ig", label: c.instagram, value: c.followUs, pending: false, href: business.instagram, Icon: InstagramIcon }]
+      ? [
+          {
+            key: "ig",
+            label: c.instagram,
+            value: c.followUs,
+            pending: false,
+            href: business.instagram,
+            Icon: InstagramIcon,
+          },
+        ]
       : []),
   ];
 
   return (
-    <section id="contact" aria-labelledby="contact-title" className="section-y bg-surface">
+    <section
+      id="contact"
+      aria-labelledby="contact-title"
+      className="section-y bg-mist"
+    >
       <div className="container-lux">
-        <SectionHeading id="contact-title" eyebrow={c.eyebrow} title={c.title} intro={c.intro} />
+        <SectionHeading
+          id="contact-title"
+          align="center"
+          eyebrow={c.eyebrow}
+          title={c.title}
+          intro={c.intro}
+        />
 
-        <ul className={`mx-auto mt-14 grid max-w-6xl grid-cols-2 gap-3 sm:gap-5 lg:mt-16 ${cards.length > 4 ? "lg:grid-cols-5" : "lg:grid-cols-4"}`}>
+        <ul
+          className={`head-gap mx-auto grid max-w-6xl grid-cols-1 gap-3 min-[420px]:grid-cols-2 sm:gap-4 ${cards.length > 4 ? "lg:grid-cols-5" : "lg:grid-cols-4"}`}
+        >
           {cards.map(({ key, label, value, pending, note, href, Icon }, i) => {
             const inner = (
               <>
-                <span className="bg-shine grid size-12 place-items-center rounded-full text-burgundy-ink">
+                <span className="grid size-12 shrink-0 place-items-center rounded-full border border-gold/60 text-gold-deep transition-colors duration-500 group-hover:border-burgundy group-hover:bg-burgundy group-hover:text-white">
                   <Icon className="size-5" strokeWidth={1.6} aria-hidden />
                 </span>
-                <span className="mt-4 block text-sm font-semibold tracking-[0.14em] text-muted uppercase">{label}</span>
-                <span
-                  className={`mt-1 block leading-snug font-semibold break-words ${key === "email" ? "text-base sm:text-lg" : "text-lg sm:text-xl"} ${pending ? "text-muted" : "text-burgundy"}`}
-                >
-                  {key === "email" && value.includes("@") ? (
-                    <>
-                      {value.split("@")[0]}
-                      <wbr />@{value.split("@")[1]}
-                    </>
-                  ) : (
-                    value
+                <span className="block min-w-0">
+                  <span className="t-caption block font-semibold text-muted min-[420px]:mt-5">
+                    {label}
+                  </span>
+                  <span
+                    className={`mt-1 block leading-snug font-semibold break-words ${key === "email" ? "text-base sm:text-lg" : "text-lg"} ${pending ? "text-muted" : "text-burgundy-ink"}`}
+                  >
+                    {key === "email" && value.includes("@") ? (
+                      <>
+                        {value.split("@")[0]}
+                        <wbr />@{value.split("@")[1]}
+                      </>
+                    ) : (
+                      value
+                    )}
+                  </span>
+                  {note && (
+                    <span className="t-caption mt-0.5 block text-muted">
+                      {note}
+                    </span>
                   )}
                 </span>
-                {note && <span className="mt-1 block text-sm text-muted">{note}</span>}
               </>
             );
             return (
-              <Reveal as="li" key={key} delay={i * 0.06} className="frame-shine rounded-xl bg-ivory shadow-[0_20px_45px_-30px_rgba(74,36,117,0.45)]">
+              <Reveal
+                as="li"
+                key={key}
+                delay={i * 0.06}
+                className="rounded-lg bg-white ring-1 ring-line transition-shadow duration-500 hover:shadow-[0_18px_40px_-28px_rgba(74,36,117,0.55)]"
+              >
                 {href ? (
-                  <a href={href} {...extProps(href)} className="block h-full rounded-xl p-5 transition-colors duration-500 hover:bg-blush/60 sm:p-7">
+                  <a
+                    href={href}
+                    {...extProps(href)}
+                    className="group flex h-full items-start gap-4 rounded-lg p-5 min-[420px]:block sm:p-7"
+                  >
                     {inner}
                   </a>
                 ) : (
-                  <div className="h-full p-5 sm:p-7">{inner}</div>
+                  <div className="flex h-full items-start gap-4 p-5 min-[420px]:block sm:p-7">
+                    {inner}
+                  </div>
                 )}
               </Reveal>
             );
           })}
         </ul>
 
-        <Reveal className="mt-12 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
-          <Button href={whatsappLink(t.wa.general)} variant="burgundy" icon={<WhatsAppIcon />}>
+        <Reveal className="mt-10 flex justify-center">
+          <Button
+            href={whatsappLink(t.wa.general)}
+            variant="burgundy"
+            icon={<WhatsAppIcon className="size-4" />}
+          >
             {c.enquire}
-          </Button>
-          <Button href={mapsLink()} variant="outline-dark" icon={<Navigation className="size-4" strokeWidth={1.75} aria-hidden />}>
-            {c.maps}
           </Button>
         </Reveal>
       </div>

@@ -1,83 +1,92 @@
 "use client";
 
-import Image from "next/image";
-import { MapPin, Clock, Navigation } from "lucide-react";
+import { MapPin, Clock, Phone, Navigation } from "lucide-react";
 import Reveal, { ImageReveal } from "@/components/ui/Reveal";
 import Button from "@/components/ui/Button";
 import WhatsAppIcon from "@/components/ui/WhatsAppIcon";
 import { content } from "@/data/content";
-import { images } from "@/data/images";
-import { business, locationLine, mapsLink, whatsappLink, TBC } from "@/data/business";
+import { business, locationLine, mapsLink, mapsEmbedUrl, whatsappLink, phoneLink, TBC } from "@/data/business";
 import { useLang, mrDigits } from "@/lib/i18n";
 
 function Pending({ text }: { text: string }) {
   return <span className="ml-2 inline-block rounded-full border border-gold px-2.5 py-0.5 align-middle text-xs font-semibold text-gold-deep">{text}</span>;
 }
 
+/** Visit the shop: address, hours and phone beside a live map, with directions and WhatsApp. */
 export default function StoreLocation() {
   const { lang } = useLang();
   const t = content[lang];
   const s = t.store;
+  const rows = [
+    {
+      Icon: MapPin,
+      title: business.name[lang],
+      lines: [
+        business.streetAddress[lang] || null,
+        `${locationLine(lang)}${business.postalCode ? ` ${mrDigits(business.postalCode)}` : ""}`,
+      ],
+      pending: !business.streetAddress[lang] ? s.address : null,
+    },
+    { Icon: Clock, title: s.hoursTitle, lines: [business.openingHours[lang] || null], pending: !business.openingHours[lang] ? s.hours : null },
+    { Icon: Phone, title: t.footer.phone, lines: [business.phone, business.phoneAlt].filter(Boolean), pending: null, href: phoneLink() },
+  ];
   return (
-    <section id="store" aria-labelledby="store-title" className="section-y bg-ivory-glow">
-      <div className="container-lux grid items-stretch gap-12 lg:grid-cols-12 lg:gap-0">
-        <ImageReveal className="relative min-h-[22rem] overflow-hidden rounded-xl bg-ivory-deep shadow-[0_40px_80px_-45px_rgba(74,36,117,0.6)] sm:min-h-[28rem] lg:col-span-7">
-          <Image src={images.store.src} alt={images.store.alt[lang]} fill quality={85} sizes="(min-width: 1024px) 58vw, 100vw" className="object-cover" />
-        </ImageReveal>
+    <section id="store" aria-labelledby="store-title" className="section-y">
+      <div className="container-lux grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+        <Reveal className="lg:col-span-5">
+          <p className="kicker">{s.eyebrow}</p>
+          <h2 id="store-title" className="t-h2 mt-3 text-burgundy-ink">
+            {s.title}
+          </h2>
+          <p className="t-lead mt-3 text-muted">{s.intro}</p>
 
-        <Reveal className="relative lg:col-span-5 lg:-ml-16 lg:self-center">
-          <div className="frame-shine rounded-xl bg-surface p-7 shadow-[0_30px_70px_-30px_rgba(74,36,117,0.4)] sm:p-10 lg:p-12">
-            <p className="eyebrow text-gold-deep">{s.eyebrow}</p>
-            <h2 id="store-title" className="mt-3 text-[2.2rem] font-semibold text-balance text-burgundy sm:text-5xl">
-              {s.title}
-            </h2>
-            <p className="mt-4 text-lg leading-relaxed text-muted">{s.intro}</p>
-
-            <dl className="mt-8 space-y-5 border-t border-line pt-8">
-              <div className="flex gap-4">
-                <MapPin className="mt-1 size-5 shrink-0 text-gold-deep" strokeWidth={1.6} aria-hidden />
+          <dl className="mt-8 divide-y divide-line border-y border-line">
+            {rows.map(({ Icon, title, lines, pending, href }) => (
+              <div key={title} className="flex gap-4 py-5">
+                <Icon className="mt-1 size-5 shrink-0 text-gold-deep" strokeWidth={1.6} aria-hidden />
                 <div>
-                  <dt className="text-xl font-semibold text-burgundy">{business.name[lang]}</dt>
-                  <dd className="mt-1 text-charcoal/85">
-                    {business.streetAddress[lang] || (
-                      <>
-                        {s.address}
-                        <Pending text={TBC[lang]} />
-                      </>
-                    )}
-                  </dd>
-                  <dd className="mt-1 text-charcoal/85">
-                    {locationLine(lang)}
-                    {business.postalCode ? ` ${mrDigits(business.postalCode)}` : ""}
-                  </dd>
+                  <dt className="t-h4 text-burgundy-ink">{title}</dt>
+                  {lines.filter(Boolean).map((l) => (
+                    <dd key={l} className="t-body mt-0.5 text-charcoal/85">
+                      {href ? (
+                        <a href={`tel:${String(l).replace(/[^+\d]/g, "")}`} className="hover:text-burgundy">
+                          {l}
+                        </a>
+                      ) : (
+                        l
+                      )}
+                    </dd>
+                  ))}
+                  {pending && (
+                    <dd className="mt-0.5 text-charcoal/85">
+                      {pending}
+                      <Pending text={TBC[lang]} />
+                    </dd>
+                  )}
                 </div>
               </div>
-              <div className="flex gap-4">
-                <Clock className="mt-1 size-5 shrink-0 text-gold-deep" strokeWidth={1.6} aria-hidden />
-                <div>
-                  <dt className="text-xl font-semibold text-burgundy">{s.hoursTitle}</dt>
-                  <dd className="mt-1 text-charcoal/85">
-                    {business.openingHours[lang] || (
-                      <>
-                        {s.hours}
-                        <Pending text={TBC[lang]} />
-                      </>
-                    )}
-                  </dd>
-                </div>
-              </div>
-            </dl>
+            ))}
+          </dl>
 
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <Button href={mapsLink()} variant="burgundy" icon={<Navigation className="size-4" strokeWidth={1.75} aria-hidden />}>
-                {s.directions}
-              </Button>
-              <Button href={whatsappLink(t.wa.general)} variant="outline-dark" icon={<WhatsAppIcon />}>
-                {s.whatsapp}
-              </Button>
-            </div>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <Button href={mapsLink()} variant="burgundy" icon={<Navigation className="size-4" strokeWidth={1.75} aria-hidden />}>
+              {s.directions}
+            </Button>
+            <Button href={whatsappLink(t.wa.general)} variant="outline-dark" icon={<WhatsAppIcon className="size-4" />}>
+              {s.whatsapp}
+            </Button>
           </div>
         </Reveal>
+
+        <ImageReveal className="relative aspect-[4/5] overflow-hidden rounded-lg bg-mist sm:aspect-[4/3] lg:col-span-7 lg:aspect-[5/4]">
+          <iframe
+            title={t.ui.mapTitle}
+            src={mapsEmbedUrl()}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            className="absolute inset-0 size-full border-0 grayscale-[25%]"
+          />
+        </ImageReveal>
       </div>
     </section>
   );

@@ -166,7 +166,7 @@ export const occasionIds = ["daily", "wedding", "traditional"] as const;
 export const moreLinks: MenuLink[] = [
   { label: { mr: "आमच्याविषयी", en: "About Us" }, href: "/#about" },
   { label: { mr: "पंडितचे वचन", en: "Our Craft" }, href: "/#craft" },
-  { label: { mr: "दालनाला भेट द्या", en: "Visit Our Store" }, href: "/#store" },
+  { label: { mr: "दुकानाला भेट द्या", en: "Visit Our Store" }, href: "/#store" },
   { label: { mr: "संपर्क साधा", en: "Contact" }, href: "/#contact" },
 ];
 
