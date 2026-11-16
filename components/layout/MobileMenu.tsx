@@ -8,7 +8,6 @@ import CategoryIconGlyph from "@/components/ui/CategoryIcons";
 import { categories, categoryHref, collectionsFor } from "@/data/categories";
 import Logo from "@/components/ui/Logo";
 import Ornament from "@/components/ui/Ornament";
-import LanguageToggle from "@/components/ui/LanguageToggle";
 import WhatsAppIcon from "@/components/ui/WhatsAppIcon";
 import { mainNav } from "@/data/navigation";
 import { content } from "@/data/content";
@@ -60,7 +59,6 @@ export default function MobileMenu({ open, onClose }: { open: boolean; onClose: 
           </div>
 
           <nav aria-label="Mobile" className="container-lux flex-1 overflow-y-auto pt-6">
-            <LanguageToggle className="mb-6" />
             <p className="eyebrow text-gold-deep">{t.header.categories}</p>
             <ul className="mt-2">
               {categories.map((c) => {

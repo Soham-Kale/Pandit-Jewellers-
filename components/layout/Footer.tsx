@@ -2,14 +2,14 @@
 
 import Link from "next/link";
 import { categoryHref } from "@/data/categories";
-import { MapPin, Phone, Clock } from "lucide-react";
+import { MapPin, Phone, Clock, Mail } from "lucide-react";
 import Logo from "@/components/ui/Logo";
 import WhatsAppIcon from "@/components/ui/WhatsAppIcon";
 import InstagramIcon, { FacebookIcon } from "@/components/ui/Instagram";
 import { mainNav } from "@/data/navigation";
 import { collections } from "@/data/collections";
 import { content } from "@/data/content";
-import { business, addressText, whatsappLink, phoneLink, TBC, extProps } from "@/data/business";
+import { business, addressText, whatsappLink, phoneLink, emailLink, TBC, extProps } from "@/data/business";
 import { useLang } from "@/lib/i18n";
 
 const footerCat: Record<string, string> = { bridal: "wedding", maharashtrian: "traditional" };
@@ -19,14 +19,13 @@ export default function Footer() {
   const t = content[lang].footer;
   const tbc = TBC[lang];
   const socials = [
-    { label: "Instagram", href: business.instagram, Icon: InstagramIcon },
-    { label: "Facebook", href: business.facebook, Icon: FacebookIcon },
-    { label: "WhatsApp", href: business.whatsapp ? whatsappLink(content[lang].wa.general) : "", Icon: WhatsAppIcon },
+    { label: "इन्स्टाग्राम", href: business.instagram, Icon: InstagramIcon },
+    { label: "फेसबुक", href: business.facebook, Icon: FacebookIcon },
+    { label: "व्हॉट्सॲप", href: business.whatsapp ? whatsappLink(content[lang].wa.general) : "", Icon: WhatsAppIcon },
   ];
 
   return (
-    <footer className="bg-wine-glow relative overflow-hidden text-ivory/85">
-      <div aria-hidden className="h-1 w-full" style={{ background: "var(--gold-shine)" }} />
+    <footer className="relative mx-2 mb-2 overflow-hidden rounded-2xl bg-burgundy-ink text-ivory/85 sm:mx-3 sm:mb-3">
 
       <div className="container-lux grid grid-cols-2 gap-x-6 gap-y-12 py-14 lg:grid-cols-12 lg:gap-10 lg:py-20">
         <div className="col-span-2 lg:col-span-4">
@@ -59,7 +58,7 @@ export default function Footer() {
           </ul>
         </div>
 
-        <nav aria-label="Footer" className="lg:col-span-2">
+        <nav aria-label="तळटीप दुवे" className="lg:col-span-2">
           <h3 className="eyebrow text-gold-soft">{t.explore}</h3>
           <ul className="mt-6 space-y-3.5">
             {mainNav.map((item) => (
@@ -104,15 +103,33 @@ export default function Footer() {
             <li className="flex gap-3">
               <Phone className="mt-1 size-4 shrink-0 text-gold-soft" strokeWidth={1.6} aria-hidden />
               {business.phone ? (
-                <a href={phoneLink()} className="hover:text-gold-soft">
-                  {business.phone}
-                </a>
+                <span>
+                  <a href={phoneLink()} className="hover:text-gold-soft">
+                    {business.phone}
+                  </a>
+                  {business.phoneAlt && (
+                    <>
+                      <br />
+                      <a href={phoneLink(business.phoneAlt)} className="hover:text-gold-soft">
+                        {business.phoneAlt}
+                      </a>
+                    </>
+                  )}
+                </span>
               ) : (
                 <span>
                   {t.phone}: {tbc}
                 </span>
               )}
             </li>
+            {business.email && (
+              <li className="flex gap-3">
+                <Mail className="mt-1 size-4 shrink-0 text-gold-soft" strokeWidth={1.6} aria-hidden />
+                <a href={emailLink()} className="break-all hover:text-gold-soft">
+                  {business.email}
+                </a>
+              </li>
+            )}
             <li className="flex gap-3">
               <Clock className="mt-1 size-4 shrink-0 text-gold-soft" strokeWidth={1.6} aria-hidden />
               <span>{business.openingHours[lang] || `${t.hours}: ${tbc}`}</span>

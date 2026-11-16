@@ -1,46 +1,36 @@
 "use client";
 
 import { Gem, Flower2, HeartHandshake, Scale, type LucideIcon } from "lucide-react";
-import SectionHeading from "@/components/ui/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
 import { content } from "@/data/content";
+import { home } from "@/data/home";
 import { useLang } from "@/lib/i18n";
 
 const icons: Record<string, LucideIcon> = { gem: Gem, flower: Flower2, heart: HeartHandshake, scale: Scale };
 
+/** Large two-tone title on the left, the shop's values with gold icons on the right. */
 export default function WhyChooseUs() {
   const { lang } = useLang();
   const t = content[lang].craft;
   return (
-    <section id="craft" aria-labelledby="craft-title" className="section-y bg-wine-glow relative overflow-hidden text-ivory">
-      <svg aria-hidden className="pointer-events-none absolute inset-0 size-full text-gold-soft opacity-[0.08]">
-        <defs>
-          <pattern id="jaali" width="56" height="56" patternUnits="userSpaceOnUse">
-            <path d="M28 4 L52 28 L28 52 L4 28 Z" fill="none" stroke="currentColor" strokeWidth="0.8" />
-            <circle cx="28" cy="28" r="4" fill="none" stroke="currentColor" strokeWidth="0.8" />
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#jaali)" />
-      </svg>
-
-      <div className="container-lux relative">
-        <SectionHeading id="craft-title" eyebrow={t.eyebrow} title={t.title} intro={t.intro} tone="light" />
-
-        <ul className="mt-14 grid gap-5 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4">
+    <section id="craft" aria-labelledby="craft-title" className="section-y">
+      <div className="container-lux grid items-center gap-10 lg:grid-cols-2 lg:gap-0">
+        <Reveal className="text-center lg:pr-12">
+          <h2 id="craft-title" className="text-[2.75rem] text-burgundy-ink sm:text-6xl lg:text-[4.5rem]">
+            {home.promise.lead[lang]} <em className="text-burgundy">{home.promise.accent[lang]}</em>
+          </h2>
+          <p className="subhead mt-3 text-muted">{home.promise.sub[lang]}</p>
+        </Reveal>
+        <ul className="grid grid-cols-2 gap-x-6 gap-y-10 lg:border-l lg:border-line lg:pl-12">
           {t.items.map((item, i) => {
             const Icon = icons[item.icon];
             return (
-              <Reveal
-                as="li"
-                key={item.icon}
-                delay={i * 0.08}
-                className="group frame-shine rounded-[1.5rem] bg-white/[0.06] px-6 py-10 text-center backdrop-blur-sm transition-colors duration-500 hover:bg-white/[0.1]"
-              >
-                <span className="bg-shine mx-auto grid size-16 place-items-center rounded-full text-burgundy-ink">
-                  <Icon className="size-7" strokeWidth={1.4} aria-hidden />
+              <Reveal as="li" key={item.icon} delay={i * 0.08} className="text-center">
+                <span className="icon-gold mx-auto grid size-16 place-items-center rounded-2xl text-white">
+                  <Icon className="size-8" strokeWidth={1.3} aria-hidden />
                 </span>
-                <h3 className="mt-6 text-2xl font-semibold text-ivory">{item.title}</h3>
-                <p className="mx-auto mt-3 max-w-xs leading-relaxed text-ivory/75">{item.text}</p>
+                <h3 className="mx-auto mt-4 max-w-[12rem] text-xl text-burgundy-ink">{item.title}</h3>
+                <p className="mx-auto mt-2 max-w-[16rem] text-[0.95rem] leading-relaxed text-muted">{item.text}</p>
               </Reveal>
             );
           })}

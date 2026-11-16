@@ -1,24 +1,25 @@
 @import "tailwindcss";
 
 @theme {
-  /* Rich wine + bright metallic gold palette */
-  --color-burgundy: #7a1c2c;
-  --color-burgundy-deep: #5a1220;
-  --color-burgundy-ink: #2c0a11;
-  --color-gold: #d2a54a;
-  --color-gold-soft: #f3d98f;
-  --color-gold-deep: #a5772a;
-  --color-ivory: #fff8ee;
-  --color-ivory-deep: #fbeee3;
-  --color-blush: #f8e4dc;
+  /* Royal purple and metallic gold, sampled from the logo (token names kept for compatibility) */
+  --color-burgundy: #6a2a86;
+  --color-burgundy-deep: #4a2475;
+  --color-burgundy-ink: #22103a;
+  --color-gold: #ddb751;
+  --color-gold-soft: #f6e38a;
+  --color-gold-deep: #9a6c1c;
+  --color-ivory: #ffffff;
+  --color-ivory-deep: #f7f3fb;
+  --color-blush: #f2ebf8;
   --color-surface: #ffffff;
-  --color-charcoal: #2b1a17;
-  --color-muted: #75625a;
-  --color-line: #ecd9c2;
+  --color-charcoal: #221a2e;
+  --color-muted: #57516a;
+  --color-line: #e6def0;
 
-  --font-sans: var(--font-anek), "Anek Devanagari", system-ui, sans-serif;
-  --font-serif: var(--font-anek), "Anek Devanagari", system-ui, sans-serif;
-  --font-deva: var(--font-anek), "Anek Devanagari", sans-serif;
+  /* One typeface everywhere: Anek Devanagari (serif and mono utilities point to it too). */
+  --font-sans: var(--font-anek), "Anek Devanagari", sans-serif;
+  --font-serif: var(--font-anek), "Anek Devanagari", sans-serif;
+  --font-mono: var(--font-anek), "Anek Devanagari", sans-serif;
 
   --ease-luxe: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -26,7 +27,7 @@
 :root {
   /* Height of the sticky header once scrolled (mobile collapses to one row). */
   --header-h: 4rem;
-  --gold-shine: linear-gradient(105deg, #a8772a 0%, #e2b450 22%, #fff2c4 45%, #f0cd72 58%, #c18f34 78%, #8f6420 100%);
+  --gold-shine: linear-gradient(105deg, #b97a22 0%, #ddb751 22%, #fff4c0 45%, #f6e38a 58%, #c99a3a 78%, #8e621a 100%);
 }
 @media (min-width: 1024px) {
   :root {
@@ -65,12 +66,34 @@ h1,
 h2,
 h3 {
   font-variation-settings: "wdth" 92;
-  line-height: 1.15 !important;
-}
-html[lang="mr"] h1,
-html[lang="mr"] h2,
-html[lang="mr"] h3 {
+  font-weight: 500;
   line-height: 1.32 !important;
+}
+/* Light line under a section title. */
+.subhead {
+  font-size: 1.15rem;
+  font-weight: 300;
+  line-height: 1.4;
+}
+@media (min-width: 640px) {
+  .subhead {
+    font-size: 1.5rem;
+  }
+}
+/* Banner carousel slide width and gap. */
+.hero-carousel {
+  --w: 92vw;
+  --gap: 0.75rem;
+}
+@media (min-width: 1024px) {
+  .hero-carousel {
+    --w: min(82vw, 73.75rem);
+    --gap: 1.5rem;
+  }
+}
+/* Soft gold tile behind the value icons. */
+.icon-gold {
+  background: linear-gradient(160deg, #ecc964 0%, #c18124 100%);
 }
 
 /* Anek has no italics: accent words get the gold shine instead. */
@@ -79,8 +102,8 @@ em {
 }
 
 /* Devanagari must never be letter-spaced (it breaks the shirorekha). */
-html[lang="mr"] [class*="tracking-"],
-html[lang="mr"] .eyebrow {
+[class*="tracking-"],
+.eyebrow {
   letter-spacing: 0.01em !important;
 }
 
@@ -97,7 +120,7 @@ html[lang="mr"] .eyebrow {
 @layer components {
   .container-lux {
     width: 100%;
-    max-width: 82rem;
+    max-width: 79.5rem;
     margin-inline: auto;
     padding-inline: 1.25rem;
   }
@@ -117,15 +140,15 @@ html[lang="mr"] .eyebrow {
     letter-spacing: 0.24em;
     text-transform: uppercase;
   }
-  html[lang="mr"] .eyebrow {
+  .eyebrow {
     font-size: 0.95rem;
   }
   .section-y {
-    padding-block: 5rem;
+    padding-block: 2.5rem;
   }
   @media (min-width: 1024px) {
     .section-y {
-      padding-block: 7.5rem;
+      padding-block: 3.5rem;
     }
   }
 
@@ -140,7 +163,7 @@ html[lang="mr"] .eyebrow {
   }
   /* Deeper metallic gold for text on light backgrounds (keeps contrast) */
   .text-shine-deep {
-    background: linear-gradient(105deg, #7d5418 0%, #b5832c 30%, #d9a944 50%, #a8772a 70%, #6f4a14 100%);
+    background: linear-gradient(105deg, #8a5d16 0%, #a8781f 50%, #8a5d16 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -151,11 +174,11 @@ html[lang="mr"] .eyebrow {
     background-size: 180% 100%;
     background-position: 20% 50%;
     transition: background-position 0.9s var(--ease-luxe), box-shadow 0.5s var(--ease-luxe);
-    box-shadow: 0 10px 30px -12px rgba(165, 119, 42, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    box-shadow: 0 6px 18px -10px rgba(106, 42, 134, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.45);
   }
   .bg-shine:hover {
     background-position: 80% 50%;
-    box-shadow: 0 14px 34px -12px rgba(165, 119, 42, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    box-shadow: 0 10px 24px -10px rgba(106, 42, 134, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.55);
   }
   /* Thin gold gradient frame */
   .frame-shine {
@@ -176,16 +199,15 @@ html[lang="mr"] .eyebrow {
     pointer-events: none;
     z-index: 2;
   }
-  /* Rich wine background with a warm gold glow */
+  /* Royal purple background (logo's magenta-to-indigo sweep) with a warm gold glow */
   .bg-wine-glow {
     background:
-      radial-gradient(ellipse 60% 70% at 15% 0%, rgba(243, 217, 143, 0.22), transparent 60%),
-      radial-gradient(ellipse 50% 60% at 100% 100%, rgba(210, 165, 74, 0.18), transparent 60%),
-      linear-gradient(160deg, #8a2233 0%, #6a1525 55%, #4c0f1b 100%);
+      radial-gradient(ellipse 60% 70% at 15% 0%, rgba(243, 217, 143, 0.12), transparent 60%),
+      linear-gradient(120deg, #8a2a82 0%, #6a2a86 45%, #4a2d84 100%);
   }
   .bg-ivory-glow {
     background:
-      radial-gradient(ellipse 70% 60% at 50% 0%, rgba(243, 217, 143, 0.28), transparent 65%),
+      linear-gradient(transparent, transparent),
       var(--color-ivory);
   }
 }

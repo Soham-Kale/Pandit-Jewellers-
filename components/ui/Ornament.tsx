@@ -6,9 +6,9 @@ export default function Ornament({ className = "", tone = "dark" }: { className?
       <svg viewBox="0 0 24 24" className="size-4">
         <defs>
           <linearGradient id="orn" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="#a8772a" />
-            <stop offset="0.5" stopColor="#fff2c4" />
-            <stop offset="1" stopColor="#c18f34" />
+            <stop offset="0" stopColor="#b97a22" />
+            <stop offset="0.5" stopColor="#fff4c0" />
+            <stop offset="1" stopColor="#c99a3a" />
           </linearGradient>
         </defs>
         <path d="M12 2 L18 12 L12 22 L6 12 Z" fill="url(#orn)" />

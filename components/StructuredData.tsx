@@ -15,7 +15,7 @@ export default function StructuredData() {
     alternateName: business.name.mr,
     url: business.siteUrl,
     image: `${business.siteUrl}/assets/hero/hero.jpg`,
-    description: `Traditional gold jewellery shop in ${business.city.en}, ${business.state.en}.`,
+    description: business.description.en,
     availableLanguage: ["mr", "en"],
     address: {
       "@type": "PostalAddress",
@@ -28,6 +28,15 @@ export default function StructuredData() {
     areaServed: business.city.en,
     knowsAbout: collections.map((c) => c.name.en),
     ...(business.phone ? { telephone: business.phone } : {}),
+    ...(business.email ? { email: business.email } : {}),
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: business.openingHoursSchema.days,
+        opens: business.openingHoursSchema.opens,
+        closes: business.openingHoursSchema.closes,
+      },
+    ],
     ...(business.googleMapsUrl ? { hasMap: business.googleMapsUrl } : {}),
     ...(sameAs.length ? { sameAs } : {}),
   };

@@ -11,33 +11,51 @@ export const TBC: L = { mr: "निश्चित होणे बाकी", e
 
 export const business = {
   /** Brand name in both languages — change here to rename the site (e.g. "Pandit Jewellers"). */
-  name: { mr: "पंडित ज्वेलर्स", en: "Pundit Jewellers" } as L,
-  shortName: { mr: "पंडित", en: "Pundit" } as L,
+  name: { mr: "पंडित ज्वेलर्स", en: "Pandit Jewellers" } as L,
+  shortName: { mr: "पंडित", en: "Pandit" } as L,
   descriptor: { mr: "ज्वेलर्स", en: "Jewellers" } as L,
   city: { mr: "श्रीगोंदा", en: "Shrigonda" } as L,
   state: { mr: "महाराष्ट्र", en: "Maharashtra" } as L,
   countryCode: "IN",
 
-  /** PLACEHOLDER — exact street address (both languages). */
-  streetAddress: { mr: "", en: "" } as L,
-  /** PLACEHOLDER — postal code. */
-  postalCode: "",
-  /** PLACEHOLDER — opening hours (both languages), e.g. { mr: "सकाळी १० ते रात्री ८", en: "10 am – 8 pm" }. */
-  openingHours: { mr: "", en: "" } as L,
+  /** One-line description of the business. */
+  description: {
+    mr: "पंडित ज्वेलर्स हे श्रीगोंदा, महाराष्ट्र येथील दागिन्यांचे दालन आहे.",
+    en: "Pandit Jewellers is a jewellery showroom located in Shrigonda, Maharashtra.",
+  } as L,
 
-  /** PLACEHOLDER — phone in display format, e.g. "+91 98XXX XXXXX". */
-  phone: "",
-  /** PLACEHOLDER — WhatsApp number, digits only with country code, e.g. "9198XXXXXXXX". */
-  whatsapp: "",
-  /** PLACEHOLDER — e.g. "https://www.instagram.com/punditjewellers". */
+  /** Street address (both languages). */
+  streetAddress: { mr: "श्री संत रोहिदास चौक, तांबोळी कॉर्नर", en: "Shri Sant Rohidas Chowk, Tamboli Corner" } as L,
+  postalCode: "413701",
+  /** Opening hours (both languages). */
+  openingHours: {
+    mr: "सकाळी १०:०० ते सायंकाळी ६:०० (मंगळवारी बंद)",
+    en: "10:00 AM – 6:00 PM (Mon, Wed – Sun; closed on Tuesdays)",
+  } as L,
+  /** Machine-readable hours for search engines (schema.org). */
+  openingHoursSchema: {
+    days: ["Monday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    opens: "10:00",
+    closes: "18:00",
+  },
+
+  /** Main phone in display format. */
+  phone: "+91 98815 38938",
+  /** Alternate phone (as listed with the Shree Pandit Jewellers Instagram). */
+  phoneAlt: "+91 86051 36347",
+  /** Email address. */
+  email: "panditjewellers38@gmail.com",
+  /** WhatsApp number, digits only with country code. Assumed to be the main shop number. */
+  whatsapp: "919881538938",
+  /** PLACEHOLDER — e.g. "https://www.instagram.com/panditjewellers". */
   instagram: "",
-  /** PLACEHOLDER — e.g. "https://www.facebook.com/punditjewellers". */
+  /** PLACEHOLDER — e.g. "https://www.facebook.com/panditjewellers". */
   facebook: "",
   /** PLACEHOLDER — the shop's exact Google Maps share link. Until set, a Maps search is used. */
   googleMapsUrl: "",
 
   /** PLACEHOLDER — production domain, used for canonical URL, sitemap and Open Graph. */
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.punditjewellers.example",
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.panditjewellers.example",
 };
 
 export const locationLine = (lang: Lang) => `${business.city[lang]}, ${business.state[lang]}`;
@@ -49,7 +67,9 @@ export function addressText(lang: Lang): string {
 
 export function mapsLink(): string {
   if (business.googleMapsUrl) return business.googleMapsUrl;
-  const q = encodeURIComponent(`${business.name.en} ${business.city.en} ${business.state.en}`);
+  const q = encodeURIComponent(
+    `${business.name.en}, ${business.streetAddress.en ? `${business.streetAddress.en}, ` : ""}${business.city.en}, ${business.state.en} ${business.postalCode}`.trim(),
+  );
   return `https://www.google.com/maps/search/?api=1&query=${q}`;
 }
 
@@ -60,8 +80,12 @@ export function whatsappLink(message?: string): string {
   return `https://wa.me/${business.whatsapp}?text=${encodeURIComponent(text)}`;
 }
 
-export function phoneLink(): string {
-  return business.phone ? `tel:${business.phone.replace(/[^+\d]/g, "")}` : "#contact";
+export function phoneLink(phone: string = business.phone): string {
+  return phone ? `tel:${phone.replace(/[^+\d]/g, "")}` : "#contact";
+}
+
+export function emailLink(): string {
+  return business.email ? `mailto:${business.email}` : "#contact";
 }
 
 export const isExternal = (href: string) => href.startsWith("http");

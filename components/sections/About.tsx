@@ -14,11 +14,11 @@ export default function About() {
     <section id="about" aria-labelledby="about-title" className="section-y bg-ivory-glow overflow-hidden">
       <div className="container-lux grid items-center gap-14 lg:grid-cols-12 lg:gap-20">
         <div className="relative mx-auto w-full max-w-md sm:max-w-lg lg:col-span-6 lg:max-w-none">
-          <div aria-hidden className="frame-shine absolute -top-5 -left-5 hidden h-[88%] w-[78%] rounded-[2rem] sm:block" />
-          <ImageReveal className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-ivory-deep shadow-[0_40px_80px_-40px_rgba(122,28,44,0.55)]">
+          <div aria-hidden className="frame-shine absolute -top-5 -left-5 hidden h-[88%] w-[78%] rounded-xl sm:block" />
+          <ImageReveal className="relative aspect-[4/5] overflow-hidden rounded-xl bg-ivory-deep shadow-[0_40px_80px_-40px_rgba(74,36,117,0.55)]">
             <Image src={images.about.src} alt={images.about.alt[lang]} fill quality={85} sizes="(min-width: 1024px) 45vw, 100vw" className="object-cover" />
           </ImageReveal>
-          <Reveal delay={0.3} className="bg-wine-glow absolute -right-3 -bottom-8 w-56 rounded-2xl p-6 text-ivory shadow-xl sm:-right-6 sm:w-64 lg:-right-10">
+          <Reveal delay={0.3} className="bg-wine-glow absolute -right-3 -bottom-8 w-56 rounded-xl p-6 text-ivory shadow-xl sm:-right-6 sm:w-64 lg:-right-10">
             <p className="eyebrow text-gold-soft">{t.badgeEyebrow}</p>
             <p className="text-shine mt-2 text-2xl leading-snug font-semibold">{t.badge}</p>
           </Reveal>
@@ -42,7 +42,7 @@ export default function About() {
           <Reveal delay={0.25}>
             <ul className="mt-10 grid gap-4 sm:grid-cols-3">
               {t.pillars.map((pl, i) => (
-                <li key={pl.title} className="rounded-2xl border border-line bg-surface/80 p-5 shadow-[0_12px_30px_-22px_rgba(122,28,44,0.4)]">
+                <li key={pl.title} className="rounded-xl border border-line bg-surface/80 p-5 shadow-[0_12px_30px_-22px_rgba(74,36,117,0.4)]">
                   <span className="text-shine-deep text-lg font-bold">0{i + 1}</span>
                   <h3 className="mt-1 text-xl font-semibold text-burgundy">{pl.title}</h3>
                   <p className="mt-1.5 text-[0.95rem] leading-relaxed text-muted">{pl.text}</p>

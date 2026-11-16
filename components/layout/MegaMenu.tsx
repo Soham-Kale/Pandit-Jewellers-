@@ -24,7 +24,7 @@ export default function MegaMenu({ id, onNavigate }: { id: string; onNavigate: (
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -6 }}
       transition={{ duration: 0.28, ease: EASE }}
-      className="absolute inset-x-0 top-full z-40 border-t border-line bg-ivory shadow-[0_40px_60px_-30px_rgba(122,28,44,0.45)]"
+      className="absolute inset-x-0 top-full z-40 border-t border-line bg-ivory shadow-[0_40px_60px_-30px_rgba(74,36,117,0.45)]"
     >
       <span aria-hidden className="absolute inset-x-0 top-0 h-px" style={{ background: "var(--gold-shine)" }} />
       <div className="container-lux grid grid-cols-12 gap-8 py-8">{cat ? <CategoryPanel cat={cat} onNavigate={onNavigate} /> : <MorePanel onNavigate={onNavigate} />}</div>
@@ -100,7 +100,7 @@ function CategoryPanel({ cat, onNavigate }: { cat: Category; onNavigate: () => v
 
       <div className="col-span-5 grid grid-cols-2 gap-4">
         {cat.images.map((src, i) => (
-          <Link key={src} href={href} onClick={onNavigate} className="group relative block aspect-[4/3] overflow-hidden rounded-2xl">
+          <Link key={src} href={href} onClick={onNavigate} className="group relative block aspect-[4/3] overflow-hidden rounded-xl">
             <Image src={src} alt="" fill sizes="20vw" quality={70} className="object-cover transition-transform duration-[1.2s] ease-luxe group-hover:scale-105" />
             <span className="absolute inset-0 bg-gradient-to-t from-burgundy-ink/75 via-transparent to-transparent" />
             <span className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-ivory">
@@ -145,7 +145,7 @@ function MorePanel({ onNavigate }: { onNavigate: () => void }) {
             ))}
         </ul>
       </div>
-      <Link href="/#store" onClick={onNavigate} className="group bg-wine-glow col-span-5 flex flex-col justify-end rounded-2xl p-7 text-ivory">
+      <Link href="/#store" onClick={onNavigate} className="group bg-wine-glow col-span-5 flex flex-col justify-end rounded-xl p-7 text-ivory">
         <MapPin className="size-7 text-gold-soft" strokeWidth={1.5} aria-hidden />
         <p className="text-shine mt-4 text-2xl font-semibold">{t.menu.visit}</p>
         <p className="mt-2 text-ivory/80">{t.menu.visitText}</p>

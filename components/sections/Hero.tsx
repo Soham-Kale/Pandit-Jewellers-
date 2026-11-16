@@ -1,83 +1,106 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { ChevronDown } from "lucide-react";
-import Button from "@/components/ui/Button";
+import Link from "next/link";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { content } from "@/data/content";
+import { home } from "@/data/home";
 import { images } from "@/data/images";
 import { useLang } from "@/lib/i18n";
 
-const EASE = [0.22, 1, 0.36, 1] as const;
-const line = (delay: number) => ({
-  initial: { opacity: 0, y: 26 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 1.1, ease: EASE, delay },
-});
-
+/** Banner carousel: one rounded slide in view with the neighbours peeking in at the sides. */
 export default function Hero() {
   const { lang } = useLang();
-  const t = content[lang].hero;
+  const t = content[lang];
+  const slides = [
+    { img: images.hero, title: `${t.hero.titleLead} ${t.hero.titleAccent}`, text: t.hero.description, cta: t.hero.primary, href: "/collections", pos: "object-[58%_center]" },
+    { img: images.bridalBanner, title: `${t.bridal.titleLead} ${t.bridal.titleAccent}`, text: t.bridal.description, cta: t.bridal.cta, href: "/collections/wedding", pos: "object-[72%_center]" },
+    { img: images.store, title: t.store.title, text: t.store.intro, cta: t.hero.secondary, href: "/#store", pos: "object-center" },
+  ];
+  const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    if (paused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const id = window.setInterval(() => setIndex((i) => (i + 1) % 3), 6000);
+    return () => window.clearInterval(id);
+  }, [paused]);
+
+  const go = (i: number) => setIndex((i + slides.length) % slides.length);
+
   return (
     <section
       id="home"
+      aria-roledescription="carousel"
       aria-labelledby="hero-title"
-      className="relative isolate flex h-[calc(100svh-12rem)] max-h-[860px] min-h-[560px] items-end overflow-hidden bg-burgundy-ink text-ivory md:h-[calc(100svh-10rem)] lg:h-[calc(100svh-10.5rem)] lg:items-center"
+      className="relative overflow-hidden pt-4 pb-3 [--gap:0.75rem] [--w:92vw] lg:pt-5 lg:[--gap:1.5rem] lg:[--w:min(82vw,73.75rem)]"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocusCapture={() => setPaused(true)}
+      onBlurCapture={() => setPaused(false)}
     >
-      <motion.div className="absolute inset-0 -z-10" initial={{ opacity: 0, scale: 1.08 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 2.2, ease: EASE }}>
-        <Image
-          src={images.hero.src}
-          alt={images.hero.alt[lang]}
-          fill
-          preload
-          quality={85}
-          sizes="100vw"
-          className="object-cover object-[58%_center] lg:object-center"
-        />
-      </motion.div>
-      {/* Lighter, warm veil so the jewellery stays bright while text stays readable */}
       <div
-        aria-hidden
-        className="absolute inset-0 -z-10 bg-gradient-to-t from-burgundy-ink/90 via-burgundy-ink/40 to-transparent lg:bg-gradient-to-r lg:from-burgundy-ink/80 lg:via-burgundy-ink/25 lg:to-transparent"
-      />
-
-      <div className="container-lux pt-16 pb-16 lg:py-0">
-        <div className="max-w-[42rem]">
-          <motion.p {...line(0.3)} className="eyebrow flex items-center gap-4 text-gold-soft">
-            <span aria-hidden className="h-px w-10" style={{ background: "var(--gold-shine)" }} />
-            {t.eyebrow}
-          </motion.p>
-          <motion.h1 id="hero-title" {...line(0.45)} className="mt-5 text-[3rem] font-semibold drop-shadow-[0_2px_18px_rgba(0,0,0,0.35)] sm:text-7xl lg:text-[5.75rem]">
-            {t.titleLead} <em className="text-shine">{t.titleAccent}</em>
-          </motion.h1>
-          <motion.p {...line(0.6)} className="mt-6 max-w-lg text-lg leading-relaxed text-ivory/90 sm:text-xl">
-            {t.description}
-          </motion.p>
-          <motion.div {...line(0.75)} className="mt-9 flex flex-col gap-3 sm:flex-row sm:gap-4">
-            <Button href="#collections" variant="gold" arrow>
-              {t.primary}
-            </Button>
-            <Button href="#store" variant="outline-light">
-              {t.secondary}
-            </Button>
-          </motion.div>
-          <motion.p {...line(0.9)} className="mt-9 hidden text-lg text-gold-soft/90 sm:block">
-            {t.altLine}
-          </motion.p>
-        </div>
+        className="flex gap-[var(--gap)] transition-transform duration-700 ease-luxe motion-reduce:transition-none"
+        style={{ transform: `translateX(calc(50vw - var(--w) / 2 - ${index} * (var(--w) + var(--gap))))` }}
+      >
+        {slides.map((s, i) => {
+          const active = i === index;
+          return (
+            <div
+              key={s.href}
+              aria-hidden={!active}
+              className={`relative aspect-[4/5] w-[var(--w)] shrink-0 overflow-hidden rounded-[10px] bg-burgundy-ink text-white transition-opacity duration-700 sm:aspect-[5/2] ${active ? "" : "opacity-70"}`}
+            >
+              <Image src={s.img.src} alt={s.img.alt[lang]} fill quality={85} preload={i === 0} sizes="(min-width: 1280px) 1180px, 92vw" className={`object-cover ${s.pos}`} />
+              <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent sm:bg-gradient-to-r sm:from-black/70 sm:via-black/30 sm:to-transparent" />
+              <div className="absolute inset-0 flex flex-col justify-end p-6 sm:justify-center sm:p-10 lg:p-16">
+                <div className="max-w-md">
+                  {i === 0 ? (
+                    <h1 id="hero-title" className="text-[2rem] text-balance sm:text-4xl lg:text-[3.25rem]">
+                      {s.title}
+                    </h1>
+                  ) : (
+                    <h2 className="text-[2rem] text-balance sm:text-4xl lg:text-[3.25rem]">{s.title}</h2>
+                  )}
+                  <p className="mt-3 text-base leading-relaxed text-white/90 sm:text-lg">{s.text}</p>
+                  <Link
+                    href={s.href}
+                    tabIndex={active ? 0 : -1}
+                    className="mt-6 inline-flex min-h-11 items-center gap-3 rounded-full border border-white/80 bg-white/95 px-6 text-[0.95rem] font-medium text-burgundy-ink transition-colors hover:bg-white"
+                  >
+                    {s.cta}
+                    <ChevronRight className="size-4" strokeWidth={2} aria-hidden />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          );
+        })}
       </div>
 
-      <motion.a
-        href="#about"
-        aria-label={t.scroll}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.4, duration: 1 }}
-        className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-1 text-sm text-ivory/70 transition-colors hover:text-ivory lg:flex"
-      >
-        {t.scroll}
-        <ChevronDown className="size-4" strokeWidth={1.5} aria-hidden />
-      </motion.a>
+      <div className="mt-4 flex items-center justify-center gap-4">
+        <button type="button" onClick={() => go(index - 1)} aria-label={home.slide.prev[lang]} className="grid size-9 place-items-center rounded-full border border-line text-burgundy-ink hover:border-burgundy hover:text-burgundy">
+          <ChevronLeft className="size-4" strokeWidth={2} />
+        </button>
+        <div className="flex items-center gap-2">
+          {slides.map((s, i) => (
+            <button
+              key={s.href}
+              type="button"
+              onClick={() => go(i)}
+              aria-label={`${home.slide.go[lang]} ${i + 1}`}
+              aria-current={i === index}
+              className="grid size-6 place-items-center"
+            >
+              <span className={`block h-1.5 rounded-full transition-all duration-500 ${i === index ? "w-7 bg-burgundy" : "w-1.5 bg-burgundy/25"}`} />
+            </button>
+          ))}
+        </div>
+        <button type="button" onClick={() => go(index + 1)} aria-label={home.slide.next[lang]} className="grid size-9 place-items-center rounded-full border border-line text-burgundy-ink hover:border-burgundy hover:text-burgundy">
+          <ChevronRight className="size-4" strokeWidth={2} />
+        </button>
+      </div>
     </section>
   );
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronRight, MapPin, ArrowUpRight } from "lucide-react";
@@ -21,6 +22,12 @@ export default function CategoryView({ id }: { id: string }) {
   const cat = getCategory(id)!;
   const name = cat.label[lang];
 
+  // The page content streams in after navigation, so jump to a style anchor once it exists.
+  useEffect(() => {
+    const hash = window.location.hash.slice(1);
+    if (hash) document.getElementById(hash)?.scrollIntoView({ block: "start" });
+  }, [id]);
+
   return (
     <>
       {/* Banner */}
@@ -28,7 +35,7 @@ export default function CategoryView({ id }: { id: string }) {
         <Image src={cat.images[0]} alt="" fill preload quality={85} sizes="100vw" className="-z-10 object-cover" />
         <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-r from-burgundy-ink/90 via-burgundy/60 to-burgundy/10" />
         <div className="container-lux py-14 lg:py-20">
-          <nav aria-label="Breadcrumb">
+          <nav aria-label="मार्गदर्शक दुवे">
             <ol className="flex flex-wrap items-center gap-1.5 text-sm text-ivory/75">
               <li>
                 <Link href="/" className="hover:text-gold-soft">
@@ -79,7 +86,7 @@ export default function CategoryView({ id }: { id: string }) {
                 const wa = whatsappLink(p.enquireMsg(s.label[lang], name));
                 return (
                   <Reveal as="li" key={s.id} delay={i * 0.05} className="scroll-mt-40">
-                    <div id={`style-${s.id}`} className="scroll-mt-10 frame-shine flex h-full flex-col rounded-[1.5rem] bg-surface p-6 shadow-[0_20px_45px_-30px_rgba(122,28,44,0.45)]">
+                    <div id={`style-${s.id}`} className="scroll-mt-10 frame-shine flex h-full flex-col rounded-xl bg-surface p-6 shadow-[0_20px_45px_-30px_rgba(74,36,117,0.45)]">
                       <p className="text-shine-deep text-sm font-bold">0{i + 1}</p>
                       <h3 className="mt-1 text-2xl font-semibold text-burgundy">{s.label[lang]}</h3>
                       <p className="mt-2 flex-1 text-muted">{s.text[lang]}</p>
@@ -115,7 +122,7 @@ export default function CategoryView({ id }: { id: string }) {
                 <li key={c.id}>
                   <Link
                     href={categoryHref(c.id)}
-                    className="group flex h-full items-center gap-3 rounded-2xl border border-line bg-surface p-4 transition-all hover:-translate-y-0.5 hover:border-gold hover:shadow-[0_16px_30px_-22px_rgba(122,28,44,0.6)]"
+                    className="group flex h-full items-center gap-3 rounded-xl border border-line bg-surface p-4 transition-all hover:-translate-y-0.5 hover:border-gold hover:shadow-[0_16px_30px_-22px_rgba(74,36,117,0.6)]"
                   >
                     <span className="grid size-10 shrink-0 place-items-center rounded-full bg-ivory-deep text-burgundy group-hover:text-gold-deep">
                       <CategoryIconGlyph icon={c.icon} className="size-5" />

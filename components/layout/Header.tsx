@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import { AnimatePresence } from "framer-motion";
 import { Menu, MapPin, Phone, Search, X } from "lucide-react";
 import Logo from "@/components/ui/Logo";
-import LanguageToggle from "@/components/ui/LanguageToggle";
 import WhatsAppIcon from "@/components/ui/WhatsAppIcon";
 import CategoryIconGlyph from "@/components/ui/CategoryIcons";
 import MobileMenu from "./MobileMenu";
@@ -39,7 +38,7 @@ function SearchBar({ className = "" }: { className?: string }) {
         e.preventDefault();
         showCollections({ category: "all" });
       }}
-      className={`group relative flex h-11 min-w-0 items-center rounded-full border border-line bg-surface shadow-[inset_0_1px_2px_rgba(43,26,23,0.06)] transition-colors focus-within:border-gold lg:h-12 ${className}`}
+      className={`group relative flex h-11 min-w-0 items-center rounded-full border border-line bg-surface shadow-[inset_0_1px_2px_rgba(34,16,58,0.06)] transition-colors focus-within:border-gold lg:h-12 ${className}`}
     >
       <Search aria-hidden className="ml-4 size-[1.1rem] shrink-0 text-gold-deep" strokeWidth={1.8} />
       <label htmlFor={inputId} className="sr-only">
@@ -80,7 +79,7 @@ function IconLink({ href, label, children }: { href: string; label: string; chil
       className="group flex flex-col items-center gap-0.5 rounded-xl px-2 py-1 text-burgundy transition-colors hover:text-gold-deep"
     >
       <span className="grid size-6 place-items-center">{children}</span>
-      <span className="hidden text-[0.72rem] font-medium text-muted group-hover:text-gold-deep xl:block">{label}</span>
+      <span className="hidden text-[0.72rem] font-medium whitespace-nowrap text-muted group-hover:text-gold-deep xl:block">{label}</span>
     </a>
   );
 }
@@ -122,7 +121,7 @@ export default function Header() {
 
   return (
     <>
-      <header id="site-header" className="sticky top-0 z-50 bg-ivory/95 shadow-[0_10px_30px_-22px_rgba(122,28,44,0.5)] backdrop-blur-md">
+      <header id="site-header" className="sticky top-0 z-50 bg-white shadow-[0_24px_36px_-20px_rgba(0,0,0,0.08)]">
         {/* Row 1: logo · search · actions */}
         <div className="container-lux flex h-16 items-center gap-3 lg:h-20 lg:gap-8">
           <Link href="/" aria-label={t.header.home} className="shrink-0">
@@ -133,7 +132,6 @@ export default function Header() {
 
           <div className="ml-auto flex items-center gap-1 sm:gap-2 md:ml-0">
             <span className="hidden sm:block">
-              <LanguageToggle />
             </span>
             <div className="hidden items-center lg:flex">
               <IconLink href="/#store" label={t.header.visit}>

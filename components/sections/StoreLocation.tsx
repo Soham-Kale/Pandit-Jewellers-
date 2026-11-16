@@ -21,12 +21,12 @@ export default function StoreLocation() {
   return (
     <section id="store" aria-labelledby="store-title" className="section-y bg-ivory-glow">
       <div className="container-lux grid items-stretch gap-12 lg:grid-cols-12 lg:gap-0">
-        <ImageReveal className="relative min-h-[22rem] overflow-hidden rounded-[2rem] bg-ivory-deep shadow-[0_40px_80px_-45px_rgba(122,28,44,0.6)] sm:min-h-[28rem] lg:col-span-7">
+        <ImageReveal className="relative min-h-[22rem] overflow-hidden rounded-xl bg-ivory-deep shadow-[0_40px_80px_-45px_rgba(74,36,117,0.6)] sm:min-h-[28rem] lg:col-span-7">
           <Image src={images.store.src} alt={images.store.alt[lang]} fill quality={85} sizes="(min-width: 1024px) 58vw, 100vw" className="object-cover" />
         </ImageReveal>
 
         <Reveal className="relative lg:col-span-5 lg:-ml-16 lg:self-center">
-          <div className="frame-shine rounded-[2rem] bg-surface p-7 shadow-[0_30px_70px_-30px_rgba(122,28,44,0.4)] sm:p-10 lg:p-12">
+          <div className="frame-shine rounded-xl bg-surface p-7 shadow-[0_30px_70px_-30px_rgba(74,36,117,0.4)] sm:p-10 lg:p-12">
             <p className="eyebrow text-gold-deep">{s.eyebrow}</p>
             <h2 id="store-title" className="mt-3 text-[2.2rem] font-semibold text-balance text-burgundy sm:text-5xl">
               {s.title}
@@ -38,7 +38,6 @@ export default function StoreLocation() {
                 <MapPin className="mt-1 size-5 shrink-0 text-gold-deep" strokeWidth={1.6} aria-hidden />
                 <div>
                   <dt className="text-xl font-semibold text-burgundy">{business.name[lang]}</dt>
-                  <dd className="mt-1 text-charcoal/85">{locationLine(lang)}</dd>
                   <dd className="mt-1 text-charcoal/85">
                     {business.streetAddress[lang] || (
                       <>
@@ -46,6 +45,10 @@ export default function StoreLocation() {
                         <Pending text={TBC[lang]} />
                       </>
                     )}
+                  </dd>
+                  <dd className="mt-1 text-charcoal/85">
+                    {locationLine(lang)}
+                    {business.postalCode ? ` ${business.postalCode}` : ""}
                   </dd>
                 </div>
               </div>

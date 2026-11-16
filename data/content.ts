@@ -1,5 +1,5 @@
 /**
- * Homepage copy in Marathi (default) and English.
+ * Site copy (Marathi only).
  * ⚠️  PLACEHOLDER COPY: the brand story is deliberately general. Replace it with
  *     the shop's verified history once provided. Do not add years, awards,
  *     certifications, hallmarking or exchange policies unless confirmed.
@@ -8,7 +8,6 @@ import type { Lang } from "@/lib/i18n";
 
 const mr = {
   skip: "मुख्य मजकुराकडे जा",
-  langSwitch: { label: "English", aria: "Switch to English" },
   header: {
     whatsapp: "व्हॉट्सॲप",
     visit: "दुकानाला भेट द्या",
@@ -135,6 +134,7 @@ const mr = {
     call: "कॉल करा",
     whatsapp: "व्हॉट्सॲप",
     instagram: "इन्स्टाग्राम",
+    email: "ईमेल",
     messageUs: "आम्हाला संदेश पाठवा",
     followUs: "आम्हाला फॉलो करा",
     street: "पूर्ण पत्ता",
@@ -152,7 +152,7 @@ const mr = {
     social: "सोशल मीडिया",
     rights: "सर्व हक्क राखीव.",
     tagline: "श्रीगोंदा, महाराष्ट्र येथील सोन्याचे दागिने",
-    altTagline: "Tradition Crafted in Gold",
+    altTagline: "सोन्यात घडलेली परंपरा",
   },
   wa: {
     general: "नमस्कार पंडित ज्वेलर्स, मला तुमच्या दागिन्यांबद्दल चौकशी करायची आहे.",
@@ -163,159 +163,4 @@ const mr = {
 
 export type Content = typeof mr;
 
-const en: Content = {
-  skip: "Skip to content",
-  langSwitch: { label: "मराठी", aria: "मराठीमध्ये पाहा" },
-  header: {
-    whatsapp: "WhatsApp",
-    visit: "Visit Store",
-    call: "Call",
-    openMenu: "Open menu",
-    closeMenu: "Close menu",
-    home: "Pundit Jewellers, home",
-    search: "Search jewellery",
-    searchButton: "Search",
-    clear: "Clear search",
-    categories: "Jewellery categories",
-    more: "More",
-  },
-  menu: {
-    styles: "Shop by style",
-    occasion: "By occasion",
-    collections: "Collections",
-    viewAll: (name: string) => `View all ${name}`,
-    explore: "Explore",
-    visit: "See it in person",
-    visitText: "Visit our showroom in Shrigonda to see the full collection up close.",
-  },
-  categoryPage: {
-    home: "Home",
-    all: "All Jewellery",
-    stylesTitle: (name: string) => `${name}: styles`,
-    stylesIntro: "Ask us about any of these styles and we will show you what is available in the showroom.",
-    enquire: "Enquire",
-    enquireMsg: (style: string, cat: string) => `Hello Pundit Jewellers, I would like to know about ${style} (${cat}).`,
-    related: "Explore other categories",
-    cta: "Want to see these pieces in person?",
-    ctaText: "Message us on WhatsApp or visit our showroom in Shrigonda.",
-  },
-  mobile: { whatsapp: "WhatsApp Enquiry", visit: "Visit Store", call: "Call" },
-  hero: {
-    eyebrow: "The Art of Timeless Beauty",
-    titleLead: "Tradition Crafted in",
-    titleAccent: "Gold.",
-    description: "Discover the beauty of exquisite gold jewellery, where timeless traditions meet exceptional craftsmanship.",
-    primary: "Explore Collections",
-    secondary: "Visit Our Store",
-    altLine: "सोन्यात घडलेली परंपरा",
-    scroll: "Scroll",
-  },
-  about: {
-    eyebrow: "About Pundit Jewellers",
-    title: "An Expression of Tradition. A Promise of Trust.",
-    paragraphs: [
-      "Pundit Jewellers is a gold jewellery destination in Shrigonda, Maharashtra, for families who value tradition as much as beauty. Every piece in our showroom is chosen for its design, its finish and the feeling it carries.",
-      "From everyday gold to jewellery for life’s biggest celebrations, we take time to understand what you are looking for and help you find something you will treasure for years to come.",
-    ],
-    pillars: [
-      { title: "Timeless designs", text: "Classic and regional styles that never fade." },
-      { title: "Careful craftsmanship", text: "Fine detailing, finish and attention to every piece." },
-      { title: "Lasting relationships", text: "Personal, unhurried service for every family." },
-    ],
-    cta: "Discover Our Story",
-    badgeEyebrow: "Shrigonda",
-    badge: "Gold, chosen with care.",
-  },
-  collections: {
-    eyebrow: "Our Collections",
-    title: "Gold for Every Moment",
-    intro:
-      "From everyday elegance to heirloom bridal sets, explore jewellery shaped by Indian tradition. Visit the showroom or message us to see more of any collection.",
-    explore: "Explore",
-    exploreAria: (name: string) => `Explore ${name}`,
-    filterLabel: "Browse by type",
-    resultsFor: (q: string) => `Results for "${q}"`,
-    noResults: "No collection matches that search. Message us and we will show you what is in the showroom.",
-    showAll: "Show all collections",
-    askUs: "Ask on WhatsApp",
-  },
-  featured: {
-    eyebrow: "Featured",
-    titleLead: "Jewellery That Tells",
-    titleAccent: "Your Story.",
-    intro: "Every ornament holds a memory: a festival, a blessing, a beginning. Explore pieces chosen to become part of yours.",
-    number: "No.",
-    captions: [
-      { title: "The Heirloom Edit", text: "Pieces made to be passed down." },
-      { title: "Layered in Gold", text: "Necklaces that frame every celebration." },
-      { title: "Crafted in Detail", text: "Where patience meets artistry." },
-      { title: "The Bridal Nath", text: "A timeless touch of tradition." },
-    ],
-    quote: "Gold is not only worn. It is remembered.",
-  },
-  craft: {
-    eyebrow: "Our Craft",
-    title: "Why Families Choose Us",
-    intro:
-      "A visit to our showroom should feel personal, honest and unhurried. These are the values we bring to every piece and every conversation.",
-    items: [
-      { icon: "gem", title: "Quality & Craftsmanship", text: "Jewellery selected for its finish, detailing and the care that goes into making it." },
-      { icon: "flower", title: "Traditional Designs", text: "A collection rooted in Indian and Maharashtrian jewellery traditions." },
-      { icon: "heart", title: "Customer-Focused Service", text: "We listen first, so you can choose with confidence and without pressure." },
-      { icon: "scale", title: "Transparent Pricing", text: "Clear conversations about pricing so you always know what you are paying for." },
-    ],
-  },
-  bridal: {
-    eyebrow: "Bridal Collection",
-    titleLead: "For Moments That Last",
-    titleAccent: "Forever.",
-    description: "Celebrate life's most precious occasions with jewellery inspired by timeless Indian traditions.",
-    cta: "Explore Bridal Collection",
-  },
-  store: {
-    eyebrow: "Visit Us",
-    title: "Experience the Beauty in Person.",
-    intro:
-      "Some things are best seen up close. Visit our showroom in Shrigonda to explore the collection and find a piece that feels like yours.",
-    address: "Address",
-    hoursTitle: "Opening hours",
-    hours: "Hours",
-    directions: "Get Directions",
-    whatsapp: "WhatsApp",
-  },
-  contact: {
-    eyebrow: "Contact",
-    title: "Let's Find Something Beautiful for You.",
-    intro: "Have a design in mind or an occasion coming up? Reach out and we will be happy to help.",
-    visit: "Visit",
-    call: "Call",
-    whatsapp: "WhatsApp",
-    instagram: "Instagram",
-    messageUs: "Message us",
-    followUs: "Follow us",
-    street: "Street address",
-    enquire: "Enquire on WhatsApp",
-    maps: "Open in Google Maps",
-  },
-  footer: {
-    about:
-      "Traditional gold jewellery in Shrigonda, Maharashtra. Timeless designs, careful craftsmanship and personal service for every family.",
-    explore: "Explore",
-    collections: "Collections",
-    contact: "Visit & Contact",
-    phone: "Phone",
-    hours: "Hours",
-    street: "Street address",
-    social: "Social media",
-    rights: "All rights reserved.",
-    tagline: "Gold jewellery in Shrigonda, Maharashtra",
-    altTagline: "सोन्यात घडलेली परंपरा",
-  },
-  wa: {
-    general: "Hello Pundit Jewellers, I would like to enquire about your jewellery.",
-    collection: (name: string) => `Hello Pundit Jewellers, I would like to know more about your ${name} collection.`,
-    bridal: "Hello Pundit Jewellers, I would like to know more about your bridal jewellery collection.",
-  },
-};
-
-export const content: Record<Lang, Content> = { mr, en };
+export const content: Record<Lang, Content> = { mr };

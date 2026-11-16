@@ -12,5 +12,5 @@ export const mainNav: NavItem[] = [
 
 export const announcement: L = {
   mr: "पंडित ज्वेलर्स येथे शाश्वत सौंदर्याचे सोन्याचे दागिने अनुभवा",
-  en: "Discover Timeless Gold Jewellery at Pundit Jewellers",
+  en: "Discover Timeless Gold Jewellery at Pandit Jewellers",
 };

@@ -97,3 +97,12 @@ Animations respect the visitor's "reduce motion" setting.
 - On mobile, the menu lists every category; tap the arrow to expand its styles.
 - Every category has its own page at `/collections/<id>` (and `/collections` for all jewellery), with a banner, style cards (each with a WhatsApp enquiry link), the filtered collection grid and related categories.
 - Edit categories, their styles and their menu photos in `data/categories.ts`. The styles listed there are common examples, not a stock list; change them to match what the shop actually carries.
+
+## Fonts and palette
+
+- Marathi uses Anek Devanagari throughout. English headings use the serif Fraunces; English body text stays in Anek. Both are set in `app/layout.tsx`, and the heading rule is in `app/globals.css`.
+- Colours (maroon, cream and gold) are the tokens at the top of `app/globals.css`.
+
+## Homepage layout
+
+The homepage follows a banner-led shop layout on a white background: a banner carousel, a three-tile collections mosaic, a category grid, three featured photo cards, a two-by-two occasion mosaic, a wide bridal banner, the shop's values, the about text, three contact tiles, the store details and the contact cards. Section headings and labels for these are in `data/home.ts`; English headings use the Fraunces serif.

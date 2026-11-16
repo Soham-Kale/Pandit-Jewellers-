@@ -1,8 +1,8 @@
 import Reveal from "./Reveal";
-import Ornament from "./Ornament";
 
 type Props = {
-  eyebrow: string;
+  /** Kept for callers; the heading style no longer shows an eyebrow. */
+  eyebrow?: string;
   title: string;
   accent?: string;
   intro?: string;
@@ -11,33 +11,22 @@ type Props = {
   id?: string;
 };
 
-export default function SectionHeading({ eyebrow, title, accent, intro, align = "center", tone = "dark", id }: Props) {
+/** Section title with a lighter serif sub-line beneath it. */
+export default function SectionHeading({ title, accent, intro, align = "center", tone = "dark", id }: Props) {
   const center = align === "center";
   const light = tone === "light";
   return (
     <Reveal className={`${center ? "mx-auto text-center" : ""} max-w-3xl`}>
-      <p className={`eyebrow ${light ? "text-gold-soft" : "text-gold-deep"} ${center ? "" : "flex items-center gap-4"}`}>
-        {!center && <span aria-hidden className="h-px w-10 bg-gold" />}
-        {eyebrow}
-      </p>
-      <h2
-        id={id}
-        className={`mt-4 text-[2.3rem] font-semibold text-balance sm:text-5xl lg:text-[3.5rem] ${light ? "text-ivory" : "text-burgundy"}`}
-      >
+      <h2 id={id} className={`text-[2rem] text-balance sm:text-[2.5rem] ${light ? "text-white" : "text-burgundy-ink"}`}>
         {title}
         {accent && (
           <>
             {" "}
-            <em className={light ? "text-shine" : "text-shine-deep"}>{accent}</em>
+            <em className={light ? "text-gold-soft" : "text-burgundy"}>{accent}</em>
           </>
         )}
       </h2>
-      {center && <Ornament className="mx-auto mt-5" tone={tone} />}
-      {intro && (
-        <p className={`mt-5 text-base leading-relaxed text-pretty sm:text-lg ${light ? "text-ivory/80" : "text-muted"} ${center ? "mx-auto max-w-2xl" : ""}`}>
-          {intro}
-        </p>
-      )}
+      {intro && <p className={`subhead mt-1.5 text-pretty ${light ? "text-white/80" : "text-muted"} ${center ? "mx-auto max-w-2xl" : ""}`}>{intro}</p>}
     </Reveal>
   );
 }

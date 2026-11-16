@@ -5,6 +5,7 @@ import { business } from "@/data/business";
 import MotionProvider from "@/components/ui/MotionProvider";
 import { LanguageProvider } from "@/lib/i18n";
 
+// The only typeface on the site.
 const anek = Anek_Devanagari({
   variable: "--font-anek",
   subsets: ["devanagari", "latin"],
@@ -12,8 +13,9 @@ const anek = Anek_Devanagari({
   axes: ["wdth"],
 });
 
-const title = `${business.name.mr} | ${business.city.mr} येथील सोन्याचे दागिने · ${business.name.en} | Gold Jewellery in ${business.city.en}`;
-const description = `${business.name.mr}, ${business.city.mr} (${business.state.mr}) येथील पारंपरिक सोन्याच्या दागिन्यांचे दालन. ${business.name.en} is a traditional gold jewellery shop in ${business.city.en}, ${business.state.en}: gold necklaces, bangles, earrings, mangalsutra and bridal jewellery.`;
+
+const title = `${business.name.mr} | ${business.city.mr} येथील सोन्याचे दागिने`;
+const description = `${business.name.mr}, ${business.city.mr} (${business.state.mr}) येथील पारंपरिक सोन्याच्या दागिन्यांचे दालन: सोन्याचे हार, बांगड्या, कानातले, मंगळसूत्र आणि वधूचे दागिने.`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(business.siteUrl),
@@ -34,12 +36,11 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "mr_IN",
-    alternateLocale: ["en_IN"],
     url: "/",
-    siteName: business.name.en,
+    siteName: business.name.mr,
     title,
     description,
-    images: [{ url: "/assets/hero/hero.jpg", alt: `${business.name.en}, ${business.city.en}` }],
+    images: [{ url: "/assets/hero/hero.jpg", alt: `${business.name.mr}, ${business.city.mr}` }],
   },
   twitter: { card: "summary_large_image", title, description, images: ["/assets/hero/hero.jpg"] },
   robots: { index: true, follow: true },
@@ -47,12 +48,12 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#7A1C2C",
+  themeColor: "#6A2A86",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="mr" className={`${anek.variable} antialiased`}>
+    <html lang="mr" className={`${anek.variable} font-sans antialiased`}>
       <body className="min-h-dvh">
         <LanguageProvider>
           <MotionProvider>{children}</MotionProvider>
