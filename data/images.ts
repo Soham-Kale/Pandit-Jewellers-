@@ -10,24 +10,24 @@ export type SiteImage = { src: string; alt: L };
 export const images = {
   hero: {
     src: "/assets/hero/hero.jpg",
-    alt: { mr: "साडीवर परिधान केलेला पारंपरिक सोन्याचा पेंडंट हार", en: "Traditional gold pendant necklace worn with a silk sari" },
+    alt: { mr: "रेशमी साडीवर परिधान केलेला पारंपरिक सोन्याचा पेंडंट हार", en: "Traditional gold pendant necklace worn with a silk sari" },
   },
   about: {
     src: "/assets/about/about.jpg",
-    alt: { mr: "पारंपरिक सोन्याचे दागिने परिधान केलेली वधू", en: "Bride in red wearing full traditional gold jewellery" },
+    alt: { mr: "लाल पेहरावात पारंपरिक सोन्याचे दागिने परिधान केलेली वधू", en: "Bride in red wearing full traditional gold jewellery" },
   },
   bridalBanner: {
     src: "/assets/bridal/bridal-banner.jpg",
-    alt: { mr: "पारंपरिक वधू-दागिने परिधान केलेली वधू", en: "Indian bride in red and gold wearing traditional bridal jewellery" },
+    alt: { mr: "लाल-सोनेरी पेहरावात पारंपरिक दागिने परिधान केलेली वधू", en: "Indian bride in red and gold wearing traditional bridal jewellery" },
   },
   store: {
     src: "/assets/store/store.jpg",
-    alt: { mr: "दालनात मांडलेले सोन्याचे दागिने", en: "Gold bracelets and earrings on a display counter" },
+    alt: { mr: "दालनात मांडलेली सोन्याची कडी आणि कानातले", en: "Gold bracelets and earrings on a display counter" },
   },
   featured: [
     { src: "/assets/featured/featured-2.jpg", alt: { mr: "कुंदन दागिने आणि नथ परिधान केलेली स्त्री", en: "Woman wearing traditional kundan jewellery with a nath and layered necklace" } },
-    { src: "/assets/featured/featured-1.jpg", alt: { mr: "रेशमी साडीवर सोन्याचे थरदार हार", en: "Close-up of layered gold necklaces worn with a silk saree" } },
-    { src: "/assets/featured/featured-3.jpg", alt: { mr: "बांगड्या आणि कानातल्यांसह सोन्याचा हार-सेट", en: "Gold necklace set with bangles and earrings" } },
+    { src: "/assets/featured/featured-1.jpg", alt: { mr: "रेशमी साडीवर परिधान केलेले सोन्याचे थरदार हार", en: "Close-up of layered gold necklaces worn with a silk saree" } },
+    { src: "/assets/featured/featured-3.jpg", alt: { mr: "बांगड्या आणि कानातल्यांसह सोन्याच्या हाराचा सेट", en: "Gold necklace set with bangles and earrings" } },
     { src: "/assets/featured/featured-4.jpg", alt: { mr: "नथ आणि पोल्की चोकर परिधान केलेली वधू", en: "Bride wearing a traditional nath and a polki choker" } },
   ],
 } satisfies Record<string, SiteImage | SiteImage[]>;

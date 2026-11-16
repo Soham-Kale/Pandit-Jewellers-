@@ -14,12 +14,12 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   const { id } = await params;
   const cat = getCategory(id);
   if (!cat) return {};
-  const title = `${cat.label.mr} · ${cat.label.en} | ${business.name.mr} · ${business.name.en}, ${business.city.en}`;
+  const title = `${cat.label.mr} | ${business.name.mr}, ${business.city.mr}`;
   return {
     title,
-    description: `${cat.blurb.mr} ${cat.blurb.en}`,
+    description: `${cat.blurb.mr} ${business.city.mr} येथील ${business.name.mr}मध्ये प्रत्यक्ष पाहा.`,
     alternates: { canonical: categoryHref(id) },
-    openGraph: { title, description: cat.blurb.en, images: [{ url: cat.images[0] }] },
+    openGraph: { title, description: cat.blurb.mr, images: [{ url: cat.images[0] }] },
   };
 }
 

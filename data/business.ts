@@ -5,7 +5,7 @@
  *     Fill them in before going live. Empty values show "To be confirmed" /
  *     "निश्चित होणे बाकी" on the site and fall back gracefully.
  */
-import type { Lang, L } from "@/lib/i18n";
+import { mrDigits, type Lang, type L } from "@/lib/i18n";
 
 export const TBC: L = { mr: "निश्चित होणे बाकी", en: "To be confirmed" };
 
@@ -62,7 +62,7 @@ export const locationLine = (lang: Lang) => `${business.city[lang]}, ${business.
 
 export function addressText(lang: Lang): string {
   const street = business.streetAddress[lang];
-  return street ? `${street}, ${locationLine(lang)}${business.postalCode ? ` ${business.postalCode}` : ""}` : locationLine(lang);
+  return street ? `${street}, ${locationLine(lang)}${business.postalCode ? ` ${mrDigits(business.postalCode)}` : ""}` : locationLine(lang);
 }
 
 export function mapsLink(): string {

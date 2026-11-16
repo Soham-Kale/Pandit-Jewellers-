@@ -7,7 +7,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { content } from "@/data/content";
 import { home } from "@/data/home";
 import { images } from "@/data/images";
-import { useLang } from "@/lib/i18n";
+import { useLang, mrDigits } from "@/lib/i18n";
 
 /** Banner carousel: one rounded slide in view with the neighbours peeking in at the sides. */
 export default function Hero() {
@@ -89,7 +89,7 @@ export default function Hero() {
               key={s.href}
               type="button"
               onClick={() => go(i)}
-              aria-label={`${home.slide.go[lang]} ${i + 1}`}
+              aria-label={`${home.slide.go[lang]} ${mrDigits(i + 1)}`}
               aria-current={i === index}
               className="grid size-6 place-items-center"
             >

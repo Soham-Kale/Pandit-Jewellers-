@@ -42,7 +42,7 @@ export default function MobileMenu({ open, onClose }: { open: boolean; onClose: 
           id="mobile-menu"
           role="dialog"
           aria-modal="true"
-          aria-label="Menu"
+          aria-label="मेनू"
           className="fixed inset-0 z-[70] flex flex-col bg-ivory-glow lg:hidden"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -58,7 +58,7 @@ export default function MobileMenu({ open, onClose }: { open: boolean; onClose: 
             </button>
           </div>
 
-          <nav aria-label="Mobile" className="container-lux flex-1 overflow-y-auto pt-6">
+          <nav aria-label="मोबाइल मेनू" className="container-lux flex-1 overflow-y-auto pt-6">
             <p className="eyebrow text-gold-deep">{t.header.categories}</p>
             <ul className="mt-2">
               {categories.map((c) => {

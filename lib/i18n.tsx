@@ -21,3 +21,6 @@ export const useLang = () => useContext(LanguageContext);
 
 /** A value with its Marathi form (shown) and English form (used only for metadata). */
 export type L<T = string> = { mr: T; en: T };
+
+/** Writes a number with Marathi (Devanagari) digits, e.g. 413701 → ४१३७०१. Phone numbers stay in 0–9 so they dial. */
+export const mrDigits = (v: string | number) => String(v).replace(/[0-9]/g, (d) => "०१२३४५६७८९"[Number(d)]);

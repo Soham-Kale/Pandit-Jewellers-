@@ -15,22 +15,23 @@ const anek = Anek_Devanagari({
 
 
 const title = `${business.name.mr} | ${business.city.mr} येथील सोन्याचे दागिने`;
-const description = `${business.name.mr}, ${business.city.mr} (${business.state.mr}) येथील पारंपरिक सोन्याच्या दागिन्यांचे दालन: सोन्याचे हार, बांगड्या, कानातले, मंगळसूत्र आणि वधूचे दागिने.`;
+const description = `${business.city.mr} येथील ${business.name.mr} हे पारंपरिक सोन्याच्या दागिन्यांचे दालन आहे. सोन्याचे हार, मंगळसूत्र, बांगड्या, कानातले, अंगठ्या आणि वधूचे दागिने प्रत्यक्ष पाहण्यासाठी श्री संत रोहिदास चौक येथील दालनाला भेट द्या.`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(business.siteUrl),
   title,
   description,
   keywords: [
-    "gold jewellery shop in Shrigonda",
-    "jewellery shop in Shrigonda",
-    "traditional gold jewellery",
-    "bridal jewellery in Shrigonda",
-    "gold bangles and necklaces",
     "श्रीगोंदा सोन्याचे दागिने",
     "श्रीगोंदा ज्वेलर्स",
-    "मंगळसूत्र",
+    "श्रीगोंदा सराफ",
+    "पंडित ज्वेलर्स श्रीगोंदा",
+    "सोन्याचे मंगळसूत्र",
     "वधूचे दागिने",
+    "पारंपरिक महाराष्ट्रीय दागिने",
+    "ठुशी नथ बुगडी",
+    "सोन्याच्या बांगड्या",
+    "gold jewellery shop in Shrigonda",
   ],
   alternates: { canonical: "/" },
   openGraph: {

@@ -8,7 +8,7 @@ import WhatsAppIcon from "@/components/ui/WhatsAppIcon";
 import { content } from "@/data/content";
 import { images } from "@/data/images";
 import { business, locationLine, mapsLink, whatsappLink, TBC } from "@/data/business";
-import { useLang } from "@/lib/i18n";
+import { useLang, mrDigits } from "@/lib/i18n";
 
 function Pending({ text }: { text: string }) {
   return <span className="ml-2 inline-block rounded-full border border-gold px-2.5 py-0.5 align-middle text-xs font-semibold text-gold-deep">{text}</span>;
@@ -48,7 +48,7 @@ export default function StoreLocation() {
                   </dd>
                   <dd className="mt-1 text-charcoal/85">
                     {locationLine(lang)}
-                    {business.postalCode ? ` ${business.postalCode}` : ""}
+                    {business.postalCode ? ` ${mrDigits(business.postalCode)}` : ""}
                   </dd>
                 </div>
               </div>

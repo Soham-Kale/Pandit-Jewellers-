@@ -5,7 +5,7 @@ import Reveal, { ImageReveal } from "@/components/ui/Reveal";
 import Button from "@/components/ui/Button";
 import { content } from "@/data/content";
 import { images } from "@/data/images";
-import { useLang } from "@/lib/i18n";
+import { useLang, mrDigits } from "@/lib/i18n";
 
 export default function About() {
   const { lang } = useLang();
@@ -43,7 +43,7 @@ export default function About() {
             <ul className="mt-10 grid gap-4 sm:grid-cols-3">
               {t.pillars.map((pl, i) => (
                 <li key={pl.title} className="rounded-xl border border-line bg-surface/80 p-5 shadow-[0_12px_30px_-22px_rgba(74,36,117,0.4)]">
-                  <span className="text-shine-deep text-lg font-bold">0{i + 1}</span>
+                  <span className="text-shine-deep text-lg font-bold">{mrDigits(`0${i + 1}`)}</span>
                   <h3 className="mt-1 text-xl font-semibold text-burgundy">{pl.title}</h3>
                   <p className="mt-1.5 text-[0.95rem] leading-relaxed text-muted">{pl.text}</p>
                 </li>

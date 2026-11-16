@@ -13,7 +13,7 @@ import Collections from "@/components/sections/Collections";
 import { categories, categoryHref, getCategory } from "@/data/categories";
 import { content } from "@/data/content";
 import { whatsappLink, extProps } from "@/data/business";
-import { useLang } from "@/lib/i18n";
+import { useLang, mrDigits } from "@/lib/i18n";
 
 export default function CategoryView({ id }: { id: string }) {
   const { lang } = useLang();
@@ -87,7 +87,7 @@ export default function CategoryView({ id }: { id: string }) {
                 return (
                   <Reveal as="li" key={s.id} delay={i * 0.05} className="scroll-mt-40">
                     <div id={`style-${s.id}`} className="scroll-mt-10 frame-shine flex h-full flex-col rounded-xl bg-surface p-6 shadow-[0_20px_45px_-30px_rgba(74,36,117,0.45)]">
-                      <p className="text-shine-deep text-sm font-bold">0{i + 1}</p>
+                      <p className="text-shine-deep text-sm font-bold">{mrDigits(`0${i + 1}`)}</p>
                       <h3 className="mt-1 text-2xl font-semibold text-burgundy">{s.label[lang]}</h3>
                       <p className="mt-2 flex-1 text-muted">{s.text[lang]}</p>
                       <a href={wa} {...extProps(wa)} className="mt-5 inline-flex items-center gap-2 font-semibold text-gold-deep hover:text-burgundy">

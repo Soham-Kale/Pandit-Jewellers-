@@ -14,7 +14,7 @@ import { categories, categoryHref, searchAliases } from "@/data/categories";
 import { home } from "@/data/home";
 import { content } from "@/data/content";
 import { whatsappLink, extProps } from "@/data/business";
-import { useLang } from "@/lib/i18n";
+import { useLang, mrDigits } from "@/lib/i18n";
 import { setFilter, useFilter } from "@/lib/filter";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -112,7 +112,7 @@ export default function Collections({ initialCategory = "all", headingless = fal
                 <Link href="/collections" className="group block">
                   <div className="grid aspect-square place-items-center rounded-xl border border-line bg-white p-4 text-center">
                     <span>
-                      <span className="block text-4xl text-burgundy sm:text-5xl">{categories.length - 1}+</span>
+                      <span className="block text-4xl text-burgundy sm:text-5xl">{mrDigits(categories.length - 1)}+</span>
                       <span className="mt-2 block text-[0.95rem] text-charcoal">{home.categories.count[lang]}</span>
                     </span>
                   </div>
