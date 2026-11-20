@@ -5,7 +5,7 @@
  *     hallmarking, purity, pricing or exchange policies unless confirmed.
  *     See CONTENT_AUDIT_REPORT.md for the style and terminology guide.
  */
-import type { Lang } from "@/lib/i18n";
+import type { Lang } from "@/lib/lang";
 
 const mr = {
   skip: "मुख्य मजकुराकडे जा",

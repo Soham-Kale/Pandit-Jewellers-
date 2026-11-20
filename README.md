@@ -13,6 +13,8 @@ npm run dev      # http://localhost:3000
 npm run build    # production build
 npm start        # serve the production build
 npm run lint
+npm test         # SEO + smoke tests against the production build (run `npm run build` first)
+npm run check    # lint + typecheck + build + test, all in one
 ```
 
 Requires Node.js 20.9 or newer.
@@ -52,15 +54,37 @@ back gracefully until you fill it in (`data/business.ts`):
 - **Instagram / Facebook links** (`instagram`, `facebook`)
 - **Google Maps link** (`googleMapsUrl`). Until it is set, "Get Directions"
   opens a Google Maps search for "Pundit Jewellers Shrigonda Maharashtra".
+- **Founder / owner and founding year** (`founder`, `foundingYear`). Lets Google
+  and AI assistants answer "who founded Pandit Jewellers?". Adds a FAQ entry,
+  a `Person` entity in structured data and a line in `/llms.txt` once filled.
 - **Domain** (`siteUrl`, or set `NEXT_PUBLIC_SITE_URL`). Used for the canonical
   URL, sitemap, robots.txt, Open Graph and structured data.
 - **Brand story copy** in `data/content.ts` (`about.paragraphs`) is general
   placeholder text. Do not add years, awards, certifications, hallmarking or
   exchange policies unless they are confirmed.
 
-Structured data (`components/StructuredData.tsx`) only outputs the name, town,
-state and country, and adds phone, address, map and social links automatically
-once they are filled in.
+## SEO and AI search
+
+- **Structured data** (`lib/seo.ts`): one linked graph of `JewelryStore`,
+  `WebSite`, founder `Person`, `FAQPage`, and per-category `CollectionPage` +
+  `BreadcrumbList`. Optional facts appear only once filled in `data/business.ts`.
+- **FAQ** (`data/faq.ts`): shown on the homepage and published as `FAQPage`.
+  Answers are generated from business data, so they never go stale.
+- **`/llms.txt`**: plain-text summary for ChatGPT, Claude, Perplexity and Gemini.
+- **`robots.txt`** explicitly allows search engines and AI crawlers;
+  **`sitemap.xml`** lists every page with its images.
+- Unknown URLs return a real HTTP 404 (`proxy.ts` + `app/not-found.tsx`).
+- Search Console / Bing verification: set `GOOGLE_SITE_VERIFICATION` /
+  `BING_SITE_VERIFICATION` env vars on the host.
+
+**Off-site steps that matter most for local ranking** (no code can replace these):
+
+1. Claim and complete the **Google Business Profile**: same name, address and
+   phone as the site, category "Jeweler", photos, hours. Put its link in `googleMapsUrl`.
+2. Submit `https://<domain>/sitemap.xml` in **Google Search Console** and **Bing Webmaster Tools**.
+3. Ask happy customers for **Google reviews** and reply to them.
+4. Add the website link to the Instagram/Facebook bios and fill `instagram`/`facebook`.
+5. List the shop in Justdial, IndiaMART and Sulekha with the identical name/address/phone.
 
 ## Photography
 

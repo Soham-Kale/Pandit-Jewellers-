@@ -3,7 +3,7 @@
  * Swap `src` for the client's own photography as it becomes available
  * (keep files inside /public/assets/<section>/). Sources: see CREDITS.md.
  */
-import type { L } from "@/lib/i18n";
+import type { L } from "@/lib/lang";
 
 export type SiteImage = { src: string; alt: L };
 

@@ -1,5 +1,5 @@
 /** Headings and labels for the homepage sections (Marathi shown; English kept for reference only). */
-import type { L } from "@/lib/i18n";
+import type { L } from "@/lib/lang";
 
 export const home = {
   collections: {

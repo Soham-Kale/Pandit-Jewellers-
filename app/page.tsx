@@ -9,7 +9,10 @@ import BridalCollection from "@/components/sections/BridalCollection";
 import StoreLocation from "@/components/sections/StoreLocation";
 import Contact from "@/components/sections/Contact";
 import { CollectionsMosaic, PromoBanners } from "@/components/sections/HomeMosaics";
+import FAQ from "@/components/sections/FAQ";
 import StructuredData from "@/components/StructuredData";
+import { getFaqs } from "@/data/faq";
+import { faqNode, siteGraph } from "@/lib/seo";
 
 /**
  * Homepage journey: who and where (banner + highlights) → browse (signature
@@ -17,6 +20,7 @@ import StructuredData from "@/components/StructuredData";
  * (promise, featured pieces, about) → visit and contact.
  */
 export default function Home() {
+  const faqs = getFaqs();
   return (
     <SiteShell>
       <Hero />
@@ -29,8 +33,9 @@ export default function Home() {
       <FeaturedJewellery />
       <About />
       <StoreLocation />
+      <FAQ faqs={faqs} />
       <Contact />
-      <StructuredData />
+      <StructuredData nodes={[...siteGraph(), faqNode(faqs)]} />
     </SiteShell>
   );
 }

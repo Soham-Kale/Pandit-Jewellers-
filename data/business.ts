@@ -5,7 +5,7 @@
  *     Fill them in before going live. Empty values show "To be confirmed" /
  *     "निश्चित होणे बाकी" on the site and fall back gracefully.
  */
-import { mrDigits, type Lang, type L } from "@/lib/i18n";
+import { mrDigits, type Lang, type L } from "@/lib/lang";
 
 export const TBC: L = { mr: "निश्चित होणे बाकी", en: "To be confirmed" };
 
@@ -54,9 +54,28 @@ export const business = {
   /** PLACEHOLDER — the shop's exact Google Maps share link. Until set, a Maps search is used. */
   googleMapsUrl: "",
 
+  /**
+   * PLACEHOLDER — founder / owner. Fill these in so Google and AI assistants
+   * (ChatGPT, Gemini, Perplexity, Claude) can answer "who founded Pandit
+   * Jewellers?". Nothing about the founder is shown or published while empty.
+   */
+  founder: {
+    name: { mr: "", en: "" } as L,
+    /** e.g. { mr: "संस्थापक", en: "Founder" } or "Proprietor". */
+    role: { mr: "संस्थापक", en: "Founder" } as L,
+    /** One or two factual sentences, e.g. family background in the gold trade. */
+    bio: { mr: "", en: "" } as L,
+  },
+  /** PLACEHOLDER — year the shop opened, e.g. "1985". Used in search data and the FAQ. */
+  foundingYear: "",
+  /** Brand logo (square), used for search-engine and AI knowledge panels. */
+  logo: "/assets/logo/logo.png",
+
   /** PLACEHOLDER — production domain, used for canonical URL, sitemap and Open Graph. */
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.panditjewellers.example",
+  siteUrl: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.panditjewellers.example").replace(/\/+$/, ""),
 };
+
+export const hasFounder = () => Boolean(business.founder.name.en || business.founder.name.mr);
 
 export const locationLine = (lang: Lang) => `${business.city[lang]}, ${business.state[lang]}`;
 

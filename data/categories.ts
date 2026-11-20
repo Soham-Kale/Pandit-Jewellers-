@@ -1,4 +1,4 @@
-import type { L } from "@/lib/i18n";
+import type { L } from "@/lib/lang";
 import { collections, type Collection } from "./collections";
 
 export type CategoryIcon =
