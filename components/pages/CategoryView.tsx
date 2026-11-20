@@ -11,6 +11,7 @@ import WhatsAppIcon from "@/components/ui/WhatsAppIcon";
 import { Vine } from "@/components/ui/BannerArt";
 import CategoryIconGlyph from "@/components/ui/CategoryIcons";
 import Collections from "@/components/sections/Collections";
+import Gallery from "@/components/sections/Gallery";
 import { categories, categoryHref, getCategory } from "@/data/categories";
 import { content } from "@/data/content";
 import { whatsappLink, extProps } from "@/data/business";
@@ -121,6 +122,9 @@ export default function CategoryView({ id }: { id: string }) {
       <div className={cat.styles.length ? "[&_section]:!pt-6" : ""}>
         <Collections initialCategory={id} headingless />
       </div>
+
+      {/* Photo gallery, pre-filtered to this category */}
+      <Gallery key={id} initialCategory={id} />
 
       {/* Other categories */}
       <section

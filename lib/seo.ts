@@ -9,6 +9,7 @@
 import { business, hasFounder } from "@/data/business";
 import { categories, categoryHref, type Category } from "@/data/categories";
 import type { Faq } from "@/data/faq";
+import { galleryFor, type GalleryItem } from "@/data/gallery";
 
 const site = business.siteUrl;
 export const abs = (path: string) => (path.startsWith("http") ? path : `${site}${path.startsWith("/") ? "" : "/"}${path}`);
@@ -133,6 +134,27 @@ export function siteGraph(): Node[] {
   return [storeNode(), websiteNode(), founderNode()].filter(Boolean) as Node[];
 }
 
+const imageNode = (p: GalleryItem): Node => ({
+  "@type": "ImageObject",
+  contentUrl: abs(p.src),
+  name: p.title.mr,
+  alternateName: p.title.en,
+  description: p.alt.en,
+  creditText: business.name.en,
+  copyrightNotice: business.name.en,
+});
+
+/** The homepage photo gallery, so Google Images and AI engines know what the shop shows. */
+export function galleryNode(): Node {
+  return {
+    "@type": "ImageGallery",
+    "@id": `${site}/#gallery`,
+    name: `${business.name.mr} – दागिन्यांचे दालन`,
+    about: { "@id": ids.store },
+    associatedMedia: galleryFor("all").map(imageNode),
+  };
+}
+
 export function faqNode(faqs: Faq[]): Node {
   return {
     "@type": "FAQPage",
@@ -166,6 +188,7 @@ export function categoryGraph(cat: Category): Node[] {
       isPartOf: { "@id": ids.website },
       about: { "@id": ids.store },
       primaryImageOfPage: abs(cat.images[0]),
+      image: galleryFor(cat.id).map(imageNode),
       breadcrumb: { "@id": `${url}#breadcrumb` },
     },
     {

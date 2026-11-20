@@ -10,22 +10,16 @@ import { Vine } from "@/components/ui/BannerArt";
 import { content } from "@/data/content";
 import { home } from "@/data/home";
 import { images } from "@/data/images";
-import { collections } from "@/data/collections";
 import { useLang, mrDigits } from "@/lib/i18n";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const INTERVAL = 6500;
-const traditional = collections.find((c) => c.slug === "maharashtrian")!;
 
 /** Photo, focal point and mirroring for each slide (copy lives in content.banners.slides). */
 const art = [
   { img: images.bridalBanner, pos: "object-[38%_30%]", flip: true },
   { img: images.hero, pos: "object-[50%_60%]", flip: false },
-  {
-    img: { src: traditional.image, alt: traditional.alt },
-    pos: "object-[50%_18%]",
-    flip: false,
-  },
+  { img: images.heroTraditional, pos: "object-[50%_18%]", flip: false },
 ];
 
 /**

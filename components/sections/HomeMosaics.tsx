@@ -24,13 +24,15 @@ export function CollectionsMosaic() {
   const tiles = [
     {
       c: col("necklaces"),
+      img: images.mosaic.necklaces,
       id: "necklaces",
       cls: "aspect-[4/5] md:aspect-auto md:row-span-2",
       big: true,
     },
-    { c: col("bangles"), id: "bangles", cls: "aspect-[16/10]", big: false },
+    { c: col("bangles"), img: images.mosaic.bangles, id: "bangles", cls: "aspect-[16/10]", big: false },
     {
       c: col("mangalsutra"),
+      img: images.mosaic.mangalsutra,
       id: "mangalsutra",
       cls: "aspect-[16/10]",
       big: false,
@@ -53,15 +55,15 @@ export function CollectionsMosaic() {
           viewport={{ once: true, margin: "0px 0px -10% 0px" }}
           className="head-gap grid gap-4 md:grid-cols-2 lg:gap-6"
         >
-          {tiles.map(({ c, id, cls, big }) => (
+          {tiles.map(({ c, img, id, cls, big }) => (
             <motion.div key={id} variants={staggerChild} className={cls}>
               <Link
                 href={categoryHref(id)}
                 className="group relative block h-full overflow-hidden rounded-lg bg-mist"
               >
                 <Image
-                  src={c.image}
-                  alt={c.alt[lang]}
+                  src={img.src}
+                  alt={img.alt[lang]}
                   fill
                   quality={85}
                   sizes="(min-width: 768px) 50vw, 100vw"
@@ -104,20 +106,11 @@ const promoArt: Record<
   string,
   { src: string; alt: { mr: string; en: string }; pos: string; dark?: boolean }
 > = {
-  bridal: { ...pick("bridal"), pos: "object-[50%_22%]" },
-  traditional: { ...pick("earrings"), pos: "object-[72%_center]" },
-  festival: {
-    src: images.featured[1].src,
-    alt: images.featured[1].alt,
-    pos: "object-center",
-    dark: true,
-  },
-  daily: { ...pick("mangalsutra"), pos: "object-[50%_62%]" },
+  bridal: { ...images.promos.bridal, pos: "object-[50%_22%]" },
+  traditional: { ...images.promos.traditional, pos: "object-[72%_center]" },
+  festival: { ...images.promos.festival, pos: "object-center", dark: true },
+  daily: { ...images.promos.daily, pos: "object-[50%_50%]" },
 };
-function pick(slug: string) {
-  const c = col(slug);
-  return { src: c.image, alt: c.alt };
-}
 
 /**
  * Four promotional banners in the printed-banner style: photo on the left melting into

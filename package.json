@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
-    "test": "node --test tests/site.test.mjs",
+    "test": "node --test tests/images.test.mjs tests/site.test.mjs",
     "check": "npm run lint && npm run typecheck && npm run build && npm test"
   },
   "dependencies": {

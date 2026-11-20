@@ -20,7 +20,8 @@ export type Category = {
    *    Adjust them to what the showroom actually carries.
    */
   styles: { id: string; label: L; text: L }[];
-  images: [string, string];
+  /** [page banner, mega-menu photo 1, mega-menu photo 2]. Every photo on the site is used once. */
+  images: [string, string, string];
 };
 
 export const categoryHref = (id: string) => (id === "all" ? "/collections" : `/collections/${id}`);
@@ -38,7 +39,7 @@ export const categories: Category[] = [
     },
     matches: () => true,
     styles: [],
-    images: ["/assets/hero/hero.jpg", "/assets/featured/featured-3.jpg"],
+    images: ["/assets/gallery/bridal-necklace-jhumka.jpg", "/assets/gallery/pendant-gift-box.jpg", "/assets/gallery/jewelled-kada.jpg"],
   },
   {
     id: "necklaces",
@@ -53,7 +54,7 @@ export const categories: Category[] = [
       s("pendant", "पेंडंट सेट", "Pendant Sets", "रोजच्या वापरासाठी हलके, सुबक पेंडंट.", "Light pendants for everyday wear."),
       s("thushi", "ठुशी", "Thushi", "महाराष्ट्राचा पारंपरिक गळ्यालगतचा दागिना.", "Maharashtra's classic close-set necklace."),
     ],
-    images: ["/assets/collections/necklaces.jpg", "/assets/featured/featured-1.jpg"],
+    images: ["/assets/gallery/lakshmi-temple-necklace.jpg", "/assets/gallery/leaf-stone-necklace.jpg", "/assets/gallery/infinity-necklace.jpg"],
   },
   {
     id: "earrings",
@@ -67,7 +68,7 @@ export const categories: Category[] = [
       s("drops", "लटकन डूल", "Drops", "चेहऱ्याला शोभा देणारे लटकन डूल.", "Graceful drops that frame the face."),
       s("bugadi", "बुगडी", "Bugadi", "कानाच्या वरच्या पाळीत घालायची मराठमोळी बुगडी.", "Maharashtrian upper-ear jewellery."),
     ],
-    images: ["/assets/collections/earrings.jpg", "/assets/featured/featured-2.jpg"],
+    images: ["/assets/gallery/ruby-jhumka.jpg", "/assets/gallery/temple-pearl-jhumka.jpg", "/assets/gallery/red-teardrop-earrings.jpg"],
   },
   {
     id: "bangles",
@@ -81,7 +82,7 @@ export const categories: Category[] = [
       s("patlya", "पाटल्या", "Patlya", "मराठमोळ्या नववधूची ओळख असलेल्या पाटल्या.", "The Maharashtrian bride's signature bangles."),
       s("antique", "अँटिक बांगड्या", "Antique Bangles", "जुन्या काळाचा रुबाब जपणाऱ्या रचना.", "Designs with an antique finish."),
     ],
-    images: ["/assets/collections/bangles.jpg", "/assets/about/about.jpg"],
+    images: ["/assets/gallery/banner-choker-bangles.jpg", "/assets/gallery/filigree-red-bangle.jpg", "/assets/gallery/flower-filigree-bangle.jpg"],
   },
   {
     id: "rings",
@@ -95,7 +96,7 @@ export const categories: Category[] = [
       s("mens", "पुरुषांच्या अंगठ्या", "Men's Rings", "भरीव आणि रुबाबदार रचना.", "Bold designs for men."),
       s("stone", "खड्यांच्या अंगठ्या", "Stone Rings", "रंगीत खड्यांसह सोन्याच्या अंगठ्या.", "Gold rings set with coloured stones."),
     ],
-    images: ["/assets/collections/rings.jpg", "/assets/store/store.jpg"],
+    images: ["/assets/gallery/gold-rings.jpg", "/assets/gallery/red-sunflower-ring.jpg", "/assets/gallery/red-halo-ring.jpg"],
   },
   {
     id: "mangalsutra",
@@ -109,7 +110,7 @@ export const categories: Category[] = [
       s("vati", "वाटीचे मंगळसूत्र", "Vati Mangalsutra", "दोन वाट्यांची खास महाराष्ट्रीय रचना.", "The Maharashtrian two-vati design."),
       s("pendant", "पेंडंट मंगळसूत्र", "Pendant Mangalsutra", "आधुनिक पेंडंट असलेली रचना.", "With a modern pendant."),
     ],
-    images: ["/assets/collections/mangalsutra.jpg", "/assets/collections/bridal.jpg"],
+    images: ["/assets/gallery/mangalsutra.jpg", "/assets/gallery/wing-mangalsutra.jpg", "/assets/gallery/floral-mangalsutra.jpg"],
   },
   {
     id: "chains",
@@ -123,7 +124,7 @@ export const categories: Category[] = [
       s("beads", "मण्यांच्या चेन", "Bead Chains", "सोन्याच्या मण्यांच्या पारंपरिक माळा.", "Traditional gold bead chains."),
       s("kids", "लहान मुलांच्या चेन", "Kids' Chains", "हलक्या आणि नाजूक रचना.", "Light, comfortable designs."),
     ],
-    images: ["/assets/collections/chains.jpg", "/assets/featured/featured-3.jpg"],
+    images: ["/assets/gallery/flower-pendant-chain.jpg", "/assets/gallery/red-circle-pendant.jpg", "/assets/gallery/swirl-stone-pendant.jpg"],
   },
   {
     id: "daily",
@@ -132,7 +133,7 @@ export const categories: Category[] = [
     blurb: { mr: "रोज घालता येतील असे हलके, सुटसुटीत सोन्याचे दागिने.", en: "Light, comfortable gold you can wear every day." },
     matches: (c) => c.tags.includes("daily"),
     styles: [],
-    images: ["/assets/collections/chains.jpg", "/assets/collections/rings.jpg"],
+    images: ["/assets/gallery/banner-pendant-worn.jpg", "/assets/gallery/stone-hoops.jpg", "/assets/gallery/bead-charm-bracelet.jpg"],
   },
   {
     id: "wedding",
@@ -141,7 +142,7 @@ export const categories: Category[] = [
     blurb: { mr: "नववधूसाठी आणि संपूर्ण कुटुंबासाठी लग्नसराईचे दागिने.", en: "Wedding jewellery for the bride and the whole family." },
     matches: (c) => c.tags.includes("wedding"),
     styles: [],
-    images: ["/assets/collections/bridal.jpg", "/assets/bridal/bridal-banner.jpg"],
+    images: ["/assets/gallery/kundan-pearl-necklace-set.jpg", "/assets/gallery/pearl-red-jhumka.jpg", "/assets/gallery/red-filigree-bracelet.jpg"],
   },
   {
     id: "traditional",
@@ -155,7 +156,7 @@ export const categories: Category[] = [
       s("saaj", "कोल्हापुरी साज", "Kolhapuri Saaj", "कोल्हापूरची खास ओळख असलेला पारंपरिक साज.", "Kolhapur's signature necklace."),
       s("bugadi", "बुगडी", "Bugadi", "कानाच्या वरच्या पाळीसाठी पारंपरिक दागिना.", "Upper-ear jewellery."),
     ],
-    images: ["/assets/collections/maharashtrian.jpg", "/assets/featured/featured-4.jpg"],
+    images: ["/assets/gallery/temple-peacock-necklace-jhumka.jpg", "/assets/gallery/double-strand-mangalsutra.jpg", "/assets/gallery/red-flower-jhumka.jpg"],
   },
 ];
 

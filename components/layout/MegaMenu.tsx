@@ -99,7 +99,7 @@ function CategoryPanel({ cat, onNavigate }: { cat: Category; onNavigate: () => v
       </div>
 
       <div className="col-span-5 grid grid-cols-2 gap-4">
-        {cat.images.map((src, i) => (
+        {cat.images.slice(1).map((src, i) => (
           <Link key={src} href={href} onClick={onNavigate} className="group relative block aspect-[4/3] overflow-hidden rounded-xl">
             <Image src={src} alt="" fill sizes="20vw" quality={70} className="object-cover transition-transform duration-[1.2s] ease-luxe group-hover:scale-105" />
             <span className="absolute inset-0 bg-gradient-to-t from-burgundy-ink/75 via-transparent to-transparent" />

@@ -69,6 +69,16 @@ for (const path of PAGES) {
     assert.equal((body.match(/<h1[\s>]/g) ?? []).length, 1, "exactly one <h1>");
   });
 
+  test(`${path} never shows the same photo twice`, async () => {
+    const { body } = await page(path);
+    const srcs = [...body.matchAll(/<img\b[^>]*\ssrc="([^"]+)"/g)].map((m) => {
+      const u = m[1].replace(/&amp;/g, "&");
+      return u.startsWith("/_next/image") ? decodeURIComponent(new URLSearchParams(u.split("?")[1]).get("url")) : u;
+    });
+    const dupes = srcs.filter((s, i) => srcs.indexOf(s) !== i && !s.includes("/assets/logo/"));
+    assert.deepEqual([...new Set(dupes)], []);
+  });
+
   test(`${path} images all have alt text`, async () => {
     const { body } = await page(path);
     const missing = [...body.matchAll(/<img\b[^>]*>/g)].map((m) => m[0]).filter((t) => !/\balt="/.test(t));
@@ -85,6 +95,40 @@ test("homepage shows the FAQ that the structured data describes", async () => {
   const { body } = await page("/");
   assert.match(body, /id="faq"/);
   assert.match(body, /दुकानाची वेळ काय आहे\?/);
+});
+
+test("every page shows the jewellery gallery with category filters", async () => {
+  for (const path of PAGES) {
+    const { body } = await page(path);
+    assert.match(body, /id="gallery"/, `${path} gallery`);
+    assert.ok((body.match(/assets(\/|%2F)gallery(\/|%2F)/g) ?? []).length >= 2, `${path} gallery photos`);
+    assert.match(body, /aria-pressed="true"/, `${path} active filter chip`);
+  }
+});
+
+test("homepage gallery renders 12 photos first, with a show-more button", async () => {
+  const { body } = await page("/");
+  const gallery = body.slice(body.indexOf('id="gallery"'), body.indexOf("</section>", body.indexOf('id="gallery"')));
+  assert.equal((gallery.match(/मोठा फोटो पाहा/g) ?? []).length, 12);
+  assert.match(gallery, /आणखी दागिने पाहा/);
+});
+
+test("photo galleries are described in structured data", async () => {
+  assert.ok(jsonLdTypes((await page("/")).body).includes("ImageGallery"));
+  const { body } = await page("/collections/rings");
+  assert.match(body, /"ImageObject"[^}]*red-lotus-ring\.jpg/);
+});
+
+test("logo is served at display size, not 512px+", async () => {
+  const { body } = await page("/");
+  const widths = [...body.matchAll(/logo\.png&amp;w=(\d+)/g)].map((m) => Number(m[1]));
+  assert.ok(widths.length > 0, "logo rendered");
+  assert.ok(Math.max(...widths) <= 128, `logo widths: ${[...new Set(widths)]}`);
+});
+
+test("sitemap includes gallery photos for Google Images", async () => {
+  const xml = await (await fetch(`${BASE}/sitemap.xml`)).text();
+  assert.match(xml, /\/assets\/gallery\/mangalsutra\.jpg/);
 });
 
 test("category pages have breadcrumbs and collection data", async () => {

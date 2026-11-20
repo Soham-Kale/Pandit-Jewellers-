@@ -3,6 +3,7 @@ import Hero from "@/components/sections/Hero";
 import Highlights from "@/components/sections/Highlights";
 import About from "@/components/sections/About";
 import Collections from "@/components/sections/Collections";
+import Gallery from "@/components/sections/Gallery";
 import FeaturedJewellery from "@/components/sections/FeaturedJewellery";
 import WhyChooseUs from "@/components/sections/WhyChooseUs";
 import BridalCollection from "@/components/sections/BridalCollection";
@@ -12,7 +13,7 @@ import { CollectionsMosaic, PromoBanners } from "@/components/sections/HomeMosai
 import FAQ from "@/components/sections/FAQ";
 import StructuredData from "@/components/StructuredData";
 import { getFaqs } from "@/data/faq";
-import { faqNode, siteGraph } from "@/lib/seo";
+import { faqNode, galleryNode, siteGraph } from "@/lib/seo";
 
 /**
  * Homepage journey: who and where (banner + highlights) → browse (signature
@@ -27,6 +28,7 @@ export default function Home() {
       <Highlights />
       <CollectionsMosaic />
       <Collections initialCategory="all" />
+      <Gallery />
       <BridalCollection />
       <PromoBanners />
       <WhyChooseUs />
@@ -35,7 +37,7 @@ export default function Home() {
       <StoreLocation />
       <FAQ faqs={faqs} />
       <Contact />
-      <StructuredData nodes={[...siteGraph(), faqNode(faqs)]} />
+      <StructuredData nodes={[...siteGraph(), galleryNode(), faqNode(faqs)]} />
     </SiteShell>
   );
 }

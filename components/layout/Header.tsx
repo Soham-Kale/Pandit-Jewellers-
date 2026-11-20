@@ -156,7 +156,7 @@ export default function Header() {
           className={`container-lux flex h-16 items-center gap-3 transition-[height] duration-500 ease-luxe lg:gap-8 ${scrolled ? "lg:h-[4.25rem]" : "lg:h-20"}`}
         >
           <Link href="/" aria-label={t.header.home} className="flex shrink-0 items-center">
-            <Logo />
+            <Logo eager />
           </Link>
 
           <SearchBar className="mx-auto hidden w-full max-w-xl md:flex" />
