@@ -36,7 +36,7 @@ export default function Logo({ tone = "dark", className = "", eager = false }: {
             light ? "text-gold-soft" : "text-gold-deep"
           }`}
         >
-          {business.descriptor[lang]} · {business.city[lang]}
+          {business.descriptor[lang]} {business.city[lang]}
         </span>
       </span>
     </span>

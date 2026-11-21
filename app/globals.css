@@ -319,6 +319,10 @@ em {
   .fade-r { mask-image: linear-gradient(to right, #000 52%, transparent 98%); }
   .fade-l { mask-image: linear-gradient(to left, #000 52%, transparent 98%); }
   .fade-b { mask-image: linear-gradient(to bottom, #000 55%, transparent 98%); }
+  /* Category banner photo on phones: its lower half melts into the velvet behind the arch. */
+  @media (max-width: 767.98px) {
+    .cat-photo-fade { mask-image: linear-gradient(to bottom, #000 42%, rgba(0, 0, 0, 0.5) 70%, transparent 96%); }
+  }
   @media (min-width: 768px) {
     .md\:fade-r { mask-image: linear-gradient(to right, #000 52%, transparent 98%); }
     .md\:fade-l { mask-image: linear-gradient(to left, #000 52%, transparent 98%); }

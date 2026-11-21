@@ -102,3 +102,48 @@ export function Diya({ className = "" }: { className?: string }) {
     </svg>
   );
 }
+
+/**
+ * Small lotus for dividers: gold by default, or a solid `color` (e.g. deep purple on
+ * cream). `outline` draws it as gold line-art instead of filled petals.
+ */
+export function Lotus({ className = "", color, outline = false }: { className?: string; color?: string; outline?: boolean }) {
+  const id = useId();
+  const gold = color ?? `url(#${id})`;
+  const paint = outline
+    ? { fill: "none", stroke: gold, strokeWidth: 1.1, strokeLinejoin: "round" as const }
+    : { fill: gold };
+  return (
+    <svg viewBox="0 0 32 22" aria-hidden className={className}>
+      <GoldDefs id={id} />
+      <path d="M16 2 C19 7 19 13 16 19 C13 13 13 7 16 2 Z" {...paint} />
+      <path d="M16 19 C11 17 8 12 8 7 C12 9 15 13 16 19 Z" {...paint} />
+      <path d="M16 19 C21 17 24 12 24 7 C20 9 17 13 16 19 Z" {...paint} />
+      <path d="M16 19 C11 19 5 17 1 12 C6 12 12 14 16 19 Z" {...paint} opacity={outline ? 1 : 0.85} />
+      <path d="M16 19 C21 19 27 17 31 12 C26 12 20 14 16 19 Z" {...paint} opacity={outline ? 1 : 0.85} />
+      <path d="M7 20.5 H25" stroke={gold} strokeWidth="1.2" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+/** Line-art lotus mandala in gold hairlines, for the corner of a velvet panel. */
+export function FloralMandala({ className = "" }: { className?: string }) {
+  const id = useId();
+  const gold = `url(#${id})`;
+  const petal = "M0 0 C7 -12 7 -26 0 -36 C-7 -26 -7 -12 0 0 Z";
+  const outer = "M0 -8 C10 -22 10 -42 0 -56 C-10 -42 -10 -22 0 -8 Z";
+  return (
+    <svg viewBox="-64 -64 128 128" aria-hidden className={className} fill="none" stroke={gold} strokeWidth="1">
+      <GoldDefs id={id} />
+      {Array.from({ length: 8 }, (_, i) => (
+        <g key={i} transform={`rotate(${i * 45})`}>
+          <path d={outer} />
+          <path d={petal} transform="rotate(22.5)" />
+          <circle cx="0" cy="-60" r="1.6" fill={gold} stroke="none" />
+        </g>
+      ))}
+      <circle r="9" />
+      <circle r="4" fill={gold} stroke="none" />
+    </svg>
+  );
+}

@@ -3,12 +3,12 @@
 import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { MapPin, ArrowUpRight } from "lucide-react";
+import { MapPin, ArrowUpRight, ChevronsRight } from "lucide-react";
 import Reveal from "@/components/ui/Reveal";
 import Button from "@/components/ui/Button";
 import Ornament from "@/components/ui/Ornament";
 import WhatsAppIcon from "@/components/ui/WhatsAppIcon";
-import { Vine } from "@/components/ui/BannerArt";
+import { FloralMandala, Lotus } from "@/components/ui/BannerArt";
 import CategoryIconGlyph from "@/components/ui/CategoryIcons";
 import Collections from "@/components/sections/Collections";
 import Gallery from "@/components/sections/Gallery";
@@ -17,12 +17,23 @@ import { content } from "@/data/content";
 import { whatsappLink, extProps } from "@/data/business";
 import { useLang, mrDigits } from "@/lib/i18n";
 
+/**
+ * Banner arch (phones), in a stretched 100×100 box: the frame's sides rise, curl
+ * inward at the shoulders, then an onion dome climbs to a point at the centre.
+ */
+const ARCH =
+  "M9,100 L9,84 C9,77 12,73 17,73 L20,73 C23,62 30,57 36,52 C40,46 44,14 50,10 C56,14 60,46 64,52 C70,57 77,62 80,73 L83,73 C88,73 91,77 91,84 L91,100";
+const GOLD_LINE = "#d9b25a";
+
 export default function CategoryView({ id }: { id: string }) {
   const { lang } = useLang();
   const t = content[lang];
   const p = t.categoryPage;
   const cat = getCategory(id)!;
   const name = cat.label[lang];
+  // Phones: one-word titles sit inside the arch's dome (as in the design); two-word
+  // titles are wider than the dome, so they start just below its shoulders.
+  const longName = name.includes(" ");
 
   // The page content streams in after navigation, so jump to a style anchor once it exists.
   useEffect(() => {
@@ -32,12 +43,16 @@ export default function CategoryView({ id }: { id: string }) {
 
   return (
     <>
-      {/* Banner */}
+      {/* Banner: "temple arch" design, shared by every category page.
+          Phones: the photo melts into purple velvet; a thin gold mihrab arch (curled
+          shoulders, onion dome, line-art lotus in the dome) frames the centred title,
+          lotus divider, text and button.
+          Tablets and up: photo on the right melting into velvet, copy centred on the left. */}
       <section
         aria-labelledby="cat-title"
         className="bg-velvet relative isolate overflow-hidden text-ivory"
       >
-        <div className="fade-b md:fade-l relative h-56 overflow-hidden sm:h-72 md:absolute md:inset-y-0 md:right-0 md:h-auto md:w-[56%]">
+        <div className="cat-photo-fade md:fade-l relative aspect-square overflow-hidden sm:aspect-[16/9] md:absolute md:inset-y-0 md:right-0 md:aspect-auto md:w-[56%]">
           <Image
             src={cat.images[0]}
             alt=""
@@ -45,20 +60,45 @@ export default function CategoryView({ id }: { id: string }) {
             preload
             quality={85}
             sizes="(min-width: 768px) 56vw, 100vw"
-            className="object-cover object-[50%_32%]"
+            className="object-cover object-[50%_35%]"
           />
         </div>
-        <Vine className="absolute bottom-3 left-3 hidden w-36 -scale-y-100 opacity-40 lg:block" />
-        <div className="container-lux relative -mt-8 pb-14 md:mt-0 md:py-20 lg:py-24">
-          <div className="max-w-xl md:w-[46%]">
-            <span className="bg-shine grid size-14 place-items-center rounded-full text-burgundy-ink">
-              <CategoryIconGlyph icon={cat.icon} className="size-7" />
-            </span>
-            <h1 id="cat-title" className="t-display text-ivory-gold mt-5">
-              {name}
-            </h1>
-            <Ornament tone="light" className="mt-5" />
-            <p className="t-lead mt-5 text-ivory/85">{cat.blurb[lang]}</p>
+        <FloralMandala className="pointer-events-none absolute -bottom-8 -left-8 w-32 opacity-35 md:-bottom-14 md:-left-14 md:w-56 md:opacity-25" />
+
+        <div className="relative -mt-16 sm:-mt-20 md:mt-0">
+          {/* Phones: the gold mihrab arch; its sides continue down as the frame */}
+          <svg aria-hidden viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-x-0 top-0 h-28 w-full md:hidden">
+            <path d={ARCH} fill="none" stroke={GOLD_LINE} strokeWidth="1.4" vectorEffect="non-scaling-stroke" />
+          </svg>
+          <span aria-hidden className="absolute inset-x-[9%] top-[5.85rem] bottom-6 border-x-[1.4px] border-[#d9b25a] md:hidden" />
+          <Lotus outline className="absolute top-[1.55rem] left-1/2 h-8 w-12 -translate-x-1/2 md:hidden" />
+
+          <div className={`container-lux relative pb-12 md:py-20 lg:py-24 ${longName ? "pt-[5.6rem]" : "pt-[3.5rem]"}`}>
+            <div className="mx-auto flex w-[80%] max-w-[19rem] flex-col items-center text-center sm:max-w-md md:mx-0 md:w-[44%] md:max-w-none">
+              <span className="bg-shine hidden size-16 place-items-center rounded-full text-burgundy-ink shadow-[0_10px_24px_-12px_rgba(221,183,81,0.8)] md:grid lg:size-[4.5rem]">
+                <CategoryIconGlyph icon={cat.icon} className="size-8 lg:size-9" />
+              </span>
+              <h1
+                id="cat-title"
+                className={`t-display text-shine font-bold md:mt-5 ${longName ? "max-md:text-[2.3rem]" : "max-md:text-[3rem] max-md:leading-[1.15]"}`}
+              >
+                {name}
+              </h1>
+              <div aria-hidden className="mt-2 flex w-36 items-center gap-2 md:mt-4 md:w-64">
+                <span className="h-px flex-1 bg-gradient-to-r from-transparent to-gold-soft" />
+                <Lotus outline className="h-4 w-6 shrink-0 md:h-6 md:w-9" />
+                <span className="h-px flex-1 bg-gradient-to-l from-transparent to-gold-soft" />
+              </div>
+              <p className="t-lead mt-3 text-ivory/90 md:mt-5 md:text-xl md:font-medium">{cat.blurb[lang]}</p>
+              <a
+                href={whatsappLink(t.wa.collection(name))}
+                {...extProps(whatsappLink(t.wa.collection(name)))}
+                className="bg-shine group mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-7 text-base font-bold md:mt-8 md:min-h-14 md:px-9 md:text-lg text-burgundy-ink shadow-[0_14px_30px_-14px_rgba(221,183,81,0.7)] transition-transform duration-500 ease-luxe hover:-translate-y-0.5"
+              >
+                {t.contact.enquire}
+                <ChevronsRight aria-hidden className="size-4 transition-transform duration-500 ease-luxe group-hover:translate-x-1" strokeWidth={2} />
+              </a>
+            </div>
           </div>
         </div>
       </section>
